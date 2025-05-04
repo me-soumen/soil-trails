@@ -17,13 +17,13 @@
   <a href="add_or_update.html">Add or Update State</a>
 
   <script>
-    const baseURL = "https://maps.google.com/?q=";
     function getQueryParam(param) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(param);
     }
 
     async function loadStateDetails() {
+      const baseURL = "https://maps.google.com/?q=";
       const stateParam = getQueryParam('state');
       if (!stateParam) {
         document.getElementById('result').innerText = 'Please provide a state code in the URL, e.g., ?state=WB';
