@@ -30,7 +30,7 @@
       }
 
       try {
-        const response = await fetch('states.json');
+        const response = await fetch('root/states.json');
         const states = await response.json();
 
         const stateDetails = states.find(
