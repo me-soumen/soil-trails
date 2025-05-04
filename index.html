@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>State Details</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .state-details { margin-top: 20px; border: 1px solid #ccc; padding: 15px; border-radius: 5px; }
+    a { display: inline-block; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>State Details</h1>
+  <div id="result">Loading...</div>
+
+  <a href="add_or_update.html">Add or Update State</a>
+
+  <script>
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    async function loadStateDetails() {
+      const stateParam = getQueryParam('state');
+      if (!stateParam) {
+        document.getElementById('result').innerText = 'Please provide a state name in the URL, e.g., ?state=Texas';
+        return;
+      }
+
+      try {
+        const response = await fetch('states.json');
+        const states = await response.json();
+
+        const stateDetails = states.find(
+          s => s.state.toLowerCase() === stateParam.toLowerCase()
+        );
+
+        if (stateDetails) {
+          document.getElementById('result').innerHTML = `
+            <div class="state-details">
+              <h2>${stateDetails.state}</h2>
+              <p><strong>Date:</strong> ${stateDetails.date}</p>
+              <p><strong>Latitude:</strong> ${stateDetails.latitude}</p>
+              <p><strong>Longitude:</strong> ${stateDetails.longitude}</p>
+            </div>
+          `;
+        } else {
+          document.getElementById('result').innerText = 'State not found in the data.';
+        }
+
+      } catch (error) {
+        document.getElementById('result').innerText = 'Error loading state data.';
+        console.error(error);
+      }
+    }
+
+    loadStateDetails();
+  </script>
+
+</body>
+</html>
