@@ -28,5 +28,15 @@
     "latitude": 27.9944,
     "longitude": -81.7603,
     "notes": "Hey"
+  },
+ {
+    "code": "JH",
+    "state": "Jharkhand",
+    "place": "Durgapur",
+    "date": "1845-03-03",
+    "time": "10:00 AM",
+    "latitude": 27.9944,
+    "longitude": -81.7603,
+    "notes": "Hey"
   }
 ]
