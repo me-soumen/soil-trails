@@ -17,7 +17,7 @@
   <a href="add_or_update.html">Add or Update State</a>
 
   <script>
-    const mapURL = "https://maps.google.com/?q=";
+    const baseURL = "https://maps.google.com/?q=";
     function getQueryParam(param) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(param);
@@ -39,6 +39,7 @@
         );
 
         if (stateDetails) {
+          const mapURL = baseURL + stateDetails.latitude + "," + stateDetails.longitude;
           document.getElementById('result').innerHTML = `
             <div class="state-details">
               <h2>${stateDetails.state}</h2>
@@ -46,7 +47,7 @@
               <p><strong>Date:</strong> ${stateDetails.date}</p>
               <p><strong>Time:</strong> ${stateDetails.time}</p>
               <p><strong>Notes:</strong> ${stateDetails.notes}</p>
-              <p><strong>Location:</strong> <a href=`${mapURL}${stateDetails.latitude},${stateDetails.longitude}`>Open in Map</a></p>
+              <p><strong>Location:</strong> <a href="${mapURL}">Open in Map</a></p>
             </div>
           `;
         } else {
