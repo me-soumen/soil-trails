@@ -1,0 +1,42 @@
+[
+  {
+    "code": "KA",
+    "state": "Karnataka",
+    "place": "Hogenakkal Falls",
+    "date": "1850-09-09",
+    "time": "10:00 AM",
+    "latitude": 36.7783,
+    "longitude": -119.4179,
+    "notes": "Awesome Destination"
+  },
+  {
+    "code": "KL",
+    "state": "Kerala",
+    "place": "Kannur",
+    "date": "1845-12-29",
+    "time": "10:00 AM",
+    "latitude": 31.9686,
+    "longitude": -99.9018,
+    "notes": "Nice Trip"
+  },
+  {
+    "code": "WB",
+    "state": "West Bengal",
+    "place": "Durgapur",
+    "date": "1845-03-03",
+    "time": "10:00 AM",
+    "latitude": 27.9944,
+    "longitude": -81.7603,
+    "notes": "Hey"
+  },
+{
+    "code": "JH",
+    "state": "Jharkhand",
+    "place": "Durgapur",
+    "date": "1845-03-03",
+    "time": "10:00 AM",
+    "latitude": 27.9944,
+    "longitude": -81.7603,
+    "notes": "Hey"
+  }
+]
