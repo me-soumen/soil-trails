@@ -16,6 +16,7 @@
 
   <input type="text" id="code" placeholder="State Code">
   <input type="text" id="state" placeholder="State Name">
+  <input type="text" id="place" placeholder="Place">
   <input type="date" id="date">
   <input type="time" id="time">
   <input type="number" id="latitude" placeholder="Latitude" step="any">
@@ -26,32 +27,33 @@
 
   <div class="msg" id="msg"></div>
 
-  <a href="index.html">Go Back to State Details</a>
+  <a href="../index.html">Go Back to State Details</a>
 
   <script>
     async function addOrUpdate() {
       const code = document.getElementById('code').value.trim();
       const state = document.getElementById('state').value.trim();
+      const place = document.getElementById('place').value.trim();
       const date = document.getElementById('date').value;
       const time = document.getElementById('time').value;
       const latitude = parseFloat(document.getElementById('latitude').value);
       const longitude = parseFloat(document.getElementById('longitude').value);
       const notes = document.getElementById('notes').value;
 
-      if (!code || !state || !date || isNaN(latitude) || isNaN(longitude)) {
+      if (!code || !state || !place || !date || isNaN(latitude) || isNaN(longitude)) {
         alert('Please fill out all fields correctly.');
         return;
       }
 
       try {
-        const response = await fetch('root/states.json');
+        const response = await fetch('../root/states.json');
         let states = await response.json();
 
         const existingIndex = states.findIndex(
           s => s.code.toLowerCase() === state.toLowerCase()
         );
 
-        const newEntry = { code, state, date, latitude, longitude, notes };
+        const newEntry = { code, state, place, date, time, latitude, longitude, notes };
 
         if (existingIndex !== -1) {
           // Update
