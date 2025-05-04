@@ -40,6 +40,7 @@
 
         if (stateDetails) {
           const mapURL = baseURL + stateDetails.latitude + "," + stateDetails.longitude;
+          console.log(mapURL);
           document.getElementById('result').innerHTML = `
             <div class="state-details">
               <h2>${stateDetails.state}</h2>
@@ -47,7 +48,7 @@
               <p><strong>Date:</strong> ${stateDetails.date}</p>
               <p><strong>Time:</strong> ${stateDetails.time}</p>
               <p><strong>Notes:</strong> ${stateDetails.notes}</p>
-              <p><strong>Location:</strong> <a href="${mapURL}">Open in Map</a></p>
+              <p><strong>Location:</strong> <a href="${mapURL}" target="_blank">Open in Map</a></p>
             </div>
           `;
         } else {
