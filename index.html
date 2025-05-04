@@ -23,17 +23,17 @@
     }
 
     async function loadStateDetails() {
-      const baseURL = "https://maps.google.com/?q=";
+      var baseURL = "https://maps.google.com/?q=";
       const stateParam = getQueryParam('state');
       if (!stateParam) {
         document.getElementById('result').innerText = 'Please provide a state code in the URL, e.g., ?state=WB';
         return;
       }
-
+      console.log(stateParam);
       try {
         const response = await fetch('root/states.json');
         const states = await response.json();
-
+        console.log(states);
         const stateDetails = states.find(
           s => s.code.toLowerCase() === stateParam.toLowerCase()
         );
