@@ -20,9 +20,9 @@ https://me-soumen.github.io/soil-collection/
 This website is built to:
 - ✅ **Add** new soil collection entries with place, date, coordinates and notes.
 - ✅ **Update** existing soil details as I revisit places.
-- ✅ **View** all collection data in a neat table with location of sollection point.
+- ✅ **View** all collection data in a neat table with location of collection point.
 
-The collection details are saved in a `states.json` file, which serves as the master record for my soil samples.
+The collection details are saved in a `database/states.json` file, which serves as the master record for my soil samples.
 
 ---
 
