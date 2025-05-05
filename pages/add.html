@@ -46,7 +46,7 @@
       }
 
       try {
-        const response = await fetch('../root/states.json');
+        const response = await fetch('../database/states.json');
         let states = await response.json();
 
         const existingIndex = states.findIndex(
@@ -66,7 +66,7 @@
         }
 
         // Steps 3-5 remain same (call GitHub API to backup and upload)
-        const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${REPO}/contents/root/states.json`, {
+        const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${REPO}/contents/database/states.json`, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
             Accept: "application/vnd.github+json"
@@ -83,7 +83,7 @@
     
         // Upload updated states.json
         const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(states, null, 2))));
-        await githubUpload("root/states.json", updatedContent, "Update states.json", currentSha);
+        await githubUpload("database/states.json", updatedContent, "Update states.json", currentSha);
 
         // This will not actually save on GitHub Pages as it's static
         console.log('Updated states data:', states);

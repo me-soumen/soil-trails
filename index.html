@@ -31,7 +31,7 @@
       }
       console.log(stateParam);
       try {
-        const response = await fetch('root/states.json');
+        const response = await fetch('database/states.json');
         const states = await response.json();
         console.log(states);
         const stateDetails = states.find(
