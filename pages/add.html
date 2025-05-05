@@ -22,6 +22,7 @@
   <input type="number" id="latitude" placeholder="Latitude" step="any">
   <input type="number" id="longitude" placeholder="Longitude" step="any">
   <input type="text" id="notes" placeholder="Some Notes">
+  <input type="text" id="token" placeholder="Github API Token">
 
   <button onclick="addOrUpdate()">Add or Update</button>
 
@@ -29,6 +30,7 @@
 
   <a href="../index.html">Go Back to State Details</a>
 
+  <script src="../js/GithubHelper.js"></script>
   <script>
     async function addOrUpdate() {
       const code = document.getElementById('code').value.trim();
@@ -40,85 +42,14 @@
       const longitude = parseFloat(document.getElementById('longitude').value);
       const notes = document.getElementById('notes').value;
 
+      const token = document.getElementById('token').value;
+
       if (!code || !state || !place || !date || isNaN(latitude) || isNaN(longitude)) {
         alert('Please fill out all fields correctly.');
         return;
       }
 
-      try {
-        const response = await fetch('../database/states.json');
-        let states = await response.json();
-
-        const existingIndex = states.findIndex(
-          s => s.code.toLowerCase() === state.toLowerCase()
-        );
-
-        const newEntry = { code, state, place, date, time, latitude, longitude, notes };
-
-        if (existingIndex !== -1) {
-          // Update
-          states[existingIndex] = newEntry;
-          document.getElementById('msg').innerText = 'State details updated!';
-        } else {
-          // Append
-          states.push(newEntry);
-          document.getElementById('msg').innerText = 'State added!';
-        }
-
-        // Steps 3-5 remain same (call GitHub API to backup and upload)
-        const shaResp = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${REPO}/contents/database/states.json`, {
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-            Accept: "application/vnd.github+json"
-          }
-        });
-        const shaData = await shaResp.json();
-        const currentSha = shaData.sha;
-    
-        // Backup existing file
-        const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-        const backupPath = `backup/states-${timestamp}.json`;
-    
-        await githubUpload(backupPath, shaData.content, `Backup states.json at ${timestamp}`);
-    
-        // Upload updated states.json
-        const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(states, null, 2))));
-        await githubUpload("database/states.json", updatedContent, "Update states.json", currentSha);
-
-        // This will not actually save on GitHub Pages as it's static
-        console.log('Updated states data:', states);
-        alert('On local server, this data would be saved. On GitHub Pages, only simulated.');
-
-      } catch (error) {
-        console.error(error);
-        alert('Error reading states.json');
-      }
-    }
-
-    async function githubUpload(path, base64Content, commitMessage, sha = null) {
-      const body = {
-        message: commitMessage,
-        content: base64Content
-      };
-      if (sha) {
-        body.sha = sha;  // Needed for update
-      }
-    
-      const res = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${REPO}/contents/${path}`, {
-        method: 'PUT',
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-          Accept: "application/vnd.github+json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(body)
-      });
-    
-      if (!res.ok) {
-        throw new Error(`GitHub upload failed: ${res.statusText}`);
-      }
-    
-      return await res.json();
+      updateStatesJson()
     }
   </script>
 
