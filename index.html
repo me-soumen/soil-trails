@@ -59,15 +59,11 @@
     //     "notes": "Hey"
     //   }
     // ]
-    function getQueryParam(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-    }
 
     async function loadStateDetails() {
       var baseURL = "https://maps.google.com/?q=";
       try {
-      const response = await fetch('database/states.json');
+      const response = await fetch('./database/states.json');
       const states = await response.json();
       console.log(states);
 

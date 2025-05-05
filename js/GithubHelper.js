@@ -1,149 +1,148 @@
-let config = {};
+var config = {};
 
-// 1. Load config file
+// Load config file
 async function loadConfig() {
-  const response = await fetch('./config/config.json');
-  config = await response.json();
+    const response = await fetch('../js/config/config.json');
+    config = await response.json();
 }
 
-// 2: Convert input string to Base64
+// Convert input string to Base64
 function convertToBase64(inputString) {
   return btoa(unescape(encodeURIComponent(inputString)));
 }
 
-// 3. Fetch the latest SHA of database json file
-async function fetchLatestSha(token) {
-  const apiUrl = `${config.baseUrl}/${config.databaseFilename}`;
+// Backup current states.json file into backup/ folder
+async function backupDatabase(dbContent, token) {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-'); // Make it filename safe
+    const backupFilename = `${timestamp}.json`;
 
-  const response = await fetch(apiUrl, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/vnd.github+json',
-      'Authorization': `Bearer ${token}`,
-      'X-GitHub-Api-Version': '2022-11-28'
-    }
-  });
+    const backupUrl = `${config.baseUrl}/${config.databaseBackupFolderName}/${backupFilename}`;
+    console.log(backupUrl)
 
-  if (!response.ok) {
-    const error = await response.json();
-    console.error('Error fetching SHA:', error);
-    throw new Error(`GitHub API error: ${error.message}`);
-  }
+    const data = await uploadNewFile(backupUrl, dbContent, token);
 
-  const data = await response.json();
-  return data.sha;
+    console.log("Backup created successfully.")
 }
 
-
-// 4: Fetch latest file content (Base64 encoded)
-async function fetchFileContent(token) {
-  const apiUrl = 'https://api.github.com/repos/me-soumen/soil-collection/contents/root/states.json';
-
-  const response = await fetch(apiUrl, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/vnd.github+json',
-      'Authorization': `Bearer ${token}`,
-      'X-GitHub-Api-Version': '2022-11-28'
-    }
-  });
-
-  if (!response.ok) {
-    const error = await response.json();
-    console.error('Error fetching file content:', error);
-    throw new Error(`GitHub API error: ${error.message}`);
-  }
-
-  const data = await response.json();
-  return data; // Contains 'sha' and 'content' (Base64 encoded)
-}
-
-// 5: Backup current states.json file into backup/ folder
-async function backupStatesJson(token) {
-  const fileData = await fetchFileContent(token);
-
-  const timestamp = new Date().toISOString().replace(/[:.]/g, '-'); // Make it filename safe
-  const backupFilename = `backup/states-${timestamp}.json`;
-
-  const apiUrl = `https://api.github.com/repos/me-soumen/soil-collection/contents/${backupFilename}`;
-
-  const body = {
-    message: `Backup states.json at ${timestamp}`,
-    committer: {
-      name: "Soumen",
-      email: "me.soumen02@gmail.com"
-    },
-    content: fileData.content // Already Base64 from GitHub API
-  };
-
-  const response = await fetch(apiUrl, {
-    method: 'PUT',
-    headers: {
-      'Accept': 'application/vnd.github+json',
-      'Authorization': `Bearer ${token}`,
-      'X-GitHub-Api-Version': '2022-11-28',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  });
-
-  if (!response.ok) {
-    const error = await response.json();
-    console.error('Error backing up file:', error);
-    throw new Error(`GitHub API error: ${error.message}`);
-  }
-
-  const data = await response.json();
-  console.log('Backup created at:', data.content.path);
-  return data;
-}
-
-// 6: Update states.json file (calls backup first)
+// Update database file (calls backup first)
 async function updateStatesJson(rawContent, token) {
-
     // Step 1: Load config
-    loadConfig();
+    await loadConfig();
 
-    // Step 2: Backup current file
-    await backupStatesJson(token);
+    const dbUrl = `${config.baseUrl}/${config.databaseFolderName}/${config.databaseFileName}`;
 
-    // Step 3: Get latest SHA
-    const latestSha = await fetchLatestSha(token);
+    // Step 2: Get latest db content
+    const db = await fetchFileContent(dbUrl, token);
 
-    // Step 4: Convert content to Base64
-    const base64Content = convertToBase64(rawContent);
+    // Step 3: Backup current db
+    await backupDatabase(db.content, token);
 
-    // Step 5: Prepare API call
-    const apiUrl = 'https://api.github.com/repos/me-soumen/soil-collection/contents/root/states.json';
+    // Step 4: Merge (append) rawContent with existing content
+    let existingJson = JSON.parse(atob(db.content));  // Decode existing Base64 and parse
+    let newJson = JSON.parse(rawContent);
 
-    const body = {
-    message: "Updating states.json",
-    committer: {
-      name: "Soumen",
-      email: "me.soumen02@gmail.com"
-    },
-    sha: latestSha,
-    content: base64Content
-    };
+    if (!Array.isArray(existingJson)) existingJson = [];
+    if (!Array.isArray(newJson)) newJson = [newJson];
 
-    const response = await fetch(apiUrl, {
-    method: 'PUT',
-    headers: {
-      'Accept': 'application/vnd.github+json',
-      'Authorization': `Bearer ${token}`,
-      'X-GitHub-Api-Version': '2022-11-28',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
+    const mergedJson = [...existingJson, ...newJson];
+
+    // Step 5: Convert merged content back to Base64
+    const base64Content = btoa(JSON.stringify(mergedJson, null, 2));
+    console.log(base64Content);
+
+    // Step 6: Prepare API call to update file
+    await updateFile(dbUrl, db.sha, base64Content, token);
+
+    console.log("Database updated successfully.")
+}
+
+/*------------------------------------------------------------------------------------------------
+GitHub APIs: Fetch Content / Upload a File / Update a File
+----------------------------------------------------------------------------------------------*/
+// Fetch file content from GitHub (Base64 encoded)
+async function fetchFileContent(fileUrl, token) {
+    const response = await fetch(fileUrl, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/vnd.github+json',
+            'Authorization': `Bearer ${token}`,
+            'X-GitHub-Api-Version': '2022-11-28'
+        }
     });
 
     if (!response.ok) {
-    const error = await response.json();
-    console.error('Error updating file:', error);
-    throw new Error(`GitHub API error: ${error.message}`);
+        const error = await response.json();
+        console.error('Error fetching file content:', error);
+        throw new Error(`GitHub API error: ${error.message}`);
     }
 
     const data = await response.json();
-    console.log('File updated successfully:', data.content.path);
     return data;
+}
+
+// Upload a new file to GitHub
+async function uploadNewFile(fileUrl, content, token) {
+  const body = {
+    message: "Uploading a new file",
+    committer: {
+      name: `${config.committerName}`,
+      email: `${config.committerEmail}`
+    },
+    content: content // base64 encoded content
+  };
+
+  const response = await fetch(fileUrl, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/vnd.github+json',
+      'Authorization': `Bearer ${token}`,
+      'X-GitHub-Api-Version': '2022-11-28',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error('Error uploading file:', error);
+    throw new Error(`GitHub API error: ${error.message}`);
+  }
+
+  const data = await response.json();
+  console.log('GitHub: File uploaded with url:', data.content.path);
+  return data;
+}
+
+// Update an existing file in GitHub
+async function updateFile(fileUrl, fileSha, updatedContent, token) {
+    const body = {
+        message: "Updating an existing file",
+        committer: {
+        name: `${config.committerName}`,
+        email: `${config.committerEmail}`
+        },
+        sha: fileSha,
+        content: updatedContent  // base64 encoded content
+    };
+
+      const response = await fetch(fileUrl, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': `Bearer ${token}`,
+        'X-GitHub-Api-Version': '2022-11-28',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+      });
+
+      if (!response.ok) {
+      const error = await response.json();
+      console.error('Error updating file:', error);
+      throw new Error(`GitHub API error: ${error.message}`);
+      }
+
+      const data = await response.json();
+      console.log('GitHub: File updated successfully:', data.content.path);
+      return data;
 }
