@@ -5,7 +5,7 @@ This site helps me record, update, and view the details of all the soils I have 
 
 🌱 Whether it's the red soil of Tamil Nadu, black cotton soil from Maharashtra, or alluvial soil from the Gangetic plains — every sample has a place here!
 
-🎯My Goal is to collect soil samples from each states and union territories of India!
+🎯 My Goal is to collect soil samples from each states and union territories of India!
 
 ---
 
@@ -59,12 +59,12 @@ The collection details are saved in a `states.json` file, which serves as the ma
 
 ```json
 {
-  "code": "TN",
-  "state": "Tamil Nadu",
-  "place": "Pichavaram Mangrove Forest",
-  "date": "2024-12-06",
-  "time": "10:30 AM",
-  "latitude": 11.4289,
-  "longitude": 79.7747,
-  "notes": "Collected near the mangrove roots"
+  "code": "KA",
+  "state": "Karnataka",
+  "place": "Hogenakkal Falls",
+  "date": "08-02-2025",
+  "time": "01:30 PM",
+  "latitude": 12.110986586674395,
+  "longitude": 77.7747682536287,
+  "notes": "Collected in the middle of Kaveri River while taking Coracle ride"
 }
