@@ -1,0 +1,7 @@
+{
+  "baseUrl": "https://api.github.com/repos/me-soumen/soil-collection/contents",
+  "databaseFilename": "states.json",
+  "committerName": "Soumen",
+  "committerEmail": "me.soumen02@gmail.com",
+  "apiVersion": "2022-11-28"
+}
