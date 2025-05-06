@@ -13,7 +13,7 @@ async function loadConfig() {
 var data = []
 // Load config file
 async function loadData() {
-    const dbPath = `../${config.databaseFolderName}/${config.databaseFileName}`;
+    const dbPath = `./${config.databaseFolderName}/${config.databaseFileName}`;
     console.log(dbPath);
     const response = await fetch(dbPath);
     data = await response.json();
