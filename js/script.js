@@ -410,7 +410,7 @@ function loadSamples(stateData) {
   sampleSection.innerHTML = ''; // clear
   if(stateData.samples.length == 0) {
     const tile = document.createElement('div');
-    tile.className = 'no-record d-flex  align-items-center justify-content-center fs-1 fw-bold';
+    tile.className = 'no-record d-flex align-items-center justify-content-center fw-bold';
     tile.innerHTML = `Hope to visit soon...`;
     sampleSection.appendChild(tile);
   } else {

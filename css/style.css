@@ -16,11 +16,17 @@ Common Sections
   .title-text {
     font-size: 20px;
   }
+  .no-record {
+    font-size: 40px !important;
+  }
 }
 
 @media (min-width: 768px) {
   .title-text {
     font-size: 25px;
+  }
+  .no-record {
+    font-size: 50px !important;
   }
 }
 
@@ -38,8 +44,8 @@ Common Sections
 }
 
 .no-record {
+    font-size: 30px;
     min-height: 300px;
-    padding: 50px;
     color: #95978e;
 }
 
