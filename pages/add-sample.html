@@ -30,7 +30,6 @@
 
   <a href="../index.html">Go Back to State Details</a>
 
-  <script src="../js/github_api.js"></script>
   <script>
     async function addOrUpdate() {
       const code = document.getElementById('code').value.trim();
@@ -64,6 +63,7 @@
       updateStatesJson(JSON.stringify(jsonData, null, 2), token);
     }
   </script>
+  <script src="../js/add-sample.js" type="module"></script>
 
 </body>
 </html>
