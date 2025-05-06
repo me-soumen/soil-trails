@@ -6,7 +6,7 @@ const sampleSection = document.getElementById('sample-section');
 var config = {};
 // Load config file
 async function loadConfig() {
-    const response = await fetch('../js/config/config.json');
+    const response = await fetch('./js/config/config.json');
     config = await response.json();
 }
 
