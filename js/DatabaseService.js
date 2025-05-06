@@ -1,1 +1,0 @@
-import { myFunction } from './GithubHelper.js';
