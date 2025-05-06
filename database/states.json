@@ -46,6 +46,17 @@
         "longitude": 17.8,
         "notes": "Nice beach on Arabian Sea",
         "id": "#3"
+      },
+      {
+        "code": "KL",
+        "state": "Kerala",
+        "place": "Payyambalam Beach",
+        "date": "2025-05-10",
+        "time": "03:16",
+        "latitude": 12.2,
+        "longitude": 17.8,
+        "notes": "Nice beach on Arabian Sea",
+        "id": "#4"
       }
     ]
   }
