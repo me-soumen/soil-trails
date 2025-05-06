@@ -42,12 +42,16 @@
 
     <!-- Main Body -->
     <div class="container pt-6">
-        <div class="carousel-container">
-            <button class="arrow" onclick="moveCarousel(-1)"><i class="bi bi-chevron-double-left"></i></button>
+        <div class="carousel-wrapper">
+            <button class="arrow left" onclick="moveCarousel(-1)">
+                <i class="bi bi-caret-left-fill"></i>
+            </button>
             <section class="carousel" id="state-carousel">
                 <!-- Dynamic State Tiles -->
             </section>
-            <button class="arrow" onclick="moveCarousel(1)"><i class="bi bi-chevron-double-right"></i></button>
+            <button class="arrow right" onclick="moveCarousel(1)">
+                <i class="bi bi-caret-right-fill"></i>
+            </button>
         </div>
 
         <section class="samples" id="sample-section">
