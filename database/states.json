@@ -33,14 +33,14 @@
     "notes": "Collected from Muzhappilangad Drive In Beach",
     "samples": [
       {
-        "code": "",
+        "code": "KL",
         "state": "Kerala",
-        "place": "",
-        "date": "",
-        "time": "",
-        "latitude": null,
-        "longitude": null,
-        "notes": "",
+        "place": "Payyambalam Beach",
+        "date": "2025-04-02",
+        "time": "10:30",
+        "latitude": 12.3,
+        "longitude": 17.86,
+        "notes": "Nice Beach to enjoy Arabian Sea",
         "id": "#1"
       },
       {
