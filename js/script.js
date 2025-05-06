@@ -452,3 +452,17 @@ function loadSamples(stateData) {
       });
     }
 }
+
+let scrollPosition = 0;
+// Carousal Navigation
+function moveCarousel(direction) {
+console.log(direction);
+  const carousel = document.getElementById("state-carousel");
+  const scrollAmount = 320; // adjust to card width + margin
+
+  scrollPosition += direction * scrollAmount;
+  carousel.scrollTo({
+    left: scrollPosition,
+    behavior: "smooth"
+  });
+}
