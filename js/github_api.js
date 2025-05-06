@@ -36,7 +36,7 @@ export async function fetchFileContent(fileUrl, token) {
 // Upload a new file to GitHub
 export async function uploadNewFile(fileUrl, content, token) {
   const body = {
-    message: "Uploading a new file",
+    message: "Uploading database backup",
     committer: {
       name: `${config.committerName}`,
       email: `${config.committerEmail}`
@@ -69,7 +69,7 @@ export async function uploadNewFile(fileUrl, content, token) {
 // Update an existing file in GitHub
 export async function updateFile(fileUrl, fileSha, updatedContent, token) {
     const body = {
-        message: "Updating an existing file",
+        message: "Adding one sample data",
         committer: {
         name: `${config.committerName}`,
         email: `${config.committerEmail}`
