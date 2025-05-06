@@ -8,19 +8,7 @@
     "latitude": 12.110985864583052,
     "longitude": 77.77479544773149,
     "notes": "Collected in the middle of Kaveri River while enjoying Coracle ride",
-    "samples": [
-      {
-        "code": "KA",
-        "state": "Karnataka",
-        "place": "Bangalore",
-        "date": "2025-05-12",
-        "time": "02:45",
-        "latitude": 1.2,
-        "longitude": 1.2,
-        "notes": "JSK",
-        "id": "#1"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "KL",
