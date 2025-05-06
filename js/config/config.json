@@ -5,5 +5,7 @@
   "databaseFileName": "states.json",
   "committerName": "Soumen",
   "committerEmail": "me.soumen02@gmail.com",
-  "apiVersion": "2022-11-28"
+  "apiVersion": "2022-11-28",
+  "statesImageUrl": "./images/states/",
+  "placesImageUrl": "./images/places/"
 }
