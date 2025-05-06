@@ -7,7 +7,8 @@
     "time": "13:30",
     "latitude": 12.110985864583052,
     "longitude": 77.77479544773149,
-    "notes": "Collected in the middle of Kaveri River while enjoying Coracle ride"
+    "notes": "Collected in the middle of Kaveri River while enjoying Coracle ride",
+    "samples": []
   },
   {
     "code": "KL",
@@ -17,6 +18,7 @@
     "time": "16:58",
     "latitude": 11.808011158163934,
     "longitude": 75.43246607386708,
-    "notes": "Collected from Muzhappilangad Drive In Beach"
+    "notes": "Collected from Muzhappilangad Drive In Beach",
+    "samples": []
   }
 ]
