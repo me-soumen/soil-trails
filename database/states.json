@@ -52,18 +52,7 @@
   {
     "code": "KA",
     "state": "Karnataka",
-    "samples": [
-      {
-        "place": "Self",
-        "date": "2025-05-10",
-        "time": "02:22",
-        "latitude": 1.2,
-        "longitude": 1.2,
-        "notes": "",
-        "imageName": "20250507T205314336Z.png",
-        "id": "#1"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "KL",
