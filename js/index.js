@@ -2,8 +2,8 @@ import { fetchFileContent, uploadNewFile, updateFile } from './github_api.js';
 
 const carousel = document.getElementById('state-carousel');
 const sampleSection = document.getElementById('sample-section');
-
 var config = {};
+
 // Load config file
 async function loadConfig() {
     const response = await fetch('./js/config/config.json');
@@ -14,7 +14,6 @@ var data = []
 // Load config file
 async function loadData() {
     const dbPath = `./${config.databaseFolderPath}/${config.databaseFileName}`;
-    console.log(dbPath);
     const response = await fetch(dbPath);
     data = await response.json();
 }
@@ -94,18 +93,4 @@ window.onload = async function() {
     await loadConfig(); // Wait for loadConfig to finish
     await loadData();   // Wait for loadData to finish
     populateData();     // Once the data is loaded, populate the data
-}
-
-let scrollPosition = 0;
-// Carousal Navigation
-function moveCarousel(direction) {
-console.log(direction);
-  const carousel = document.getElementById("state-carousel");
-  const scrollAmount = 320; // adjust to card width + margin
-
-  scrollPosition += direction * scrollAmount;
-  carousel.scrollTo({
-    left: scrollPosition,
-    behavior: "smooth"
-  });
 }

@@ -53,7 +53,6 @@
                 <i class="bi bi-caret-right-fill"></i>
             </button>
         </div>
-
         <section class="samples" id="sample-section">
             <!-- Dynamic Sample Tiles -->
         </section>
@@ -63,14 +62,12 @@
     <footer class="bg-dark text-light pt-5 pb-4">
         <div class="container text-center text-md-left">
             <div class="row text-center text-md-left">
-
                 <!-- About -->
                 <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Soil Collection Repository</h5>
                     <p>Documenting soil samples from various places across India with location, date, time, and notes.
                         A personal hobby and educational project!</p>
                 </div>
-
                 <!-- Contact -->
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h5>
@@ -78,7 +75,6 @@
                     <p><i class="bi bi-envelope-fill me-2"></i> <a href="mailto:amra4murti@gmail.com" class="contact-link">amra4murti@gmail.com</a></p>
                     <p><i class="bi bi-phone-fill me-2"></i> <a href="tel:+919564072741" class="contact-link"> +91 95640 72741</a></p>
                 </div>
-
                 <!-- Social -->
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Follow us</h5>
@@ -87,7 +83,6 @@
                     <a href="https://www.facebook.com/profile.php?id=100091524044969&mibextid=ZbWKwL" target="_blank" class="text-light fs-4"><i class="bi bi-facebook"></i></a>
                 </div>
             </div>
-
             <!-- Copyright -->
             <div class="row mt-3">
                 <div class="col-md-12 text-center">
@@ -99,6 +94,20 @@
 
     <!-- Scripts Import -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-    <script src="js/index.js" type="module"></script>
+    <script src="./js/index.js" type="module"></script>
+    <script>
+        // Carousal Navigation
+        var scrollPosition = 0;
+        function moveCarousel(direction) {
+            const carousel = document.getElementById("state-carousel");
+            const scrollAmount = 320; // adjust to card width + margin
+
+            scrollPosition += direction * scrollAmount;
+            carousel.scrollTo({
+                left: scrollPosition,
+                behavior: "smooth"
+            });
+        }
+    </script>
 </body>
 </html>
