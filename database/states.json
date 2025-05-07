@@ -76,6 +76,18 @@
         "notes": "12",
         "imageName": "KA.png",
         "id": "#2"
+      },
+      {
+        "code": "KA",
+        "state": "Karnataka",
+        "place": "hogen",
+        "date": "2025-05-09",
+        "time": "20:10",
+        "latitude": 12,
+        "longitude": 12,
+        "notes": "JSK",
+        "imageName": "KA.png",
+        "id": "#3"
       }
     ]
   },
