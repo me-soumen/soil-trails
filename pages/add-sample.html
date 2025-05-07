@@ -176,6 +176,7 @@
           const result = await addNewSample(JSON.stringify(jsonData, null, 2), image, token);
           showAlertToast("New Sample created successfully!", "success");
           document.querySelector('form').reset();
+          document.getElementById('imagePreview').setAttribute('src', '../images/common/no_preview.jpg');
           document.getElementById('stateDropdown').selectedIndex = 0;
           $('#stateDropdown').selectpicker('refresh');
         } catch (error) {
