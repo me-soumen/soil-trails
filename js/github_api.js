@@ -5,7 +5,8 @@ var config = {}
 
 // Load config file
 export async function loadConfig() {
-	const response = await fetch('js/config/config.json');
+	const basePath = window.location.hostname === 'localhost' ? '' : '/soil-collection';
+	const response = await fetch(`${basePath}/js/config/config.json`);
 	config = await response.json();
 }
 
