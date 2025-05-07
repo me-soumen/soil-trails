@@ -55,7 +55,7 @@ function loadSamples(stateData) {
         const tile = document.createElement('div');
         tile.className = 'sample-tile';
         tile.innerHTML = `
-          <img src="./images/places/drivein.png" alt="${sample.place}">
+          <img src="${sample.imageBase64}" alt="${sample.place}">
           <div class="sample-content">
             <div class="sample-header">
               <h3>${sample.place}</h3>
