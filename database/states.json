@@ -70,7 +70,20 @@
   {
     "code": "KL",
     "state": "Kerala",
-    "samples": []
+    "samples": [
+      {
+        "code": "KL",
+        "state": "Kerala",
+        "place": "Drive in Beach",
+        "date": "2025-04-19",
+        "time": "04:58",
+        "latitude": 11.808,
+        "longitude": 75.4324444,
+        "notes": "Collected from Muzhuppilangad Drive in Beach",
+        "imageName": "20250507T191502396Z.png",
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "MP",
