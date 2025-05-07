@@ -4,8 +4,6 @@
     "state": "Andhra Pradesh",
     "samples": [
       {
-        "code": "KA",
-        "state": "Karnataka",
         "place": "Hogenakkal Falls",
         "date": "2025-02-08",
         "time": "13:30",
@@ -67,8 +65,6 @@
     "state": "Karnataka",
     "samples": [
       {
-        "code": "KA",
-        "state": "Karnataka",
         "place": "Hogenakkal Falls",
         "date": "2025-02-08",
         "time": "13:30",
@@ -85,8 +81,6 @@
     "state": "Kerala",
     "samples": [
       {
-        "code": "KL",
-        "state": "Kerala",
         "place": "Drive in Beach",
         "date": "2025-04-19",
         "time": "04:58",

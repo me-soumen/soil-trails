@@ -1,4 +1,4 @@
-import { fetchFileContent, uploadNewFile, updateFile } from './github_api.js';
+import { backupDatabase, fetchFileContent, uploadNewFile, updateFile } from './github_api.js';
 
 const carousel = document.getElementById('state-carousel');
 const sampleSection = document.getElementById('sample-section');
@@ -6,19 +6,21 @@ var config = {};
 
 // Load config file
 async function loadConfig() {
-	const response = await fetch('./js/config/config.json');
+	const baseUrl = window.location.origin;
+	const response = await fetch(`${baseUrl}/js/config/config.json`);
 	config = await response.json();
 }
 
 var data = []
-// Load config file
-async function loadData() {
+// Load samples from database
+async function loadSamplesFromDb() {
 	const dbPath = `./${config.databaseFolderPath}/${config.databaseFileName}`;
 	const response = await fetch(dbPath);
 	data = await response.json();
 }
 
-function populateData() {
+// Populate States/UTs tiles
+function populateStates() {
 	// Load State Carousel
 	data.forEach((state, index) => {
 		const tile = document.createElement('div');
@@ -30,19 +32,18 @@ function populateData() {
 		tile.addEventListener('click', () => {
 			document.querySelectorAll('.state-tile').forEach(el => el.classList.remove('active'));
 			tile.classList.add('active');
-			loadSamples(state);
+			populateSamples(state);
 		});
 		if (index === 0) {
 			tile.classList.add('active');
-			loadSamples(state);
+			populateSamples(state);
 		}
 		carousel.appendChild(tile);
 	});
 }
 
-// Load Samples Function
-function loadSamples(stateData) {
-
+// Populate Samples tiles
+function populateSamples(stateData) {
 	sampleSection.innerHTML = ''; // clear
 	if(stateData.samples.length == 0) {
 		const tile = document.createElement('div');
@@ -55,7 +56,7 @@ function loadSamples(stateData) {
 			tile.className = 'sample-tile';
 			tile.innerHTML = `
             <img src="./${config.placeImagesFolderPath}/${sample.imageName}" alt="${sample.place}">
-            <button class="delete-btn" onclick="deleteSample()">
+            <button class="delete-btn" onclick="deleteSample('${stateData.code}', '${sample.id}')">
                 <i class="bi bi-trash"></i>
             </button>
             <div class="sample-content">
@@ -92,8 +93,66 @@ function loadSamples(stateData) {
 	}
 }
 
+// Carousal Navigation
+var scrollPosition = 0;
+function moveCarousel(direction) {
+	const carousel = document.getElementById("state-carousel");
+	const scrollAmount = 320; // adjust to card width + margin
+
+	scrollPosition += direction * scrollAmount;
+	carousel.scrollTo({
+		left: scrollPosition,
+		behavior: "smooth"
+	});
+}
+
+// Delete Sample
+async function deleteSample(stateCode, sampleId) {
+	let token = prompt("Please enter the GitHub Token");
+	if (token != null) {
+
+		// Step 2: Construct db url and image url
+		const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
+
+		// Step 3: Get latest db content
+		const db = await fetchFileContent(dbUrl, token);
+		let data = JSON.parse(atob(db.content));
+
+		// Step 4: Backup current db
+		await backupDatabase(db.content, token);
+
+		// Step 5: Delete sample and reassign new id
+		const state = data.find(item => item.code === stateCode); // fix from dataArray to data
+		if (state) {
+			const initialLength = state.samples.length;
+
+			state.samples = state.samples.filter(sample => sample.id !== sampleId);
+			if (state.samples.length < initialLength) {
+				// Reassign IDs based on current count
+				state.samples.forEach((sample, index) => {
+					sample.id = `#${index + 1}`;
+				});
+			} else {
+				console.log(`Sample with id ${sampleId} not found in state ${stateCode}`);
+			}
+		} else {
+			console.log(`State with code ${stateCode} not found`);
+		}
+
+		// Step 6: Convert updated object and image to base64
+		const base64Content = btoa(JSON.stringify(data, null, 2));
+		console.log(data);
+		// Step 7: Prepare API call to update file
+		await updateFile(dbUrl, db.sha, base64Content, token);
+
+		console.log("Database updated successfully.")
+	}
+}
+
+window.moveCarousel = moveCarousel;
+window.deleteSample = deleteSample;
 window.onload = async function() {
 	await loadConfig(); // Wait for loadConfig to finish
-	await loadData();   // Wait for loadData to finish
-	populateData();     // Once the data is loaded, populate the data
+	await loadSamplesFromDb();   // Wait for loadSamplesFromDb to finish
+	populateStates();     // Once the data is loaded, populate the data
 }

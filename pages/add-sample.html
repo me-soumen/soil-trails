@@ -145,35 +145,6 @@
         }
     });
 
-    // Show Toast
-    function showAlertToast(message, type = 'error') {
-        const toast = document.getElementById('errorToast');
-        const toastHeader = toast.querySelector('.toast-header');
-        const toastTitle = toast.querySelector('.toast-header strong');
-        const toastMessage = document.getElementById('toastMessage');
-
-        // Set message
-        toastMessage.textContent = message;
-
-        // Reset classes
-        toastHeader.classList.remove('bg-danger', 'bg-success', 'bg-info');
-
-        // Apply based on type
-        if (type === 'error') {
-            toastHeader.classList.add('bg-danger', 'text-white');
-            toastTitle.textContent = 'Error';
-        } else if (type === 'success') {
-            toastHeader.classList.add('bg-success', 'text-white');
-            toastTitle.textContent = 'Success';
-        } else if (type === 'info') {
-            toastHeader.classList.add('bg-info', 'text-white');
-            toastTitle.textContent = 'Info';
-        }
-
-        // Show toast
-        $('#errorToast').toast('show');
-    }
-
     // Submit button listener
     document.querySelector('form').addEventListener('submit', async function (e) {
         e.preventDefault(); // prevent normal submission
@@ -216,8 +187,6 @@
 
         // Create JSON object
         const jsonData = {
-            code,
-            state,
             place,
             date,
             time,
@@ -228,7 +197,7 @@
         };
 
         try {
-            const result = await addNewSample(JSON.stringify(jsonData, null, 2), image, token);
+            const result = await addNewSample(code, JSON.stringify(jsonData, null, 2), image, token);
             showAlertToast("New Sample created successfully!", "success");
             document.querySelector('form').reset();
             document.getElementById('imagePreview').setAttribute('src', '../images/common/no_preview.jpg');

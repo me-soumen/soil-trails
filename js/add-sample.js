@@ -1,18 +1,17 @@
-import { fetchFileContent, uploadNewFile, updateFile } from './github_api.js';
+import { backupDatabase, fetchFileContent, uploadNewFile, updateFile } from './github_api.js';
 
 var config = {};
 
 // Load config file
 async function loadConfig() {
-	const response = await fetch('../js/config/config.json');
+	const baseUrl = window.location.origin;
+	const response = await fetch(`${baseUrl}/js/config/config.json`);
 	config = await response.json();
 }
 
 // Populate State/UT select dropdown
 export function populateDropdown(states, uts) {
 	const dropdown = document.getElementById('stateDropdown');
-
-	// Clear existing options
 	dropdown.innerHTML = `
         <option value="">Select State/UT</option>
         <optgroup label="States"></optgroup>
@@ -38,7 +37,6 @@ export function populateDropdown(states, uts) {
 		utGroup.appendChild(option);
 	}
 
-	// Initialize or refresh Bootstrap select after options added
 	$('#stateDropdown').selectpicker('refresh');
 }
 
@@ -51,57 +49,69 @@ fetch('../js/config/state-map.json')
 })
 	.catch(error => console.error('Error loading JSON:', error));
 
+// Show Toast
+function showAlertToast(message, type = 'error') {
+	const toast = document.getElementById('errorToast');
+	const toastHeader = toast.querySelector('.toast-header');
+	const toastTitle = toast.querySelector('.toast-header strong');
+	const toastMessage = document.getElementById('toastMessage');
+
+	toastMessage.textContent = message;
+	toastHeader.classList.remove('bg-danger', 'bg-success', 'bg-info');
+
+	if (type === 'error') {
+		toastHeader.classList.add('bg-danger', 'text-white');
+		toastTitle.textContent = 'Error';
+	} else if (type === 'success') {
+		toastHeader.classList.add('bg-success', 'text-white');
+		toastTitle.textContent = 'Success';
+	} else if (type === 'info') {
+		toastHeader.classList.add('bg-info', 'text-white');
+		toastTitle.textContent = 'Info';
+	}
+	$('#errorToast').toast('show');
+}
+
 // Update database file (calls backup first)
-export async function addNewSample(rawContent, image, token) {
+export async function addNewSample(stateCode, sampleData, image, token) {
 	// Step 1: Load config
 	await loadConfig();
-	const sample = JSON.parse(rawContent);
+	const sample = JSON.parse(sampleData);
 
-	// Construct db url and image url
+	// Step 2: Construct db url and image url
 	const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
 	const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${sample.imageName}`;
 
-	// Step 2: Get latest db content
+	// Step 3: Get latest db content
 	const db = await fetchFileContent(dbUrl, token);
 	let existingJson = JSON.parse(atob(db.content));
-
 	if (!Array.isArray(existingJson)) existingJson = [];
 
-	// Step 3: Parse sample input and find matching state
-	const targetState = existingJson.find(state => state.code === sample.code);
-
+	// Step 4: Parse sample input and find matching state
+	const targetState = existingJson.find(state => state.code === stateCode);
 	if (!targetState) {
 		throw new Error(`State "${sample.state}" not found in database.`);
 	}
 
-	// Step 4: Backup current db
+	// Step 5: Backup current db
 	await backupDatabase(db.content, token);
 
-	// Step 5: Assign a new ID to the sample
+	// Step 6: Assign a new ID to the sample
 	const newId = `#${targetState.samples.length + 1}`;
 	sample.id = newId;
 
-	// Step 6: Append sample to state's samples array
+	// Step 7: Append sample to state's samples array
 	targetState.samples.push(sample);
 
-	// Step 7: Convert updated object and image to base64
+	// Step 8: Convert updated object and image to base64
 	const base64Content = btoa(JSON.stringify(existingJson, null, 2));
 	const base64Image = await fileToBase64(image);
 
-	// Step 6: Prepare API call to update file
+	// Step 9: Prepare API call to update file
 	await updateFile(dbUrl, db.sha, base64Content, token);
 	await uploadNewFile(imageUrl, base64Image, token)
 
 	console.log("Database updated successfully.")
-}
-
-// Backup current states.json file into backup/ folder
-async function backupDatabase(dbContent, token) {
-	const timestamp = new Date().toISOString().replace(/[:.]/g, '-'); // Make it filename safe
-	const backupFilename = `${timestamp}.json`;
-	const backupUrl = `${config.baseUrl}/${config.databaseBackupFolderPath}/${backupFilename}`;
-	const data = await uploadNewFile(backupUrl, dbContent, token);
-	console.log("Backup created successfully.")
 }
 
 // Convert Image to Base64
@@ -119,3 +129,4 @@ function fileToBase64(file) {
 }
 
 window.addNewSample = addNewSample;
+window.showAlertToast = showAlertToast;

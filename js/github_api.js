@@ -5,11 +5,20 @@ var config = {}
 
 // Load config file
 export async function loadConfig() {
-	const response = await fetch('../config/js/config/config.json');
-	if (!response.ok) {
-		throw new Error('Failed to load config.json');
-	}
+	const baseUrl = window.location.origin;
+	const response = await fetch(`${baseUrl}/js/config/config.json`);
 	config = await response.json();
+	console.log(config);
+}
+
+// Backup current states.json file into backup/ folder
+export async function backupDatabase(dbContent, token) {
+	await loadConfig();
+	const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+	const backupFilename = `${timestamp}.json`;
+	const backupUrl = `${config.baseUrl}/${config.databaseBackupFolderPath}/${backupFilename}`;
+	const data = await uploadNewFile(backupUrl, dbContent, token);
+	console.log("Backup created successfully.")
 }
 
 // Fetch file content from GitHub (Base64 encoded)
@@ -98,4 +107,8 @@ export async function updateFile(fileUrl, fileSha, updatedContent, token) {
 	const data = await response.json();
 	console.log('GitHub: File updated successfully:', data.content.path);
 	return data;
+}
+
+window.onload = async function() {
+	await loadConfig(); // Wait for loadConfig to finish
 }

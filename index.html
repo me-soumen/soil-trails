@@ -106,19 +106,5 @@
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
 <script src="./js/index.js" type="module"></script>
-<script>
-    // Carousal Navigation
-    var scrollPosition = 0;
-    function moveCarousel(direction) {
-        const carousel = document.getElementById("state-carousel");
-        const scrollAmount = 320; // adjust to card width + margin
-
-        scrollPosition += direction * scrollAmount;
-        carousel.scrollTo({
-            left: scrollPosition,
-            behavior: "smooth"
-        });
-    }
-</script>
 </body>
 </html>
