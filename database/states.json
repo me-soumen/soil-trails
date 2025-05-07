@@ -2,7 +2,20 @@
   {
     "code": "AP",
     "state": "Andhra Pradesh",
-    "samples": []
+    "samples": [
+      {
+        "code": "AP",
+        "state": "Andhra Pradesh",
+        "place": "Kakinada",
+        "date": "2025-05-08",
+        "time": "20:43",
+        "latitude": 12,
+        "longitude": 12,
+        "notes": "JSK",
+        "imageName": "KA.png",
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "AR",
