@@ -2,50 +2,12 @@
   {
     "code": "AP",
     "state": "Andhra Pradesh",
-    "samples": [
-      {
-        "code": "AP",
-        "state": "Andhra Pradesh",
-        "place": "Kakinada",
-        "date": "2025-05-08",
-        "time": "20:43",
-        "latitude": 12,
-        "longitude": 12,
-        "notes": "JSK",
-        "imageName": "KA.png",
-        "id": "#1"
-      },
-      {
-        "code": "AP",
-        "state": "Andhra Pradesh",
-        "place": "Kak",
-        "date": "2025-05-10",
-        "time": "20:49",
-        "latitude": 12,
-        "longitude": 12,
-        "notes": "JSK",
-        "imageName": "20250507T151934480Z.png",
-        "id": "#2"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "AR",
     "state": "Arunachal Pradesh",
-    "samples": [
-      {
-        "code": "AR",
-        "state": "Arunachal Pradesh",
-        "place": "arun",
-        "date": "2025-05-10",
-        "time": "20:51",
-        "latitude": 12,
-        "longitude": 12,
-        "notes": "JSK",
-        "imageName": "20250507T152211298Z.png",
-        "id": "#1"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "AS",

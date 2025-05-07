@@ -55,12 +55,11 @@ fetch('../js/config/state-map.json')
 export async function addNewSample(rawContent, image, token) {
     // Step 1: Load config
     await loadConfig();
+    const sample = JSON.parse(rawContent);
 
     // Construct db url and image url
-    const timestamp = new Date().toISOString().replace(/[:.-]/g, '');
-    const imageFileName = `${timestamp}.png`;
     const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
-    const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${imageFileName}`;
+    const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${sample.imageName}`;
 
     // Step 2: Get latest db content
     const db = await fetchFileContent(dbUrl, token);
@@ -69,7 +68,6 @@ export async function addNewSample(rawContent, image, token) {
     if (!Array.isArray(existingJson)) existingJson = [];
 
     // Step 3: Parse sample input and find matching state
-    const sample = JSON.parse(rawContent);
     const targetState = existingJson.find(state => state.code === sample.code);
 
     if (!targetState) {

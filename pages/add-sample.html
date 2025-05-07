@@ -155,6 +155,10 @@
           return;
         }
 
+        // Construct image file name
+        const timestamp = new Date().toISOString().replace(/[:.-]/g, '');
+        const imageFileName = `${timestamp}.png`;
+
         // Create JSON object
         const jsonData = {
           code,
@@ -165,13 +169,15 @@
           latitude: parseFloat(latitude),
           longitude: parseFloat(longitude),
           notes,
-          imageName: image.name
+          imageName: imageFileName
         };
 
         try {
           const result = await addNewSample(JSON.stringify(jsonData, null, 2), image, token);
           showAlertToast("New Sample created successfully!", "success");
-          console.log('Result:', result);
+          document.querySelector('form').reset();
+          document.getElementById('stateDropdown').selectedIndex = 0;
+          $('#stateDropdown').selectpicker('refresh');
         } catch (error) {
           console.error('Sample creation failed: ', error);
           showAlertToast("Failed to create new Sample. Please Try again!", "error");
