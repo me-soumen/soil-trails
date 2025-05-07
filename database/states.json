@@ -14,6 +14,18 @@
         "notes": "JSK",
         "imageName": "KA.png",
         "id": "#1"
+      },
+      {
+        "code": "AP",
+        "state": "Andhra Pradesh",
+        "place": "Kak",
+        "date": "2025-05-10",
+        "time": "20:49",
+        "latitude": 12,
+        "longitude": 12,
+        "notes": "JSK",
+        "imageName": "20250507T151934480Z.png",
+        "id": "#2"
       }
     ]
   },
