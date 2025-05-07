@@ -51,28 +51,16 @@ fetch('../js/config/state-map.json')
   })
   .catch(error => console.error('Error loading JSON:', error));
 
-// Backup current states.json file into backup/ folder
-async function backupDatabase(dbContent, token) {
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-'); // Make it filename safe
-    const backupFilename = `${timestamp}.json`;
-
-    const backupUrl = `${config.baseUrl}/${config.databaseBackupFolderPath}/${backupFilename}`;
-    console.log(backupUrl)
-
-    const data = await uploadNewFile(backupUrl, dbContent, token);
-
-    console.log("Backup created successfully.")
-}
-
 // Update database file (calls backup first)
 export async function addNewSample(rawContent, image, token) {
     // Step 1: Load config
     await loadConfig();
 
+    // Construct db url and image url
+    const timestamp = new Date().toISOString().replace(/[:.-]/g, '');
+    const imageFileName = `${timestamp}.png`;
     const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
-    const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${image.name}`;
-
-    console.log(dbUrl, imageUrl);
+    const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${imageFileName}`;
 
     // Step 2: Get latest db content
     const db = await fetchFileContent(dbUrl, token);
@@ -100,13 +88,36 @@ export async function addNewSample(rawContent, image, token) {
 
     // Step 7: Convert updated object and image to base64
     const base64Content = btoa(JSON.stringify(existingJson, null, 2));
-    const base64Image = btoa(image);
+    const base64Image = await fileToBase64(image);
 
     // Step 6: Prepare API call to update file
     await updateFile(dbUrl, db.sha, base64Content, token);
-    await uploadNewFile(fileUrl, base64Image, token)
+    await uploadNewFile(imageUrl, base64Image, token)
 
     console.log("Database updated successfully.")
+}
+
+// Backup current states.json file into backup/ folder
+async function backupDatabase(dbContent, token) {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-'); // Make it filename safe
+    const backupFilename = `${timestamp}.json`;
+    const backupUrl = `${config.baseUrl}/${config.databaseBackupFolderPath}/${backupFilename}`;
+    const data = await uploadNewFile(backupUrl, dbContent, token);
+    console.log("Backup created successfully.")
+}
+
+// Convert Image to Base64
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      // Remove the base64 prefix
+      const base64String = reader.result.split(',')[1];
+      resolve(base64String);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
 }
 
 window.addNewSample = addNewSample;

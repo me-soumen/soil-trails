@@ -120,7 +120,7 @@
   </div>
 
   <script>
-      document.querySelector('form').addEventListener('submit', function (e) {
+      document.querySelector('form').addEventListener('submit', async function (e) {
         e.preventDefault(); // prevent normal submission
 
         // Grab values
@@ -139,19 +139,19 @@
         const image = document.getElementById('location-image')?.files[0];
 
         // Validation
-        if(!image) return showAlertToast("Please select a Location Image.");
-        if (code == "") return showAlertToast("Please select a State/UT.");
-        if (!place) return showAlertToast("Place is required.");
-        if (!date) return showAlertToast("Date is required.");
-        if (!time) return showAlertToast("Time is required.");
-        if (!latitude || isNaN(latitude)) return showAlertToast("Enter valid Latitude.");
-        if (!longitude || isNaN(longitude)) return showAlertToast("Enter valid Longitude.");
-        if (!token) return showAlertToast("GitHub Token is required.");
+        if(!image) return showAlertToast("Please select a Location Image.", "error");
+        if (code == "") return showAlertToast("Please select a State/UT.", "error");
+        if (!place) return showAlertToast("Place is required.", "error");
+        if (!date) return showAlertToast("Date is required.", "error");
+        if (!time) return showAlertToast("Time is required.", "error");
+        if (!latitude || isNaN(latitude)) return showAlertToast("Enter valid Latitude.", "error");
+        if (!longitude || isNaN(longitude)) return showAlertToast("Enter valid Longitude.", "error");
+        if (!token) return showAlertToast("GitHub Token is required.", "error");
 
         // Validate file type
         const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
         if (!validTypes.includes(image.type)) {
-          showAlertToast('Only JPG, JPEG, and PNG images are allowed!');
+          showAlertToast("Only JPG, JPEG, and PNG images are allowed!", "error");
           return;
         }
 
@@ -168,7 +168,14 @@
           imageName: image.name
         };
 
-        addNewSample(JSON.stringify(jsonData, null, 2), image, token);
+        try {
+          const result = await addNewSample(JSON.stringify(jsonData, null, 2), image, token);
+          showAlertToast("New Sample created successfully!", "success");
+          console.log('Result:', result);
+        } catch (error) {
+          console.error('Sample creation failed: ', error);
+          showAlertToast("Failed to create new Sample. Please Try again!", "error");
+        }
       });
   </script>
   <script src="../js/add-sample.js" type="module"></script>
@@ -192,8 +199,31 @@
     });
 
   // Show Toast
-  function showAlertToast(message) {
-    document.getElementById('toastMessage').textContent = message;
+  function showAlertToast(message, type = 'error') {
+    const toast = document.getElementById('errorToast');
+    const toastHeader = toast.querySelector('.toast-header');
+    const toastTitle = toast.querySelector('.toast-header strong');
+    const toastMessage = document.getElementById('toastMessage');
+
+    // Set message
+    toastMessage.textContent = message;
+
+    // Reset classes
+    toastHeader.classList.remove('bg-danger', 'bg-success', 'bg-info');
+
+    // Apply based on type
+    if (type === 'error') {
+      toastHeader.classList.add('bg-danger', 'text-white');
+      toastTitle.textContent = 'Error';
+    } else if (type === 'success') {
+      toastHeader.classList.add('bg-success', 'text-white');
+      toastTitle.textContent = 'Success';
+    } else if (type === 'info') {
+      toastHeader.classList.add('bg-info', 'text-white');
+      toastTitle.textContent = 'Info';
+    }
+
+    // Show toast
     $('#errorToast').toast('show');
   }
   </script>

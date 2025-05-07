@@ -25,12 +25,11 @@ export async function fetchFileContent(fileUrl, token) {
 
     if (!response.ok) {
         const error = await response.json();
-        console.error('Error fetching file content:', error);
+        console.error('GitHub: Error fetching file content:', error);
         throw new Error(`GitHub API error: ${error.message}`);
     }
 
     const data = await response.json();
-    console.log(data)
     return data;
 }
 
@@ -58,12 +57,12 @@ export async function uploadNewFile(fileUrl, content, token) {
 
   if (!response.ok) {
     const error = await response.json();
-    console.error('Error uploading file:', error);
+    console.error('GitHub: Error uploading file:', error);
     throw new Error(`GitHub API error: ${error.message}`);
   }
 
   const data = await response.json();
-  console.log('GitHub: File uploaded with url:', data.content.path);
+  console.log('GitHub: File uploaded successfully url:', data.content.path);
   return data;
 }
 
@@ -92,7 +91,7 @@ export async function updateFile(fileUrl, fileSha, updatedContent, token) {
 
       if (!response.ok) {
       const error = await response.json();
-      console.error('Error updating file:', error);
+      console.error('GitHub: Error updating file:', error);
       throw new Error(`GitHub API error: ${error.message}`);
       }
 
