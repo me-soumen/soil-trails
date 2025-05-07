@@ -33,6 +33,10 @@ Common Sections
 .pt-6 {
     padding-top: 5rem;
 }
+.pt-7{
+padding-top: 6rem
+}
+
 
 .add-page-link {
     margin: 0;
@@ -54,7 +58,16 @@ Common Sections
     text-decoration: none;
 }
 /*--------------------------------------------------------------------------------------------
-State Tiles Section with Carousal
+Add Page: Form fields
+--------------------------------------------------------------------------------------------*/
+.form-container {
+    background-color: #566b5999;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+}
+/*--------------------------------------------------------------------------------------------
+Index: State Tiles Section with Carousal
 --------------------------------------------------------------------------------------------*/
 .carousel-wrapper {
   position: relative;
@@ -69,7 +82,7 @@ State Tiles Section with Carousal
   overflow-x: auto;
   gap: 15px;
   scroll-behavior: smooth;
-  padding: 20px;
+  padding: 5px 20px;
 }
 
 .arrow {

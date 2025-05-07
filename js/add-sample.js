@@ -1,11 +1,55 @@
 import { fetchFileContent, uploadNewFile, updateFile } from './github_api.js';
 
 var config = {};
+
 // Load config file
 async function loadConfig() {
     const response = await fetch('../js/config/config.json');
     config = await response.json();
 }
+
+// Populate State/UT select dropdown
+export function populateDropdown(states, uts) {
+    const dropdown = document.getElementById('stateDropdown');
+
+    // Clear existing options
+    dropdown.innerHTML = `
+        <option value="">Select State/UT</option>
+        <optgroup label="States"></optgroup>
+        <optgroup label="Union Territories"></optgroup>
+        `;
+
+    const stateGroup = dropdown.querySelector('optgroup[label="States"]');
+    const utGroup = dropdown.querySelector('optgroup[label="Union Territories"]');
+
+    // Populate States
+    for (const [state, code] of Object.entries(states)) {
+        const option = document.createElement('option');
+        option.value = code;
+        option.textContent = state;
+        stateGroup.appendChild(option);
+    }
+
+    // Populate UTs
+    for (const [ut, code] of Object.entries(uts)) {
+        const option = document.createElement('option');
+        option.value = code;
+        option.textContent = ut;
+        utGroup.appendChild(option);
+    }
+
+    // Initialize or refresh Bootstrap select after options added
+    $('#stateDropdown').selectpicker('refresh');
+}
+
+// State/UT dropdown load
+    fetch('../js/config/state-map.json')
+      .then(response => response.json())
+      .then(data => {
+      const { states, uts } = data;
+      populateDropdown(states, uts);
+      })
+      .catch(error => console.error('Error loading JSON:', error));
 
 // Backup current states.json file into backup/ folder
 async function backupDatabase(dbContent, token) {
@@ -62,3 +106,4 @@ export async function updateStatesJson(rawContent, token) {
 }
 
 window.updateStatesJson = updateStatesJson;
+window.populateDropdown = populateDropdown;
