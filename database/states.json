@@ -57,7 +57,18 @@
   {
     "code": "KL",
     "state": "Kerala",
-    "samples": []
+    "samples": [
+      {
+        "place": "Drivein",
+        "date": "2025-05-06",
+        "time": "04:01",
+        "latitude": 1.3,
+        "longitude": 2.1,
+        "notes": "Bagfaf",
+        "imageName": "20250507T213332198Z.png",
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "MP",
