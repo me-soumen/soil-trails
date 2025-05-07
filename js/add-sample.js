@@ -1,13 +1,6 @@
 import { backupDatabase, fetchFileContent, uploadNewFile, updateFile } from './github_api.js';
 
-var config = {};
-
-// Load config file
-async function loadConfig() {
-	const basePath = window.location.hostname === 'localhost' ? '' : '/soil-collection';
-	const response = await fetch(`${basePath}/js/config/config.json`);
-	config = await response.json();
-}
+var config = JSON.parse(localStorage.getItem('appConfig'));
 
 // Populate State/UT select dropdown
 export function populateDropdown(states, uts) {
@@ -74,8 +67,6 @@ function showAlertToast(message, type = 'error') {
 
 // Update database file (calls backup first)
 export async function addNewSample(stateCode, sampleData, image, token) {
-	// Step 1: Load config
-	await loadConfig();
 	const sample = JSON.parse(sampleData);
 
 	// Step 2: Construct db url and image url

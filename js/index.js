@@ -6,10 +6,9 @@ var config = {};
 
 // Load config file
 async function loadConfig() {
-	const basePath = window.location.hostname === 'localhost' ? '' : '/soil-collection';
-	const response = await fetch(`${basePath}/js/config/config.json`);
+	const response = await fetch("./js/config/config.json");
 	config = await response.json();
-	console.log(config);
+	localStorage.setItem('appConfig', JSON.stringify(config));
 }
 
 var data = []
@@ -153,7 +152,8 @@ async function deleteSample(stateCode, sampleId) {
 window.moveCarousel = moveCarousel;
 window.deleteSample = deleteSample;
 window.onload = async function() {
-	await loadConfig(); // Wait for loadConfig to finish
+	await loadConfig();
+	config = JSON.parse(localStorage.getItem('appConfig'));
 	await loadSamplesFromDb();   // Wait for loadSamplesFromDb to finish
 	populateStates();     // Once the data is loaded, populate the data
 }

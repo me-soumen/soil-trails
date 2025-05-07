@@ -1,18 +1,10 @@
 /*------------------------------------------------------------------------------------------------
 GitHub APIs: Fetch Content / Upload a File / Update a File
 ----------------------------------------------------------------------------------------------*/
-var config = {}
-
-// Load config file
-export async function loadConfig() {
-	const basePath = window.location.hostname === 'localhost' ? '' : '/soil-collection';
-	const response = await fetch(`${basePath}/js/config/config.json`);
-	config = await response.json();
-}
+var config = JSON.parse(localStorage.getItem('appConfig'));
 
 // Backup current states.json file into backup/ folder
 export async function backupDatabase(dbContent, token) {
-	await loadConfig();
 	const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
 	const backupFilename = `${timestamp}.json`;
 	const backupUrl = `${config.baseUrl}/${config.databaseBackupFolderPath}/${backupFilename}`;
@@ -77,7 +69,7 @@ export async function uploadNewFile(fileUrl, content, token) {
 // Update an existing file in GitHub
 export async function updateFile(fileUrl, fileSha, updatedContent, token) {
 	const body = {
-		message: "Adding one sample data",
+		message: "Added or Deleted sample data",
 		committer: {
 			name: `${config.committerName}`,
 			email: `${config.committerEmail}`
@@ -106,8 +98,4 @@ export async function updateFile(fileUrl, fileSha, updatedContent, token) {
 	const data = await response.json();
 	console.log('GitHub: File updated successfully:', data.content.path);
 	return data;
-}
-
-window.onload = async function() {
-	await loadConfig(); // Wait for loadConfig to finish
 }
