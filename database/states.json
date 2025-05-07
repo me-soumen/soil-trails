@@ -2,18 +2,7 @@
   {
     "code": "AP",
     "state": "Andhra Pradesh",
-    "samples": [
-      {
-        "place": "Hogenakkal Falls",
-        "date": "2025-02-08",
-        "time": "13:30",
-        "latitude": 12.110978776456369,
-        "longitude": 77.77476196873303,
-        "notes": "Collected from the middle of Kaveri River",
-        "imageName": "20250507T155150840Z.png",
-        "id": "#1"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "AR",
