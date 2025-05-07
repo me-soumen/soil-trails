@@ -52,34 +52,12 @@
   {
     "code": "KA",
     "state": "Karnataka",
-    "samples": [
-      {
-        "place": "Hogen",
-        "date": "2025-05-08",
-        "time": "02:51",
-        "latitude": 1.2,
-        "longitude": 1.2,
-        "notes": "JSK",
-        "imageName": "20250507T212121328Z.png",
-        "id": "#1"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "KL",
     "state": "Kerala",
-    "samples": [
-      {
-        "place": "Drive in Beach",
-        "date": "2025-04-19",
-        "time": "04:58",
-        "latitude": 11.808,
-        "longitude": 75.4324444,
-        "notes": "Collected from Muzhuppilangad Drive in Beach",
-        "imageName": "20250507T191502396Z.png",
-        "id": "#1"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "MP",
