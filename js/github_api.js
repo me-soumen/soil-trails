@@ -5,10 +5,8 @@ var config = {}
 
 // Load config file
 export async function loadConfig() {
-	const baseUrl = window.location.origin;
-	const response = await fetch(`${baseUrl}/js/config/config.json`);
+	const response = await fetch('js/config/config.json');
 	config = await response.json();
-	console.log(config);
 }
 
 // Backup current states.json file into backup/ folder
