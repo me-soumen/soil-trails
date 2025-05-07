@@ -4,6 +4,7 @@
   "databaseBackupFolderPath": "database/backup",
   "stateImagesFolderPath": "images/states",
   "placeImagesFolderPath": "images/places",
+  "mapBaseUrl": "https://www.google.com/maps?q=",
   "databaseFileName": "states.json",
   "committerName": "Soumen",
   "committerEmail": "me.soumen02@gmail.com",

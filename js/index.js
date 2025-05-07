@@ -76,7 +76,7 @@ function loadSamples(stateData) {
 
               <div>
                 <i class="bi bi-geo-alt"></i>
-                <a href="https://www.google.com/maps?q=${sample.latitude},${sample.longitude}" target="_blank">View on Map</a>
+                <a href="${config.mapBaseUrl}${sample.latitude},${sample.longitude}" target="_blank">View on Map</a>
               </div>
             </div>
             <div class="sample-notes align-items-start">
