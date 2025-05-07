@@ -155,30 +155,20 @@
           return;
         }
 
-        // Read file as Base64
-        const reader = new FileReader();
-        reader.onload = function (event) {
-          const base64Image = event.target.result;
-
-          // Create JSON object
-          const jsonData = {
-            code,
-            state,
-            place,
-            date,
-            time,
-            latitude: parseFloat(latitude),
-            longitude: parseFloat(longitude),
-            notes,
-            imageName: image.name,
-            imageBase64: base64Image
-          };
-
-          console.log('JSON Data Ready:', jsonData);
-
-          updateStatesJson(JSON.stringify(jsonData, null, 2), token);
+        // Create JSON object
+        const jsonData = {
+          code,
+          state,
+          place,
+          date,
+          time,
+          latitude: parseFloat(latitude),
+          longitude: parseFloat(longitude),
+          notes,
+          imageName: image.name
         };
-        reader.readAsDataURL(image);
+
+        addNewSample(JSON.stringify(jsonData, null, 2), image, token);
       });
   </script>
   <script src="../js/add-sample.js" type="module"></script>

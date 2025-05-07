@@ -13,7 +13,7 @@ async function loadConfig() {
 var data = []
 // Load config file
 async function loadData() {
-    const dbPath = `./${config.databaseFolderName}/${config.databaseFileName}`;
+    const dbPath = `./${config.databaseFolderPath}/${config.databaseFileName}`;
     console.log(dbPath);
     const response = await fetch(dbPath);
     data = await response.json();
@@ -55,7 +55,7 @@ function loadSamples(stateData) {
         const tile = document.createElement('div');
         tile.className = 'sample-tile';
         tile.innerHTML = `
-          <img src="${sample.imageBase64}" alt="${sample.place}">
+          <img src="./${config.placeImagesFolderPath}/${sample.imageName}" alt="${sample.place}">
           <div class="sample-content">
             <div class="sample-header">
               <h3>${sample.place}</h3>

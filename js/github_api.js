@@ -30,6 +30,7 @@ export async function fetchFileContent(fileUrl, token) {
     }
 
     const data = await response.json();
+    console.log(data)
     return data;
 }
 

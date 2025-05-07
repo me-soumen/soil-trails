@@ -1,11 +1,11 @@
 {
   "baseUrl": "https://api.github.com/repos/me-soumen/soil-collection/contents",
-  "databaseFolderName": "database",
-  "databaseBackupFolderName": "database/backup",
+  "databaseFolderPath": "database",
+  "databaseBackupFolderPath": "database/backup",
+  "stateImagesFolderPath": "images/states",
+  "placeImagesFolderPath": "images/places",
   "databaseFileName": "states.json",
   "committerName": "Soumen",
   "committerEmail": "me.soumen02@gmail.com",
-  "apiVersion": "2022-11-28",
-  "statesImageUrl": "./images/states/",
-  "placesImageUrl": "./images/places/"
+  "apiVersion": "2022-11-28"
 }

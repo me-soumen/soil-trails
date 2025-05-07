@@ -43,20 +43,20 @@ export function populateDropdown(states, uts) {
 }
 
 // State/UT dropdown load
-    fetch('../js/config/state-map.json')
-      .then(response => response.json())
-      .then(data => {
-      const { states, uts } = data;
-      populateDropdown(states, uts);
-      })
-      .catch(error => console.error('Error loading JSON:', error));
+fetch('../js/config/state-map.json')
+  .then(response => response.json())
+  .then(data => {
+  const { states, uts } = data;
+  populateDropdown(states, uts);
+  })
+  .catch(error => console.error('Error loading JSON:', error));
 
 // Backup current states.json file into backup/ folder
 async function backupDatabase(dbContent, token) {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-'); // Make it filename safe
     const backupFilename = `${timestamp}.json`;
 
-    const backupUrl = `${config.baseUrl}/${config.databaseBackupFolderName}/${backupFilename}`;
+    const backupUrl = `${config.baseUrl}/${config.databaseBackupFolderPath}/${backupFilename}`;
     console.log(backupUrl)
 
     const data = await uploadNewFile(backupUrl, dbContent, token);
@@ -65,11 +65,14 @@ async function backupDatabase(dbContent, token) {
 }
 
 // Update database file (calls backup first)
-export async function updateStatesJson(rawContent, token) {
+export async function addNewSample(rawContent, image, token) {
     // Step 1: Load config
     await loadConfig();
 
-    const dbUrl = `${config.baseUrl}/${config.databaseFolderName}/${config.databaseFileName}`;
+    const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
+    const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${image.name}`;
+
+    console.log(dbUrl, imageUrl);
 
     // Step 2: Get latest db content
     const db = await fetchFileContent(dbUrl, token);
@@ -95,15 +98,15 @@ export async function updateStatesJson(rawContent, token) {
     // Step 6: Append sample to state's samples array
     targetState.samples.push(sample);
 
-    // Step 7: Convert updated object to base64
+    // Step 7: Convert updated object and image to base64
     const base64Content = btoa(JSON.stringify(existingJson, null, 2));
-    console.log(base64Content);
+    const base64Image = btoa(image);
 
     // Step 6: Prepare API call to update file
     await updateFile(dbUrl, db.sha, base64Content, token);
+    await uploadNewFile(fileUrl, base64Image, token)
 
     console.log("Database updated successfully.")
 }
 
-window.updateStatesJson = updateStatesJson;
-window.populateDropdown = populateDropdown;
+window.addNewSample = addNewSample;
