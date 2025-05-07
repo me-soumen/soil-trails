@@ -32,7 +32,20 @@
   {
     "code": "AR",
     "state": "Arunachal Pradesh",
-    "samples": []
+    "samples": [
+      {
+        "code": "AR",
+        "state": "Arunachal Pradesh",
+        "place": "arun",
+        "date": "2025-05-10",
+        "time": "20:51",
+        "latitude": 12,
+        "longitude": 12,
+        "notes": "JSK",
+        "imageName": "20250507T152211298Z.png",
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "AS",
