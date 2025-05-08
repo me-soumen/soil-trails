@@ -66,10 +66,10 @@
                 <input type="time" class="form-control" id="time" placeholder="Time" autocomplete="off" required>
             </div>
             <div class="mb-3">
-                <input type="number" class="form-control" placeholder="Latitude" id="latitude" autocomplete="off" required>
+                <input type="text" class="form-control" placeholder="Latitude" id="latitude" autocomplete="off" required>
             </div>
             <div class="mb-3">
-                <input type="number" class="form-control" placeholder="Longitude" id="longitude" autocomplete="off" required>
+                <input type="text" class="form-control" placeholder="Longitude" id="longitude" autocomplete="off" required>
             </div>
             <div class="mb-3">
                 <textarea class="form-control" placeholder="Notes" id="notes" required></textarea>
@@ -77,8 +77,11 @@
             <div class="mb-3">
                 <input type="password" class="form-control" placeholder="Password" id="password" autocomplete="off" required>
             </div>
-
-            <button class="btn btn-primary w-100">Save</button>
+            <button class="btn btn-primary w-100 fs-4 fw-bold" id="save-btn">Save</button>
+            <button class="btn btn-primary w-100 fs-4 fw-bold" type="button" id="save-loading-btn" disabled hidden>
+                <span class="spinner-border spinner-border-sm me-2" role="status" style="width: 1.5rem; height: 1.5rem;" aria-hidden="true"></span>
+                Saving...
+            </button>
         </form>
     </div>
 </div>
@@ -150,6 +153,10 @@
     document.querySelector('form').addEventListener('submit', async function (e) {
         e.preventDefault(); // prevent normal submission
 
+        // Show spinner
+        document.getElementById('save-btn').setAttribute("hidden", "");
+        document.getElementById('save-loading-btn').removeAttribute("hidden");
+
         // Grab values
         const stateDropdown = document.getElementById('stateDropdown');
         const selectedOption = stateDropdown.options[stateDropdown.selectedIndex];
@@ -173,7 +180,6 @@
         if (!time) return showAlertToast("Time is required.", "error");
         if (!latitude || isNaN(latitude)) return showAlertToast("Enter valid Latitude.", "error");
         if (!longitude || isNaN(longitude)) return showAlertToast("Enter valid Longitude.", "error");
-
         // Validate file type
         const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
         if (!validTypes.includes(image.type)) {
@@ -202,6 +208,8 @@
             console.error('Sample creation failed: ', error);
             showAlertToast("Failed to create new Sample. Please Try again!", "error");
         }
+        document.getElementById('save-btn').removeAttribute("hidden");
+        document.getElementById('save-loading-btn').setAttribute("hidden", "");
     });
 </script>
 <script src="../js/add-sample.js" type="module"></script>

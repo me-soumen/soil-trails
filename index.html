@@ -77,7 +77,11 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="confirm-delete-btn" onclick="handleConfirmDelete()">Confirm</button>
+                    <button type="button" class="btn btn-primary w-50" id="confirm-delete-btn" onclick="handleConfirmDelete()">Confirm</button>
+                    <button class="btn btn-primary w-50" type="button" id="confirm-delete-pending-btn" disabled hidden>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Deleting...
+                    </button>
                 </div>
             </div>
         </div>
@@ -171,6 +175,9 @@
             passwordInput.classList.add('is-invalid');
             return;
         }
+        // Show spinner
+        document.getElementById('confirm-delete-btn').setAttribute("hidden", "");
+        document.getElementById('confirm-delete-pending-btn').removeAttribute("hidden");
         try {
             await deleteSample(currentSample.stateCode, currentSample.sampleId, password);
             showAlertToast("Sample deleted successfully!", "success");
@@ -180,6 +187,9 @@
             showAlertToast("Something went wrong while deleting. Please Try again!", "error");
             modalInstance.hide();
         }
+        // Hide spinner
+        document.getElementById('confirm-delete-btn').removeAttribute("hidden");
+        document.getElementById('confirm-delete-pending-btn').setAttribute("hidden", "");
     }
 
     // Enter key listener
