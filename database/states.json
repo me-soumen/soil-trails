@@ -2,7 +2,19 @@
   {
     "code": "AP",
     "state": "Andhra Pradesh",
-    "samples": []
+    "samples": [
+      {
+        "place": "dwe",
+        "date": "2025-05-07",
+        "time": "7:29 PM",
+        "latitude": 1.3,
+        "longitude": 2.3,
+        "notes": "ferce",
+        "imageName": "20250508T135833553Z.png",
+        "imageSha": "fd9821c072af216c5399c824e14682c3abf296d7",
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "AR",
