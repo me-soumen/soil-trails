@@ -17,7 +17,19 @@
   {
     "code": "BR",
     "state": "Bihar",
-    "samples": []
+    "samples": [
+      {
+        "place": "asas",
+        "date": "2025-05-06",
+        "time": "9:14 AM",
+        "latitude": 12,
+        "longitude": 12,
+        "notes": "JSK",
+        "imageName": "20250508T154430426Z.png",
+        "imageSha": "923458142a15229b5b9a8a0c3c68f244fbf621ee",
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "CH",
