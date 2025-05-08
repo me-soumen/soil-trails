@@ -57,7 +57,19 @@
   {
     "code": "KL",
     "state": "Kerala",
-    "samples": []
+    "samples": [
+      {
+        "place": "Drive In Beach",
+        "date": "2025-04-19",
+        "time": "4:58 PM",
+        "latitude": 11.808,
+        "longitude": 75.4324444,
+        "notes": "From Muzhuappilangad Drive In Beach, Kannur",
+        "imageName": "20250508T171859639Z.png",
+        "imageSha": "93a93f33a4f2b055c639551c49497ad9636e6516",
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "MP",
