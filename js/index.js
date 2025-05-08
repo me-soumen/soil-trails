@@ -119,16 +119,12 @@ async function deleteSample(stateCode, sampleId) {
 		// Step 2: Find state index, find deleted image details, filter deleted sample
 		const state = data.find(item => item.code === stateCode);
 		if (state) {
-			// Get image details before deleting
+			// Get sample details before deleting
 			const sampleToDelete = state.samples.find(s => s.id === sampleId);
-			var imageNameSha = {
-				imageName: sampleToDelete.imageName,
-				imageSha: sampleToDelete.imageSha
-			};
 
 			// Filter out deleted sample
-			state.samples = state.samples.filter(sample => sample.id !== sampleId);
 			const initialLength = state.samples.length;
+			state.samples = state.samples.filter(sample => sample.id !== sampleId);
 			if (state.samples.length < initialLength) {
 				// Reassign IDs based on current count
 				state.samples.forEach((sample, index) => {
@@ -139,7 +135,8 @@ async function deleteSample(stateCode, sampleId) {
 			}
 
 			//Step 3: Delete Image
-			await deleteFile(imageNameSha, password);
+			const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${sampleToDelete.imageName}`;
+			await deleteFile(imageUrl, sampleToDelete.imageSha, password);
 
 			// Step 4: Convert updated object to base64, call API
 			const base64Content = btoa(JSON.stringify(data, null, 2));

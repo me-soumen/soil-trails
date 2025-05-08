@@ -106,7 +106,7 @@ export async function updateFile(fileUrl, fileSha, updatedContent, password) {
 }
 
 // Delete a file from GitHub
-export async function deleteFile(fileNameSha, password) {
+export async function deleteFile(fileUrl, fileSha, password) {
 	const token = await decryptToken(config.encryptedString, password);
 	const body = {
 		message: `${config.commit.message.delete}`,
@@ -133,6 +133,6 @@ export async function deleteFile(fileNameSha, password) {
 		throw new Error(`GitHub API error: ${error.message}`);
 	}
 
-	console.log('GitHub: File updated successfully:', data.content);
+	console.log('GitHub: File deleted successfully');
 	return data;
 }

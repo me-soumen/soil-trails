@@ -57,19 +57,7 @@
   {
     "code": "KL",
     "state": "Kerala",
-    "samples": [
-      {
-        "place": "Arakkal",
-        "date": "2025-05-06",
-        "time": "6:10 PM",
-        "latitude": 1.2,
-        "longitude": 1.2,
-        "notes": "JSK",
-        "imageName": "20250508T124118520Z.png",
-        "imageSha": "86d8d66fd75b639ce4fbf7d9484b26b039665282",
-        "id": "#1"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "MP",
