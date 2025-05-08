@@ -66,7 +66,7 @@ function showAlertToast(message, type = 'error') {
 }
 
 // Update database file (calls backup first)
-export async function addNewSample(stateCode, sampleData, image, token) {
+export async function addNewSample(stateCode, sampleData, image, password) {
 	const sample = JSON.parse(sampleData);
 
 	// Step 2: Construct db url and image url
@@ -74,7 +74,7 @@ export async function addNewSample(stateCode, sampleData, image, token) {
 	const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${sample.imageName}`;
 
 	// Step 3: Get latest db content
-	const db = await fetchFileContent(dbUrl, token);
+	const db = await fetchFileContent(dbUrl, password);
 	let existingJson = JSON.parse(atob(db.content));
 	if (!Array.isArray(existingJson)) existingJson = [];
 
@@ -85,7 +85,7 @@ export async function addNewSample(stateCode, sampleData, image, token) {
 	}
 
 	// Step 5: Backup current db
-	await backupDatabase(db.content, token);
+	await backupDatabase(db.content, password);
 
 	// Step 6: Assign a new ID to the sample
 	const newId = `#${targetState.samples.length + 1}`;
@@ -99,8 +99,8 @@ export async function addNewSample(stateCode, sampleData, image, token) {
 	const base64Image = await fileToBase64(image);
 
 	// Step 9: Prepare API call to update file
-	await updateFile(dbUrl, db.sha, base64Content, token);
-	await uploadNewFile(imageUrl, base64Image, token)
+	await updateFile(dbUrl, db.sha, base64Content, password);
+	await uploadNewFile(imageUrl, base64Image, password)
 
 	console.log("Database updated successfully.")
 }

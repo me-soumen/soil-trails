@@ -1,19 +1,22 @@
+import { decryptToken } from './credentials/credentials.js';
+
 /*------------------------------------------------------------------------------------------------
 GitHub APIs: Fetch Content / Upload a File / Update a File
 ----------------------------------------------------------------------------------------------*/
 var config = JSON.parse(localStorage.getItem('appConfig'));
 
 // Backup current states.json file into backup/ folder
-export async function backupDatabase(dbContent, token) {
+export async function backupDatabase(dbContent, password) {
 	const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
 	const backupFilename = `${timestamp}.json`;
 	const backupUrl = `${config.baseUrl}/${config.databaseBackupFolderPath}/${backupFilename}`;
-	const data = await uploadNewFile(backupUrl, dbContent, token);
+	const data = await uploadNewFile(backupUrl, dbContent, password);
 	console.log("Backup created successfully.")
 }
 
 // Fetch file content from GitHub (Base64 encoded)
-export async function fetchFileContent(fileUrl, token) {
+export async function fetchFileContent(fileUrl, password) {
+	const token = await decryptToken(config.encryptedString, password);
 	const response = await fetch(fileUrl, {
 		method: 'GET',
 		headers: {
@@ -34,7 +37,8 @@ export async function fetchFileContent(fileUrl, token) {
 }
 
 // Upload a new file to GitHub
-export async function uploadNewFile(fileUrl, content, token) {
+export async function uploadNewFile(fileUrl, content, password) {
+	const token = await decryptToken(config.encryptedString, password);
 	const body = {
 		message: "Uploading database backup",
 		committer: {
@@ -67,7 +71,8 @@ export async function uploadNewFile(fileUrl, content, token) {
 }
 
 // Update an existing file in GitHub
-export async function updateFile(fileUrl, fileSha, updatedContent, token) {
+export async function updateFile(fileUrl, fileSha, updatedContent, password) {
+	const token = await decryptToken(config.encryptedString, password);
 	const body = {
 		message: "Added or Deleted sample data",
 		committer: {

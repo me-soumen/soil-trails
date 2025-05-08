@@ -108,18 +108,18 @@ function moveCarousel(direction) {
 
 // Delete Sample
 async function deleteSample(stateCode, sampleId) {
-	let token = prompt("Please enter the GitHub Token");
-	if (token != null) {
+	let password = prompt("Please enter the Password");
+	if (password != null) {
 
 		// Step 2: Construct db url and image url
 		const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
 
 		// Step 3: Get latest db content
-		const db = await fetchFileContent(dbUrl, token);
+		const db = await fetchFileContent(dbUrl, password);
 		let data = JSON.parse(atob(db.content));
 
 		// Step 4: Backup current db
-		await backupDatabase(db.content, token);
+		await backupDatabase(db.content, password);
 
 		// Step 5: Delete sample and reassign new id
 		const state = data.find(item => item.code === stateCode); // fix from dataArray to data
@@ -141,9 +141,9 @@ async function deleteSample(stateCode, sampleId) {
 
 		// Step 6: Convert updated object and image to base64
 		const base64Content = btoa(JSON.stringify(data, null, 2));
-		console.log(data);
+
 		// Step 7: Prepare API call to update file
-		await updateFile(dbUrl, db.sha, base64Content, token);
+		await updateFile(dbUrl, db.sha, base64Content, password);
 
 		console.log("Database updated successfully.")
 	}

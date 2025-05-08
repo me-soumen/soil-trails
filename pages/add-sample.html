@@ -75,7 +75,7 @@
                 <textarea class="form-control" placeholder="Notes" id="notes"></textarea>
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control" placeholder="GitHub Token" id="token" autocomplete="off">
+                <input type="password" class="form-control" placeholder="Password" id="password" autocomplete="off">
             </div>
 
             <button class="btn btn-primary w-100">Save</button>
@@ -162,7 +162,7 @@
         const latitude = document.getElementById('latitude').value.trim();
         const longitude = document.getElementById('longitude').value.trim();
         const notes = document.getElementById('notes').value.trim();
-        const token = document.getElementById('token').value.trim();
+        const password = document.getElementById('password').value.trim();
         const image = document.getElementById('location-image')?.files[0];
 
         // Validation
@@ -173,7 +173,7 @@
         if (!time) return showAlertToast("Time is required.", "error");
         if (!latitude || isNaN(latitude)) return showAlertToast("Enter valid Latitude.", "error");
         if (!longitude || isNaN(longitude)) return showAlertToast("Enter valid Longitude.", "error");
-        if (!token) return showAlertToast("GitHub Token is required.", "error");
+        if (!password) return showAlertToast("Password is required.", "error");
 
         // Validate file type
         const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
@@ -198,7 +198,7 @@
         };
 
         try {
-            const result = await addNewSample(code, JSON.stringify(jsonData, null, 2), image, token);
+            const result = await addNewSample(code, JSON.stringify(jsonData, null, 2), image, password);
             showAlertToast("New Sample created successfully!", "success");
             document.querySelector('form').reset();
             document.getElementById('imagePreview').setAttribute('src', '../images/common/no_preview.jpg');
