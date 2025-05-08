@@ -153,10 +153,6 @@
     document.querySelector('form').addEventListener('submit', async function (e) {
         e.preventDefault(); // prevent normal submission
 
-        // Show spinner
-        document.getElementById('save-btn').setAttribute("hidden", "");
-        document.getElementById('save-loading-btn').removeAttribute("hidden");
-
         // Grab values
         const stateDropdown = document.getElementById('stateDropdown');
         const selectedOption = stateDropdown.options[stateDropdown.selectedIndex];
@@ -197,6 +193,9 @@
             notes
         };
 
+        // Show spinner
+        document.getElementById('save-btn').setAttribute("hidden", "");
+        document.getElementById('save-loading-btn').removeAttribute("hidden");
         try {
             const result = await addNewSample(code, JSON.stringify(jsonData, null, 2), image, password);
             showAlertToast("New Sample created successfully!", "success");
@@ -208,6 +207,7 @@
             console.error('Sample creation failed: ', error);
             showAlertToast("Failed to create new Sample. Please Try again!", "error");
         }
+        //Hide spinner
         document.getElementById('save-btn').removeAttribute("hidden");
         document.getElementById('save-loading-btn').setAttribute("hidden", "");
     });
