@@ -52,7 +52,19 @@
   {
     "code": "KA",
     "state": "Karnataka",
-    "samples": []
+    "samples": [
+      {
+        "place": "Hogenakkal Falls",
+        "date": "2025-02-08",
+        "time": "1:30 PM",
+        "latitude": 12.110978776456369,
+        "longitude": 77.77476196873303,
+        "notes": "Collected from the middle of Kaveri River",
+        "imageName": "20250508T190223037Z.png",
+        "imageSha": "5a41380291c83e0ff700dd40d379fcc8a37c07ff",
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "KL",
