@@ -2,7 +2,18 @@
   {
     "code": "AP",
     "state": "Andhra Pradesh",
-    "samples": []
+    "samples": [
+      {
+        "place": "as",
+        "date": "2025-05-10",
+        "time": {},
+        "latitude": 1.2,
+        "longitude": 1.2,
+        "notes": "JSK",
+        "imageName": "20250508T115819657Z.png",
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "AR",
