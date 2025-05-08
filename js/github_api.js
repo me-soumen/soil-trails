@@ -40,10 +40,10 @@ export async function fetchFileContent(fileUrl, password) {
 export async function uploadNewFile(fileUrl, content, password) {
 	const token = await decryptToken(config.encryptedString, password);
 	const body = {
-		message: "Uploading database backup",
+		message: `${config.commit.message.modify}`,
 		committer: {
-			name: `${config.committerName}`,
-			email: `${config.committerEmail}`
+			name: `${config.commit.committerName}`,
+			email: `${config.commit.committerEmail}`
 		},
 		content: content // base64 encoded content
 	};
@@ -74,10 +74,10 @@ export async function uploadNewFile(fileUrl, content, password) {
 export async function updateFile(fileUrl, fileSha, updatedContent, password) {
 	const token = await decryptToken(config.encryptedString, password);
 	const body = {
-		message: "Added or Deleted sample data",
+		message: `${config.commit.message.modify}`,
 		committer: {
-			name: `${config.committerName}`,
-			email: `${config.committerEmail}`
+			name: `${config.commit.committerName}`,
+			email: `${config.commit.committerEmail}`
 		},
 		sha: fileSha,
 		content: updatedContent  // base64 encoded content
@@ -102,5 +102,37 @@ export async function updateFile(fileUrl, fileSha, updatedContent, password) {
 
 	const data = await response.json();
 	console.log('GitHub: File updated successfully:', data.content.path);
+	return data;
+}
+
+// Delete a file from GitHub
+export async function deleteFile(fileNameSha, password) {
+	const token = await decryptToken(config.encryptedString, password);
+	const body = {
+		message: `${config.commit.message.delete}`,
+		committer: {
+			name: `${config.commit.committerName}`,
+			email: `${config.commit.committerEmail}`
+		},
+		sha: fileSha
+	};
+
+	const response = await fetch(fileUrl, {
+		method: 'DELETE',
+		headers: {
+			'Accept': 'application/vnd.github+json',
+			'Authorization': `Bearer ${token}`,
+			'X-GitHub-Api-Version': '2022-11-28'
+		},
+		body: JSON.stringify(body)
+	});
+
+	if (!response.ok) {
+		const error = await response.json();
+		console.error('GitHub: Error deleteing file:', error);
+		throw new Error(`GitHub API error: ${error.message}`);
+	}
+
+	console.log('GitHub: File updated successfully:', data.content);
 	return data;
 }

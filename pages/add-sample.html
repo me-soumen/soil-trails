@@ -182,19 +182,14 @@
             return;
         }
 
-        // Construct image file name
-        const timestamp = new Date().toISOString().replace(/[:.-]/g, '');
-        const imageFileName = `${timestamp}.png`;
-
         // Create JSON object
         const jsonData = {
             place,
             date,
-            time,
+            time: await to12HourFormat(time),
             latitude: parseFloat(latitude),
             longitude: parseFloat(longitude),
-            notes,
-            imageName: imageFileName
+            notes
         };
 
         try {

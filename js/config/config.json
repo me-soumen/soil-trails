@@ -6,8 +6,14 @@
   "placeImagesFolderPath": "images/places",
   "mapBaseUrl": "https://www.google.com/maps?q=",
   "databaseFileName": "states.json",
-  "committerName": "Soumen",
-  "committerEmail": "me.soumen02@gmail.com",
-  "apiVersion": "2022-11-28",
+  "commit": {
+    "committerName": "Soumen",
+    "committerEmail": "me.soumen02@gmail.com",
+    "message": {
+      "add": "Backup of database or location image",
+      "modify": "Added or Deleted a sample data",
+      "delete": "Deleted a location image"
+    }
+  },
   "encryptedString": "YqjG4fKNwaKej4wFDFfZ/JEtN0MrfKlIO7zLqzqs0zoN16gOMgiDjm47H4AcixK8kFX0teNyuSBkia1bBszg05qOPtc59fv9vSOy9K0JvJMGRY/yeTR4Fo1IYQmlhvlOAdbISkAi1zKD3f2BDuhA2fWVpGqtOkHMNwQkYDfzjCXUsA7CMHfNAbKF+WDD0OsTV5vYvWZU1IshGyazU7dB8cid/HU/obVp"
 }

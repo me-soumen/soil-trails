@@ -1,4 +1,4 @@
-import { backupDatabase, fetchFileContent, uploadNewFile, updateFile } from './github_api.js';
+import { backupDatabase, fetchFileContent, uploadNewFile, updateFile, deleteFile } from './github_api.js';
 
 const carousel = document.getElementById('state-carousel');
 const sampleSection = document.getElementById('sample-section');
@@ -106,27 +106,29 @@ function moveCarousel(direction) {
 	});
 }
 
-// Delete Sample
+// Delete a Sample with associated image
 async function deleteSample(stateCode, sampleId) {
 	let password = prompt("Please enter the Password");
 	if (password != null) {
-
-		// Step 2: Construct db url and image url
+		// Step 1: Construct db url, fecth latest db content, backup the db
 		const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
-
-		// Step 3: Get latest db content
 		const db = await fetchFileContent(dbUrl, password);
 		let data = JSON.parse(atob(db.content));
-
-		// Step 4: Backup current db
 		await backupDatabase(db.content, password);
 
-		// Step 5: Delete sample and reassign new id
-		const state = data.find(item => item.code === stateCode); // fix from dataArray to data
+		// Step 2: Find state index, find deleted image details, filter deleted sample
+		const state = data.find(item => item.code === stateCode);
 		if (state) {
-			const initialLength = state.samples.length;
+			// Get image details before deleting
+			const sampleToDelete = state.samples.find(s => s.id === sampleId);
+			var imageNameSha = {
+				imageName: sampleToDelete.imageName,
+				imageSha: sampleToDelete.imageSha
+			};
 
+			// Filter out deleted sample
 			state.samples = state.samples.filter(sample => sample.id !== sampleId);
+			const initialLength = state.samples.length;
 			if (state.samples.length < initialLength) {
 				// Reassign IDs based on current count
 				state.samples.forEach((sample, index) => {
@@ -135,17 +137,18 @@ async function deleteSample(stateCode, sampleId) {
 			} else {
 				console.log(`Sample with id ${sampleId} not found in state ${stateCode}`);
 			}
+
+			//Step 3: Delete Image
+			await deleteFile(imageNameSha, password);
+
+			// Step 4: Convert updated object to base64, call API
+			const base64Content = btoa(JSON.stringify(data, null, 2));
+			await updateFile(dbUrl, db.sha, base64Content, password);
+
+			console.log("Database updated successfully.")
 		} else {
 			console.log(`State with code ${stateCode} not found`);
 		}
-
-		// Step 6: Convert updated object and image to base64
-		const base64Content = btoa(JSON.stringify(data, null, 2));
-
-		// Step 7: Prepare API call to update file
-		await updateFile(dbUrl, db.sha, base64Content, password);
-
-		console.log("Database updated successfully.")
 	}
 }
 
