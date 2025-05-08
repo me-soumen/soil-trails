@@ -133,6 +133,7 @@ export async function deleteFile(fileUrl, fileSha, password) {
 		throw new Error(`GitHub API error: ${error.message}`);
 	}
 
+	const data = await response.json();
 	console.log('GitHub: File deleted successfully');
 	return data;
 }
