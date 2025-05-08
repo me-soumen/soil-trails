@@ -2,18 +2,7 @@
   {
     "code": "AP",
     "state": "Andhra Pradesh",
-    "samples": [
-      {
-        "place": "Palki",
-        "date": "2025-05-10",
-        "time": "15:14",
-        "latitude": 12,
-        "longitude": 12,
-        "notes": "JSK",
-        "imageName": "20250508T094417772Z.png",
-        "id": "#1"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "AR",
