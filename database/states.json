@@ -42,6 +42,17 @@
         "notes": "JSK",
         "imageName": "20250508T120814880Z.png",
         "id": "#4"
+      },
+      {
+        "place": "asa",
+        "date": "2025-05-10",
+        "time": "5:44 PM",
+        "latitude": 12,
+        "longitude": 12,
+        "notes": "JSK",
+        "imageName": "20250508T121433309Z.png",
+        "imageSha": "49f159cea58bb6a8b761a085ff26663cc44b3db3",
+        "id": "#5"
       }
     ]
   },
