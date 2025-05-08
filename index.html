@@ -16,7 +16,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2 fixed-top">
     <div class="container">
         <!-- Logo -->
-        <a class="navbar-brand d-flex align-items-center" href="#">
+        <a class="navbar-brand d-flex align-items-center" href="#" id="site-home-a">
             <img src="./images/common/site-logo.png" alt="Logo" width="60" height="60" class="me-2">
             <div class="fw-bold title-text pt-2" style="font-family: 'Poppins', sans-serif;color: rgb(208 204 194)">Soil
                 Collection Repository
@@ -102,10 +102,58 @@
     </div>
 </footer>
 
-<!-- Scripts Import -->
+<!-- Alert Toast -->
+<div class="toast" id="errorToast" style="position: fixed; top: 40px; right: 20px; z-index: 9999;" data-delay="3000">
+    <div class="toast-header bg-danger text-white">
+        <strong class="mr-auto">Error</strong>
+    </div>
+    <div class="toast-body" id="toastMessage">
+    </div>
+</div>
+
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="./js/index.js" type="module"></script>
+<script>
+    // Delete button listener
+    document.getElementById('sample-section').addEventListener('click', async function (e) {
+        e.preventDefault();
+        let password = prompt("Please enter the Password");
+        if (password != null) {
+            if (e.target.classList.contains('delete-btn')) {
+                const stateCode = e.target.dataset.code;
+                const sampleId = e.target.dataset.id;
+                console.log(stateCode, sampleId);
+                try {
+                    await deleteSample(stateCode, sampleId, password);
+                    showAlertToast("Sample deleted successfully!", "success");
+                } catch (error) {
+                    console.error('Sample deletion failed: ', error);
+                    showAlertToast("Something went wrong while deleting. Please Try again!", "error");
+                }
+            }
+        }
+    });
+
+    // Site Name Link Listener
+    document.getElementById('site-home-a').addEventListener('click', function (e) {
+        e.preventDefault();
+        // 1. Clear cookies (only if they are accessible via JS)
+        document.cookie.split(";").forEach(cookie => {
+            const name = cookie.split("=")[0].trim();
+            document.cookie = name + '=;expires=' + new Date(0).toUTCString() + ';path=/';
+        });
+        // 2. Clear local storage/session storage if used
+        localStorage.clear();
+        sessionStorage.clear();
+        // 3. Redirect with cache busting query param
+        const targetUrl = "./index.html";
+        window.location.href = targetUrl + "?cb=" + new Date().getTime();
+    });
+
+</script>
 </body>
 </html>

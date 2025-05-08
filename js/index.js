@@ -56,7 +56,7 @@ function populateSamples(stateData) {
 			tile.className = 'sample-tile';
 			tile.innerHTML = `
             <img src="./${config.placeImagesFolderPath}/${sample.imageName}" alt="${sample.place}">
-            <button class="delete-btn" onclick="deleteSample('${stateData.code}', '${sample.id}')">
+            <button class="delete-btn" id="delete-sample-btn" data-code="${stateData.code}" data-id="${sample.id}">
                 <i class="bi bi-trash"></i>
             </button>
             <div class="sample-content">
@@ -106,51 +106,72 @@ function moveCarousel(direction) {
 	});
 }
 
+// Show Toast
+export function showAlertToast(message, type = 'info') {
+	const toast = document.getElementById('errorToast');
+	const toastHeader = toast.querySelector('.toast-header');
+	const toastTitle = toast.querySelector('.toast-header strong');
+	const toastMessage = document.getElementById('toastMessage');
+
+	toastMessage.textContent = message;
+	toastHeader.classList.remove('bg-danger', 'bg-success', 'bg-info');
+
+	if (type === 'error') {
+		toastHeader.classList.add('bg-danger', 'text-white');
+		toastTitle.textContent = 'Error';
+	} else if (type === 'success') {
+		toastHeader.classList.add('bg-success', 'text-white');
+		toastTitle.textContent = 'Success';
+	} else if (type === 'info') {
+		toastHeader.classList.add('bg-info', 'text-white');
+		toastTitle.textContent = 'Info';
+	}
+	$('#errorToast').toast('show');
+}
+
 // Delete a Sample with associated image
-async function deleteSample(stateCode, sampleId) {
-	let password = prompt("Please enter the Password");
-	if (password != null) {
-		// Step 1: Construct db url, fecth latest db content, backup the db
-		const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
-		const db = await fetchFileContent(dbUrl, password);
-		let data = JSON.parse(atob(db.content));
-		await backupDatabase(db.content, password);
+async function deleteSample(stateCode, sampleId, password) {
+	// Step 1: Construct db url, fecth latest db content, backup the db
+	const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
+	const db = await fetchFileContent(dbUrl, password);
+	let data = JSON.parse(atob(db.content));
+	await backupDatabase(db.content, password);
 
-		// Step 2: Find state index, find deleted image details, filter deleted sample
-		const state = data.find(item => item.code === stateCode);
-		if (state) {
-			// Get sample details before deleting
-			const sampleToDelete = state.samples.find(s => s.id === sampleId);
+	// Step 2: Find state index, find deleted image details, filter deleted sample
+	const state = data.find(item => item.code === stateCode);
+	if (state) {
+		// Get sample details before deleting
+		const sampleToDelete = state.samples.find(s => s.id === sampleId);
 
-			// Filter out deleted sample
-			const initialLength = state.samples.length;
-			state.samples = state.samples.filter(sample => sample.id !== sampleId);
-			if (state.samples.length < initialLength) {
-				// Reassign IDs based on current count
-				state.samples.forEach((sample, index) => {
-					sample.id = `#${index + 1}`;
-				});
-			} else {
-				console.log(`Sample with id ${sampleId} not found in state ${stateCode}`);
-			}
-
-			//Step 3: Delete Image
-			const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${sampleToDelete.imageName}`;
-			await deleteFile(imageUrl, sampleToDelete.imageSha, password);
-
-			// Step 4: Convert updated object to base64, call API
-			const base64Content = btoa(JSON.stringify(data, null, 2));
-			await updateFile(dbUrl, db.sha, base64Content, password);
-
-			console.log("Database updated successfully.")
+		// Filter out deleted sample
+		const initialLength = state.samples.length;
+		state.samples = state.samples.filter(sample => sample.id !== sampleId);
+		if (state.samples.length < initialLength) {
+			// Reassign IDs based on current count
+			state.samples.forEach((sample, index) => {
+				sample.id = `#${index + 1}`;
+			});
 		} else {
-			console.log(`State with code ${stateCode} not found`);
+			console.log(`Sample with id ${sampleId} not found in state ${stateCode}`);
 		}
+
+		//Step 3: Delete Image
+		const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${sampleToDelete.imageName}`;
+		await deleteFile(imageUrl, sampleToDelete.imageSha, password);
+
+		// Step 4: Convert updated object to base64, call API
+		const base64Content = btoa(JSON.stringify(data, null, 2));
+		await updateFile(dbUrl, db.sha, base64Content, password);
+
+		console.log("Database updated successfully.")
+	} else {
+		console.log(`State with code ${stateCode} not found`);
 	}
 }
 
 window.moveCarousel = moveCarousel;
 window.deleteSample = deleteSample;
+window.showAlertToast = showAlertToast;
 window.onload = async function() {
 	await loadConfig();
 	config = JSON.parse(localStorage.getItem('appConfig'));
