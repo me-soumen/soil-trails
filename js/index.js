@@ -24,11 +24,21 @@ function populateStates() {
 	// Load State Carousel
 	data.forEach((state, index) => {
 		const tile = document.createElement('div');
-		tile.className = 'state-tile';
-		tile.innerHTML = `
-                <img src="./images/states/${state.code}.png" alt="${state.state}" class="state-map">
-                <div class="fw-bold">${state.state}</div>
-            `;
+		tile.className = 'state-tile position-relative';
+		if(state.samples.length > 0) {
+			tile.innerHTML = `
+	                <img src="./images/states/${state.code}.png" alt="${state.state}" class="state-map">
+	                <div class="fw-bold">${state.state}</div>
+	                <span class="position-absolute translate-middle badge rounded-pill bg-danger badge-position">
+                       ${state.samples.length}
+                    </span>
+	            `;
+		} else {
+			tile.innerHTML = `
+	                <img src="./images/states/${state.code}.png" alt="${state.state}" class="state-map">
+	                <div class="fw-bold">${state.state}</div>
+	            `;
+		}
 		tile.addEventListener('click', () => {
 			document.querySelectorAll('.state-tile').forEach(el => el.classList.remove('active'));
 			tile.classList.add('active');
@@ -51,6 +61,7 @@ function populateSamples(stateData) {
 		tile.innerHTML = `Hope to visit soon...`;
 		sampleSection.appendChild(tile);
 	} else {
+		//document.getElementById("${stateData.code}").removeAttribute("hidden");
 		stateData.samples.forEach(sample => {
 			const tile = document.createElement('div');
 			tile.className = 'sample-tile';
