@@ -17,19 +17,7 @@
   {
     "code": "BR",
     "state": "Bihar",
-    "samples": [
-      {
-        "place": "as",
-        "date": "2025-05-09",
-        "time": "9:23 PM",
-        "latitude": 2,
-        "longitude": 12,
-        "notes": "JSK",
-        "imageName": "20250508T155459712Z.png",
-        "imageSha": "86d8d66fd75b639ce4fbf7d9484b26b039665282",
-        "id": "#1"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "CH",
