@@ -60,6 +60,29 @@
     <section class="samples" id="sample-section">
         <!-- Dynamic Sample Tiles -->
     </section>
+
+    <!-- Password Modal -->
+    <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5" id="delete-modal-label">Want to delete this Sample?</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="password" placeholder="Enter Password" autocomplete="off">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="confirm-delete-btn" onclick="handleConfirmDelete()">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Footer -->
@@ -118,23 +141,52 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="./js/index.js" type="module"></script>
 <script>
-    // Delete button listener
-    document.getElementById('sample-section').addEventListener('click', async function (e) {
-        e.preventDefault();
-        let password = prompt("Please enter the Password");
-        if (password != null) {
-            if (e.target.classList.contains('delete-btn')) {
-                const stateCode = e.target.dataset.code;
-                const sampleId = e.target.dataset.id;
-                console.log(stateCode, sampleId);
-                try {
-                    await deleteSample(stateCode, sampleId, password);
-                    showAlertToast("Sample deleted successfully!", "success");
-                } catch (error) {
-                    console.error('Sample deletion failed: ', error);
-                    showAlertToast("Something went wrong while deleting. Please Try again!", "error");
-                }
-            }
+    const deleteModal = document.getElementById('delete-modal');
+    const passwordInput = document.getElementById('password');
+    const confirmBtn = document.getElementById('confirm-delete-btn');
+    let currentSample = {};
+
+    // Delete button listener - Open Modal
+    if (deleteModal) {
+        deleteModal.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget;
+            const sampleId = button.getAttribute('data-id');
+            const stateCode = button.getAttribute('data-code');
+            currentSample = { sampleId, stateCode };
+
+            const modalTitle = deleteModal.querySelector('.modal-title');
+            modalTitle.textContent = `Want to delete the Sample: ${stateCode}${sampleId}?`;
+
+            passwordInput.value = '';
+            passwordInput.classList.remove('is-invalid');
+            setTimeout(() => passwordInput.focus(), 200);
+        });
+    }
+
+    // Confirm Delete button listener
+    async function handleConfirmDelete() {
+        const password = passwordInput.value.trim();
+        const modalInstance = bootstrap.Modal.getInstance(deleteModal);
+        if (!password) {
+            passwordInput.classList.add('is-invalid');
+            return;
+        }
+        try {
+            await deleteSample(currentSample.stateCode, currentSample.sampleId, password);
+            showAlertToast("Sample deleted successfully!", "success");
+            modalInstance.hide();
+        } catch (error) {
+            console.error('Sample deletion failed: ', error);
+            showAlertToast("Something went wrong while deleting. Please Try again!", "error");
+            modalInstance.hide();
+        }
+    }
+
+    // Enter key listener
+    passwordInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleConfirmDelete();
         }
     });
 

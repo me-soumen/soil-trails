@@ -45,37 +45,37 @@
             </div>
             <!-- Image Selector -->
             <div class="mb-3">
-                <input class="form-control" type="file" accept="image/*" id="location-image">
+                <input class="form-control" type="file" accept="image/*" id="location-image" required>
             </div>
             <!-- Form Fields -->
             <div>
                 <select id="stateDropdown" class="selectpicker" data-live-search="true" data-size="10" data-width="100%"
-                        aria-label=".form-select-lg example">
+                        aria-label=".form-select-lg example" required>
                     <option value="">Select State/UT</option>
                     <optgroup label="States"></optgroup>
                     <optgroup label="Union Territories"></optgroup>
                 </select>
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control" id="place" placeholder="Place" autocomplete="off">
+                <input type="text" class="form-control" id="place" placeholder="Place" autocomplete="off" required>
             </div>
             <div class="mb-3">
-                <input type="date" class="form-control" id="date" placeholder="Date" autocomplete="off">
+                <input type="date" class="form-control" id="date" placeholder="Date" autocomplete="off" required>
             </div>
             <div class="mb-3">
-                <input type="time" class="form-control" id="time" placeholder="Time" autocomplete="off">
+                <input type="time" class="form-control" id="time" placeholder="Time" autocomplete="off" required>
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Latitude" id="latitude" autocomplete="off">
+                <input type="number" class="form-control" placeholder="Latitude" id="latitude" autocomplete="off" required>
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Longitude" id="longitude" autocomplete="off">
+                <input type="number" class="form-control" placeholder="Longitude" id="longitude" autocomplete="off" required>
             </div>
             <div class="mb-3">
-                <textarea class="form-control" placeholder="Notes" id="notes"></textarea>
+                <textarea class="form-control" placeholder="Notes" id="notes" required></textarea>
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control" placeholder="Password" id="password" autocomplete="off">
+                <input type="password" class="form-control" placeholder="Password" id="password" autocomplete="off" required>
             </div>
 
             <button class="btn btn-primary w-100">Save</button>
@@ -173,7 +173,6 @@
         if (!time) return showAlertToast("Time is required.", "error");
         if (!latitude || isNaN(latitude)) return showAlertToast("Enter valid Latitude.", "error");
         if (!longitude || isNaN(longitude)) return showAlertToast("Enter valid Longitude.", "error");
-        if (!password) return showAlertToast("Password is required.", "error");
 
         // Validate file type
         const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];

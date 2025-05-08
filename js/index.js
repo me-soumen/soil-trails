@@ -56,7 +56,7 @@ function populateSamples(stateData) {
 			tile.className = 'sample-tile';
 			tile.innerHTML = `
             <img src="./${config.placeImagesFolderPath}/${sample.imageName}" alt="${sample.place}">
-            <button class="delete-btn" id="delete-sample-btn" data-code="${stateData.code}" data-id="${sample.id}">
+            <button class="delete-btn" id="delete-sample-btn" data-code="${stateData.code}" data-id="${sample.id}" data-bs-toggle="modal" data-bs-target="#delete-modal">
                 <i class="bi bi-trash"></i>
             </button>
             <div class="sample-content">
@@ -169,6 +169,7 @@ async function deleteSample(stateCode, sampleId, password) {
 	}
 }
 
+window.handleConfirmDelete = handleConfirmDelete;
 window.moveCarousel = moveCarousel;
 window.deleteSample = deleteSample;
 window.showAlertToast = showAlertToast;
