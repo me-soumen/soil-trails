@@ -2,47 +2,12 @@
   {
     "code": "AP",
     "state": "Andhra Pradesh",
-    "samples": [
-      {
-        "place": "asxas",
-        "date": "2025-05-08",
-        "time": "12:06 AM",
-        "latitude": 1.2,
-        "longitude": 12,
-        "notes": "asxasx",
-        "imageName": "20250508T183622653Z.png",
-        "imageSha": "86d8d66fd75b639ce4fbf7d9484b26b039665282",
-        "id": "#1"
-      },
-      {
-        "place": "ascxas",
-        "date": "2025-05-08",
-        "time": "12:20 AM",
-        "latitude": 12,
-        "longitude": 12,
-        "notes": "dscdc",
-        "imageName": "20250508T185036500Z.png",
-        "imageSha": "1d9fe4375f3379ab626cd356185bcde4b80cf948",
-        "id": "#2"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "AR",
     "state": "Arunachal Pradesh",
-    "samples": [
-      {
-        "place": "arun",
-        "date": "2025-05-09",
-        "time": "12:04 AM",
-        "latitude": 1.2,
-        "longitude": 1.2,
-        "notes": "assas",
-        "imageName": "20250508T183519510Z.png",
-        "imageSha": "923458142a15229b5b9a8a0c3c68f244fbf621ee",
-        "id": "#1"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "AS",
@@ -92,19 +57,7 @@
   {
     "code": "KL",
     "state": "Kerala",
-    "samples": [
-      {
-        "place": "Drive In Beach",
-        "date": "2025-04-19",
-        "time": "4:58 PM",
-        "latitude": 11.808,
-        "longitude": 75.4324444,
-        "notes": "From Muzhuappilangad Drive In Beach, Kannur",
-        "imageName": "20250508T171859639Z.png",
-        "imageSha": "93a93f33a4f2b055c639551c49497ad9636e6516",
-        "id": "#1"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "MP",
