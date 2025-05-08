@@ -2,7 +2,19 @@
   {
     "code": "AP",
     "state": "Andhra Pradesh",
-    "samples": []
+    "samples": [
+      {
+        "place": "Arakkal",
+        "date": "2025-05-10",
+        "time": "6:24 PM",
+        "latitude": 1.2,
+        "longitude": 1.2,
+        "notes": "JSK",
+        "imageName": "20250508T125433962Z.png",
+        "imageSha": "923458142a15229b5b9a8a0c3c68f244fbf621ee",
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "AR",
