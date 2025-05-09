@@ -1,37 +1,41 @@
-# 🪨 Soil Collection Tracker (India Edition)
+# 🪨 Soil Trails - India Edition
 
-Welcome to the **Soil Collection Tracker** — a personal project built to track my hobby of collecting soil samples from various places across India!  
-This site helps me record, update, and view the details of all the soils I have collected so far from different states, cities, and regions.
+Welcome to the **Soil Trails** — a personal project built to track my hobby of collecting soil samples from various
+places across India!  
+This site helps me record, update, and view the details of all the soils I have collected so far from different states,
+cities, and regions.
 
-🌱 Whether it's the red soil of Tamil Nadu, black cotton soil from Maharashtra, or alluvial soil from the Gangetic plains — every sample has a place here!
+🌱 Whether it's the red soil of Tamil Nadu, black cotton soil from Maharashtra, or alluvial soil from the Gangetic
+plains — every sample has a place here!
 
-🎯 My Goal is to collect soil samples from each states and union territories of India!
+🎯 My Goal is to collect soil samples from each states and union territories of India! Hope to visit all parts of India someday.
 
 ---
 
 ### Website Link
 
-https://me-soumen.github.io/soil-collection/
+https://me-soumen.github.io/soil-trails/
 
 ---
 
 ## 🌍 About This Project
 
 This website is built to:
+
 - ✅ **Add** new soil collection entries with place, date, coordinates and notes.
-- ✅ **Update** existing soil details as I revisit places.
+- ✅ **Delete** existing soil sample details if anything goes wrong.
 - ✅ **View** all collection data in a neat table with location of collection point.
 
-The collection details are saved in a `database/states.json` file, which serves as the master record for my soil samples.
+The collection details are saved in a `database/states.json` file, which serves as the master record for my soil
+samples.
 
 ---
 
 ## 🔖 Features
 
 - 📍 **Track places**: Code, State, Place, Date, Time, Latitude, Longitude, Notes
-- 🔄 **Edit and update** existing records
 - 🗺️ **Geolocation support** for accurate coordinates
-- 🔒 Uses **GitHub Actions** for secure updates
+- 🔒 Uses **Secure Password** to decrypt the GitHub token for secure updates
 - 📝 All data is version-controlled right here in this repo
 
 ---
@@ -40,9 +44,8 @@ The collection details are saved in a `database/states.json` file, which serves 
 
 1. **Clone or fork** this repo
 2. Open the site from `index.html`
-3. Go to `Add or Update State` page to add new soil entries
+3. Go to `Add State` page to add new soil entries
 4. View updated details in the main state table
-
 
 ---
 
@@ -59,12 +62,19 @@ The collection details are saved in a `database/states.json` file, which serves 
 
 ```json
 {
-  "code": "KA",
-  "state": "Karnataka",
-  "place": "Hogenakkal Falls",
-  "date": "08-02-2025",
-  "time": "01:30 PM",
-  "latitude": 12.110986586674395,
-  "longitude": 77.7747682536287,
-  "notes": "Collected in the middle of Kaveri River while taking Coracle ride"
+    "code": "KA",
+    "state": "Karnataka",
+    "samples": [
+        {
+            "place": "Hogenakkal Falls",
+            "date": "2025-02-08",
+            "time": "1:30 PM",
+            "latitude": 12.110978776456369,
+            "longitude": 77.77476196873303,
+            "notes": "Collected from the middle of Kaveri River",
+            "imageName": "20250508T190223037Z.png",
+            "imageSha": "5a41380291c83e0ff700dd40d379fcc8a37c07ff",
+            "id": "#1"
+        }
+    ]
 }
