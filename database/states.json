@@ -102,7 +102,23 @@
   {
     "code": "GA",
     "state": "Goa",
-    "samples": []
+    "samples": [
+      {
+        "place": "sfvsfv",
+        "date": "2025-05-10",
+        "time": "8:38 AM",
+        "latitude": 12,
+        "longitude": 12,
+        "notes": "dcdscds",
+        "images": [
+          {
+            "imageName": "20250511T150820554Z1.png",
+            "imageSha": "3217767a4f49558c4fb340ea0e75b1c193ce9154"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "GJ",
