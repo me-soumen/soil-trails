@@ -38,20 +38,9 @@
     <h2 style="font-family: sans-serif; font-weight: 700;">Add New Sample</h2>
     <div class="form-container mx-auto mt-2 mb-4" style="max-width: 500px;">
         <form>
-            <!-- Image Preview -->
-            <!--<div class="mb-3">
-                <img id="imagePreview" src="../images/common/no_preview.jpg" class="img-thumbnail h-50 w-50"
-                     alt="Image Preview">
-            </div>
-            &lt;!&ndash; Image Selector &ndash;&gt;
-            <div class="mb-3">
-                <input class="form-control" type="file" accept="image/*" id="location-image" required>
-            </div>-->
-
             <div class="row g-3">
-
-                <!-- Photo 1 -->
-                <div class="col-md-6">
+                <!-- Image 1 -->
+                <div class="col-md-6 col-sm-6 col-6">
                     <div class="image-upload-container" onclick="document.getElementById('photo1Input').click()">
                         <button type="button" class="remove-image-btn" id="removePhoto1" onclick="event.stopPropagation(); removeImage('1')">&times;</button>
                         <div id="photo1Label" style="text-align: left;">
@@ -65,8 +54,8 @@
                     </div>
                 </div>
 
-                <!-- Photo 2 -->
-                <div class="col-md-6">
+                <!-- Image 2 -->
+                <div class="col-md-6 col-sm-6 col-6">
                     <div class="image-upload-container" onclick="document.getElementById('photo2Input').click()">
                         <button type="button" class="remove-image-btn" id="removePhoto2" onclick="event.stopPropagation(); removeImage('2')">&times;</button>
                         <div id="photo2Label" style="text-align: left;">
@@ -79,7 +68,6 @@
                         <img id="photo2Preview" class="image-preview" alt="Preview">
                     </div>
                 </div>
-
             </div>
 
             <!-- Form Fields -->
