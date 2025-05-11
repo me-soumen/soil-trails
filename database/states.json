@@ -21,13 +21,7 @@
           }
         ],
         "id": "#1"
-      }
-    ]
-  },
-  {
-    "code": "AR",
-    "state": "Arunachal Pradesh",
-    "samples": [
+      },
       {
         "place": "Haluhulu",
         "date": "2025-05-08",
@@ -45,9 +39,14 @@
             "imageSha": "84512e143275774a6530da9eee227420f711e052"
           }
         ],
-        "id": "#1"
+        "id": "#2"
       }
     ]
+  },
+  {
+    "code": "AR",
+    "state": "Arunachal Pradesh",
+    "samples": []
   },
   {
     "code": "AS",

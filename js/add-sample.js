@@ -67,22 +67,25 @@ function showAlertToast(message, type = 'error') {
 // Create a new sample after taking backup of existing
 export async function addNewSample(stateCode, sampleData, images, password) {
 	const sample = JSON.parse(sampleData);
-	sample.images = [];
 
-	// Step 1: Upload images
+	// Step 1: Upload all images together in parallel
+	let uploadedImages;
 	try {
 		const timestampBase = new Date().toISOString().replace(/[:.-]/g, '');
-		await Promise.all(images.map(async (image, index) => {
+
+		uploadedImages = await Promise.all(images.map(async (image, index) => {
 			const imageFileName = `${timestampBase}${index}.png`;
 			const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${imageFileName}`;
 			const base64Image = await imageToBase64(image);
 			const imageDetails = await uploadNewFile(imageUrl, base64Image, password);
 
-			sample.images.push({
+			return {
 				imageName: imageFileName,
 				imageSha: imageDetails?.content?.sha
-			});
+			};
 		}));
+
+		sample.images = uploadedImages;
 	} catch (error) {
 		throw new Error(`1/5 Image upload failed: ${error?.message || error}`);
 	}

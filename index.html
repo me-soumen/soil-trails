@@ -16,7 +16,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2 fixed-top">
     <div class="container">
         <!-- Logo -->
-        <a class="navbar-brand d-flex align-items-center" href="#" id="site-home-a">
+        <a class="navbar-brand d-flex align-items-center" href="" id="site-home-a">
             <img src="./images/common/site-logo.png" alt="Soil Trails" width="60" height="60" class="me-2">
             <div class="fw-bold title-text pt-2" style="font-family: 'Poppins', sans-serif;color: rgb(208 204 194)">
                 <span class="fs-1">Soil Trails</span>
@@ -208,23 +208,6 @@
             handleConfirmDelete();
         }
     });
-
-    // Site Name Link Listener
-    document.getElementById('site-home-a').addEventListener('click', function (e) {
-        e.preventDefault();
-        // 1. Clear cookies (only if they are accessible via JS)
-        document.cookie.split(";").forEach(cookie => {
-            const name = cookie.split("=")[0].trim();
-            document.cookie = name + '=;expires=' + new Date(0).toUTCString() + ';path=/';
-        });
-        // 2. Clear local storage/session storage if used
-        localStorage.clear();
-        sessionStorage.clear();
-        // 3. Redirect with cache busting query param
-        const targetUrl = "./index.html";
-        window.location.href = targetUrl + "?cb=" + new Date().getTime();
-    });
-
 </script>
 </body>
 </html>
