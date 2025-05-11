@@ -40,14 +40,41 @@
     <div class="form-container mx-auto mt-2 mb-4" style="max-width: 500px;">
         <form>
             <!-- Image Preview -->
-            <div class="mb-3">
+            <!--<div class="mb-3">
                 <img id="imagePreview" src="../images/common/no_preview.jpg" class="img-thumbnail h-50 w-50"
                      alt="Image Preview">
             </div>
-            <!-- Image Selector -->
+            &lt;!&ndash; Image Selector &ndash;&gt;
             <div class="mb-3">
                 <input class="form-control" type="file" accept="image/*" id="location-image" required>
+            </div>-->
+
+            <div class="row g-3">
+
+                <!-- Photo 1 -->
+                <div class="col-md-6">
+                    <div class="image-upload-container" onclick="document.getElementById('photo1Input').click()">
+                        <button type="button" class="remove-image-btn" id="removePhoto1" onclick="event.stopPropagation(); removeImage('1')">&times;</button>
+                        <div id="photo1Label">PHOTO 1</div>
+                        <img src="https://img.icons8.com/ios-filled/50/camera--v1.png" class="upload-icon" id="photo1Icon" />
+                        <input type="file" id="photo1Input" accept="image/*" onchange="previewImage(event, '1')">
+                        <img id="photo1Preview" class="image-preview" alt="Preview">
+                    </div>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="col-md-6">
+                    <div class="image-upload-container" onclick="document.getElementById('photo2Input').click()">
+                        <button type="button" class="remove-image-btn" id="removePhoto2" onclick="event.stopPropagation(); removeImage('2')">&times;</button>
+                        <div id="photo2Label">PHOTO 2</div>
+                        <img src="https://img.icons8.com/ios-filled/50/camera--v1.png" class="upload-icon" id="photo2Icon" />
+                        <input type="file" id="photo2Input" accept="image/*" onchange="previewImage(event, '2')">
+                        <img id="photo2Preview" class="image-preview" alt="Preview">
+                    </div>
+                </div>
+
             </div>
+
             <!-- Form Fields -->
             <div>
                 <select id="stateDropdown" class="selectpicker" data-live-search="true" data-size="10" data-width="100%"
@@ -215,6 +242,42 @@
         document.getElementById('save-btn').removeAttribute("hidden");
         document.getElementById('save-loading-btn').setAttribute("hidden", "");
     });
+
+    function previewImage(event, id) {
+        const input = event.target;
+        const file = input.files[0];
+        const preview = document.getElementById(`photo${id}Preview`);
+        const icon = document.getElementById(`photo${id}Icon`);
+        const label = document.getElementById(`photo${id}Label`);
+        const removeBtn = document.getElementById(`removePhoto${id}`);
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                icon.style.display = 'none';
+                label.style.display = 'none';
+                removeBtn.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function removeImage(id) {
+        const input = document.getElementById(`photo${id}Input`);
+        const preview = document.getElementById(`photo${id}Preview`);
+        const icon = document.getElementById(`photo${id}Icon`);
+        const label = document.getElementById(`photo${id}Label`);
+        const removeBtn = document.getElementById(`removePhoto${id}`);
+
+        input.value = '';
+        preview.src = '';
+        preview.style.display = 'none';
+        icon.style.display = 'block';
+        label.style.display = 'block';
+        removeBtn.style.display = 'none';
+    }
 </script>
 <script src="../js/add-sample.js" type="module"></script>
 <script src="../js/compressor.js" type="module"></script>
