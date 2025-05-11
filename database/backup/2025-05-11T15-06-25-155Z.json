@@ -1,0 +1,265 @@
+[
+  {
+    "code": "AP",
+    "state": "Andhra Pradesh",
+    "samples": [
+      {
+        "place": "Lepakshi",
+        "date": "2025-05-10",
+        "time": "7:24 PM",
+        "latitude": 13.817755438143527,
+        "longitude": 77.63854150368371,
+        "notes": "Collected soil at 4km from Lepakshi temple near a milestone, en route from Bangalore.",
+        "imageName": "20250510T143741508Z.png",
+        "imageSha": "f0afabba74c1077226a617aebeda194c6f4a8ba5",
+        "id": "#1"
+      },
+      {
+        "place": "dscsd",
+        "date": "2025-05-10",
+        "time": "8:25 PM",
+        "latitude": 12,
+        "longitude": 12,
+        "notes": "fvdfv",
+        "images": [
+          {
+            "imageName": "20250511T145551692Z1.png",
+            "imageSha": "3217767a4f49558c4fb340ea0e75b1c193ce9154"
+          }
+        ],
+        "id": "#2"
+      }
+    ]
+  },
+  {
+    "code": "AR",
+    "state": "Arunachal Pradesh",
+    "samples": []
+  },
+  {
+    "code": "AS",
+    "state": "Assam",
+    "samples": [
+      {
+        "place": "sfvfdv",
+        "date": "2025-05-17",
+        "time": "8:32 PM",
+        "latitude": 12,
+        "longitude": 12,
+        "notes": "dfv daf",
+        "images": [
+          {
+            "imageName": "20250511T150237635Z1.png",
+            "imageSha": "3217767a4f49558c4fb340ea0e75b1c193ce9154"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
+  },
+  {
+    "code": "BR",
+    "state": "Bihar",
+    "samples": [
+      {
+        "place": "dsjvbsdjk",
+        "date": "2025-05-10",
+        "time": "8:31 AM",
+        "latitude": 12,
+        "longitude": 12,
+        "notes": "sfvfdsvfd",
+        "images": [
+          {
+            "imageName": "20250511T150120433Z1.png",
+            "imageSha": "3217767a4f49558c4fb340ea0e75b1c193ce9154"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
+  },
+  {
+    "code": "CH",
+    "state": "Chhattisgarh",
+    "samples": []
+  },
+  {
+    "code": "GA",
+    "state": "Goa",
+    "samples": []
+  },
+  {
+    "code": "GJ",
+    "state": "Gujarat",
+    "samples": []
+  },
+  {
+    "code": "HR",
+    "state": "Haryana",
+    "samples": []
+  },
+  {
+    "code": "HP",
+    "state": "Himachal Pradesh",
+    "samples": []
+  },
+  {
+    "code": "JH",
+    "state": "Jharkhand",
+    "samples": []
+  },
+  {
+    "code": "KA",
+    "state": "Karnataka",
+    "samples": [
+      {
+        "place": "Hogenakkal Falls",
+        "date": "2025-02-08",
+        "time": "1:30 PM",
+        "latitude": 12.110978776456369,
+        "longitude": 77.77476196873303,
+        "notes": "Collected from the middle of Kaveri River",
+        "imageName": "20250508T190223037Z.png",
+        "imageSha": "5a41380291c83e0ff700dd40d379fcc8a37c07ff",
+        "id": "#1"
+      }
+    ]
+  },
+  {
+    "code": "KL",
+    "state": "Kerala",
+    "samples": [
+      {
+        "place": "Drive In Beach",
+        "date": "2025-04-19",
+        "time": "4:58 PM",
+        "latitude": 11.808,
+        "longitude": 75.4324444,
+        "notes": "From Muzhappilangad Drive In Beach, Kannur",
+        "imageName": "20250508T185816080Z.png",
+        "imageSha": "1d9fe4375f3379ab626cd356185bcde4b80cf948",
+        "id": "#1"
+      }
+    ]
+  },
+  {
+    "code": "MP",
+    "state": "Madhya Pradesh",
+    "samples": []
+  },
+  {
+    "code": "MH",
+    "state": "Maharashtra",
+    "samples": []
+  },
+  {
+    "code": "MN",
+    "state": "Manipur",
+    "samples": []
+  },
+  {
+    "code": "ML",
+    "state": "Meghalaya",
+    "samples": []
+  },
+  {
+    "code": "MZ",
+    "state": "Mizoram",
+    "samples": []
+  },
+  {
+    "code": "NL",
+    "state": "Nagaland",
+    "samples": []
+  },
+  {
+    "code": "OD",
+    "state": "Odisha",
+    "samples": []
+  },
+  {
+    "code": "PB",
+    "state": "Punjab",
+    "samples": []
+  },
+  {
+    "code": "RJ",
+    "state": "Rajasthan",
+    "samples": []
+  },
+  {
+    "code": "SK",
+    "state": "Sikkim",
+    "samples": []
+  },
+  {
+    "code": "TN",
+    "state": "Tamil Nadu",
+    "samples": []
+  },
+  {
+    "code": "TS",
+    "state": "Telangana",
+    "samples": []
+  },
+  {
+    "code": "TR",
+    "state": "Tripura",
+    "samples": []
+  },
+  {
+    "code": "UP",
+    "state": "Uttar Pradesh",
+    "samples": []
+  },
+  {
+    "code": "UK",
+    "state": "Uttarakhand",
+    "samples": []
+  },
+  {
+    "code": "WB",
+    "state": "West Bengal",
+    "samples": []
+  },
+  {
+    "code": "AN",
+    "state": "Andaman and Nicobar Islands",
+    "samples": []
+  },
+  {
+    "code": "CG",
+    "state": "Chandigarh",
+    "samples": []
+  },
+  {
+    "code": "DN",
+    "state": "Dadra & Nagar Haveli and Daman & Diu",
+    "samples": []
+  },
+  {
+    "code": "DL",
+    "state": "Delhi",
+    "samples": []
+  },
+  {
+    "code": "JK",
+    "state": "Jammu & Kashmir",
+    "samples": []
+  },
+  {
+    "code": "LA",
+    "state": "Ladakh",
+    "samples": []
+  },
+  {
+    "code": "LD",
+    "state": "Lakshadweep",
+    "samples": []
+  },
+  {
+    "code": "PY",
+    "state": "Pondicherry",
+    "samples": []
+  }
+]
