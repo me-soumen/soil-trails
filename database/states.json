@@ -138,7 +138,27 @@
   {
     "code": "JH",
     "state": "Jharkhand",
-    "samples": []
+    "samples": [
+      {
+        "place": "rfvdfgv",
+        "date": "2025-05-10",
+        "time": "8:41 AM",
+        "latitude": 12,
+        "longitude": 12,
+        "notes": "vafvfaf",
+        "images": [
+          {
+            "imageName": "20250511T151205192Z1.png",
+            "imageSha": "3217767a4f49558c4fb340ea0e75b1c193ce9154"
+          },
+          {
+            "imageName": "20250511T151205192Z0.png",
+            "imageSha": "084b7b227eb077f19d0dbdb931ffff82d19ab40b"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "KA",
