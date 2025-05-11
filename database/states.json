@@ -7,27 +7,7 @@
   {
     "code": "AR",
     "state": "Arunachal Pradesh",
-    "samples": [
-      {
-        "place": "Aruna",
-        "date": "2025-05-10",
-        "time": "11:13 PM",
-        "latitude": 12,
-        "longitude": 12,
-        "notes": "sdcds",
-        "images": [
-          {
-            "imageName": "20250511T174411372Z1.png",
-            "imageSha": "084b7b227eb077f19d0dbdb931ffff82d19ab40b"
-          },
-          {
-            "imageName": "20250511T174411372Z0.png",
-            "imageSha": "b059569f1385a51c1f47dbf3ee3b3a73c257153b"
-          }
-        ],
-        "id": "#1"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "AS",
@@ -72,27 +52,7 @@
   {
     "code": "KA",
     "state": "Karnataka",
-    "samples": [
-      {
-        "place": "Hogen DI",
-        "date": "2025-05-10",
-        "time": "8:51 PM",
-        "latitude": 12,
-        "longitude": 12,
-        "notes": "Some JSK",
-        "images": [
-          {
-            "imageName": "20250511T152158659Z0.png",
-            "imageSha": "084b7b227eb077f19d0dbdb931ffff82d19ab40b"
-          },
-          {
-            "imageName": "20250511T152158659Z1.png",
-            "imageSha": "b059569f1385a51c1f47dbf3ee3b3a73c257153b"
-          }
-        ],
-        "id": "#1"
-      }
-    ]
+    "samples": []
   },
   {
     "code": "KL",

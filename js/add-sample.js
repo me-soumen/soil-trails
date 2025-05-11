@@ -39,8 +39,7 @@ fetch('../js/config/state-map.json')
 	.then(data => {
 	const { states, uts } = data;
 	populateDropdown(states, uts);
-})
-	.catch(error => console.error('Error loading JSON:', error));
+}).catch(error => console.error('Error loading JSON:', error));
 
 // Show Toast
 function showAlertToast(message, type = 'error') {
@@ -68,58 +67,66 @@ function showAlertToast(message, type = 'error') {
 // Create a new sample after taking backup of existing
 export async function addNewSample(stateCode, sampleData, images, password) {
 	const sample = JSON.parse(sampleData);
+	sample.images = [];
 
-	// Handle Image upload :: name change, convert to base64, get sha to persist in sample
+	// Step 1: Upload images
 	try {
-		sample.images = [];
-		await Promise.all(images.map(async function(image, index) {
-			let timestamp = new Date()?.toISOString()?.replace(/[:.-]/g, '');
-			let imageFileName = `${timestamp}${index}.png`;
-			let imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${imageFileName}`;
-			let base64Image = await imageToBase64(image);
-			let imageDetails = await uploadNewFile(imageUrl, base64Image, password);
+		const timestampBase = new Date().toISOString().replace(/[:.-]/g, '');
+		await Promise.all(images.map(async (image, index) => {
+			const imageFileName = `${timestampBase}${index}.png`;
+			const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${imageFileName}`;
+			const base64Image = await imageToBase64(image);
+			const imageDetails = await uploadNewFile(imageUrl, base64Image, password);
+
 			sample.images.push({
 				imageName: imageFileName,
 				imageSha: imageDetails?.content?.sha
 			});
 		}));
 	} catch (error) {
-		throw new Error(error?.message || error?.toString() || "Image upload failed!");
+		throw new Error(`1/5 Image upload failed: ${error?.message || error}`);
 	}
 
-	// Fetch latest content, convert to JSON
+	// Step 2: Fetch and parse DB
+	let db, existingJson;
 	const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
-	const db = await fetchFileContent(dbUrl, password);
-	let existingJson = JSON.parse(atob(db.content));
+	try {
+		db = await fetchFileContent(dbUrl, password);
+		existingJson = JSON.parse(atob(db.content));
+	} catch (error) {
+		throw new Error(`2/5 Failed to fetch or parse DB: ${error?.message || error}`);
+	}
 
-	// Find state index in DB
+	// Step 3: Find target state
 	if (!Array.isArray(existingJson)) existingJson = [];
 	const targetState = existingJson.find(state => state.code === stateCode);
 	if (!targetState) {
-		throw new Error(`State "${state.state}" not found in database.`);
+		throw new Error(`3/5 State with code "${stateCode}" not found in DB.`);
 	}
 
-	// Step 6: Assign a new ID to the sample
+	// Step 4: Add sample to state
 	const newId = `#${targetState.samples.length + 1}`;
 	sample.id = newId;
-
-	// Step 7: Append sample to state's samples array
 	targetState.samples.push(sample);
 
-	// Step 8: Convert updated object and image to base64
-	const base64Content = btoa(JSON.stringify(existingJson, null, 2));
+	// Step 5: Prepare updated DB content
+	const updatedBase64Content = btoa(JSON.stringify(existingJson, null, 2));
 
+	// Step 6: Backup old DB
 	try {
-		// Backup
 		await backupDatabase(db.content, password);
-
-		// Step 9: Prepare API call to update file
-		await updateFile(dbUrl, db.sha, base64Content, password);
 	} catch (error) {
-		throw new Error(error?.message || error?.toString() || "Backup or DB update failed!")
+		throw new Error(`4/5 Backup failed: ${error?.message || error}`);
 	}
 
-	console.log("Database updated successfully.")
+	// Step 7: Upload updated DB
+	try {
+		const response = await updateFile(dbUrl, db.sha, updatedBase64Content, password);
+		console.log("Database updated successfully.");
+		return response;
+	} catch (error) {
+		throw new Error(`5/5 DB update failed: ${error?.message || error}`);
+	}
 }
 
 // Convert Image to Base64
@@ -181,6 +188,7 @@ export async function to12HourFormat(time24) {
 	return `${hour12}:${minute.toString().padStart(2, '0')} ${ampm}`;
 }
 
+// Define functions globally
 window.addNewSample = addNewSample;
 window.showAlertToast = showAlertToast;
 window.previewImage = previewImage;

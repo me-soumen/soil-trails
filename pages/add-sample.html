@@ -172,39 +172,40 @@
 <script>
     // Submit button listener
     document.querySelector('form').addEventListener('submit', async function (e) {
-        e.preventDefault(); // prevent normal submission
+        e.preventDefault(); // prevent default form submission
 
-        // Grab values
+        const form = e.target;
         const stateDropdown = document.getElementById('stateDropdown');
         const selectedOption = stateDropdown.options[stateDropdown.selectedIndex];
+
         const code = selectedOption.value;
         const state = selectedOption.textContent;
 
-        const place = document.getElementById('place').value.trim();
-        const date = document.getElementById('date').value;
-        const time = document.getElementById('time').value;
-        const latitude = document.getElementById('latitude').value.trim();
-        const longitude = document.getElementById('longitude').value.trim();
-        const notes = document.getElementById('notes').value.trim();
-        const password = document.getElementById('password').value.trim();
-        const image1 = document.getElementById('photo1Input')?.files[0];
-        const image2 = document.getElementById('photo2Input')?.files[0];
+        const place = form.place.value.trim();
+        const date = form.date.value;
+        const time = form.time.value;
+        const latitude = form.latitude.value.trim();
+        const longitude = form.longitude.value.trim();
+        const notes = form.notes.value.trim();
+        const password = form.password.value.trim();
 
-        // Validation
-        if(!image1) return showAlertToast("Please select a Location Image at 1.", "error");
-        if(!image2) return showAlertToast("Please select a Location Image at 2.", "error");
-        if (code == "") return showAlertToast("Please select a State/UT.", "error");
+        const image1 = form.photo1Input.files[0];
+        const image2 = form.photo2Input.files[0];
+
+        const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+
+        // Input Validation
+        if (!image1) return showAlertToast("Please select a Location Image at 1.", "error");
+        if (!image2) return showAlertToast("Please select a Location Image at 2.", "error");
+        if (!validTypes.includes(image1.type) || !validTypes.includes(image2.type)) {
+            return showAlertToast("Only JPG, JPEG, and PNG images are allowed!", "error");
+        }
+        if (!code) return showAlertToast("Please select a State/UT.", "error");
         if (!place) return showAlertToast("Place is required.", "error");
         if (!date) return showAlertToast("Date is required.", "error");
         if (!time) return showAlertToast("Time is required.", "error");
         if (!latitude || isNaN(latitude)) return showAlertToast("Enter valid Latitude.", "error");
         if (!longitude || isNaN(longitude)) return showAlertToast("Enter valid Longitude.", "error");
-        // Validate file type
-        const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-        if (!validTypes.includes(image1.type) || !validTypes.includes(image2.type)) {
-            showAlertToast("Only JPG, JPEG, and PNG images are allowed!", "error");
-            return;
-        }
 
         // Compress images
         const compressedImages = await Promise.all([
@@ -212,7 +213,7 @@
             compressImage(image2)
         ]);
 
-        // Create JSON object
+        // Build sample data
         const jsonData = {
             place,
             date,
@@ -222,28 +223,33 @@
             notes
         };
 
-        // Show spinner
-        document.getElementById('save-btn').setAttribute("hidden", "");
-        document.getElementById('save-loading-btn').removeAttribute("hidden");
+        const saveBtn = document.getElementById('save-btn');
+        const loadingBtn = document.getElementById('save-loading-btn');
         try {
-            const result = await addNewSample(code, JSON.stringify(jsonData, null, 2), compressedImages, password);
+            // Show loading spinner
+            saveBtn.hidden = true;
+            loadingBtn.hidden = false;
+
+            await addNewSample(code, JSON.stringify(jsonData, null, 2), compressedImages, password);
             showAlertToast("New Sample created successfully!", "success");
 
-            document.querySelector('form').reset();
+            form.reset();
             removeImage('1');
             removeImage('2');
             document.getElementById('photo2Input').setAttribute('src', '../images/common/no_preview.jpg');
-            document.getElementById('stateDropdown').selectedIndex = 0;
+            stateDropdown.selectedIndex = 0;
             $('#stateDropdown').selectpicker('refresh');
         } catch (error) {
-            console.error('Sample creation failed: ', error);
-            const errorMessage = error?.message || error?.toString() || "An unexpected error occurred.";
-            showAlertToast(`Failed to create new Sample :: ${errorMessage}`, "error");
+            console.error('ERROR:', error);
+            const message = error?.message || error?.toString() || "An unexpected error occurred.";
+            showAlertToast(`ERROR :: ${message}`, "error");
+        } finally {
+            // Hide loading spinner
+            saveBtn.hidden = false;
+            loadingBtn.hidden = true;
         }
-        //Hide spinner
-        document.getElementById('save-btn').removeAttribute("hidden");
-        document.getElementById('save-loading-btn').setAttribute("hidden", "");
     });
+
 </script>
 <script src="../js/add-sample.js" type="module"></script>
 <script src="../js/compressor.js" type="module"></script>

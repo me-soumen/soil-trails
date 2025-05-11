@@ -174,28 +174,34 @@
     async function handleConfirmDelete() {
         const password = passwordInput.value.trim();
         const modalInstance = bootstrap.Modal.getInstance(deleteModal);
+        const confirmBtn = document.getElementById('confirm-delete-btn');
+        const pendingBtn = document.getElementById('confirm-delete-pending-btn');
+
         if (!password) {
             passwordInput.classList.add('is-invalid');
             return;
         }
-        // Show spinner
-        document.getElementById('confirm-delete-btn').setAttribute("hidden", "");
-        document.getElementById('confirm-delete-pending-btn').removeAttribute("hidden");
+
+        // Show loading spinner
+        confirmBtn.hidden = true;
+        pendingBtn.hidden = false;
         try {
             await deleteSample(currentSample.stateCode, currentSample.sampleId, password);
             showAlertToast("Sample deleted successfully!", "success");
             modalInstance.hide();
         } catch (error) {
-            console.error('Sample deletion failed: ', error);
-            showAlertToast("Something went wrong while deleting. Please Try again!", "error");
+            console.error('ERROR:', error);
+            const message = error?.message || error?.toString() || "An unexpected error occurred.";
+            showAlertToast(`ERROR :: ${message}`, "error");
             modalInstance.hide();
+        } finally {
+            // Hide spinner
+            confirmBtn.hidden = false;
+            pendingBtn.hidden = true;
         }
-        // Hide spinner
-        document.getElementById('confirm-delete-btn').removeAttribute("hidden");
-        document.getElementById('confirm-delete-pending-btn').setAttribute("hidden", "");
     }
 
-    // Enter key listener
+    // Enter key listener on delete modal
     passwordInput.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();

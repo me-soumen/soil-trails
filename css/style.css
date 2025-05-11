@@ -37,7 +37,6 @@ Common Sections
 	padding-top: 6rem
 }
 
-
 .add-page-link {
 	margin: 0;
 	color: white;
@@ -58,65 +57,7 @@ Common Sections
 	text-decoration: none;
 }
 /*--------------------------------------------------------------------------------------------
-Add Page: Form fields
---------------------------------------------------------------------------------------------*/
-.image-upload-container {
-	position: relative;
-	border: 2px dashed #ccc;
-	border-radius: 8px;
-	padding: 5px;
-	text-align: center;
-	background-color: #ebebeb;
-	cursor: pointer;
-	height: 175px;
-}
-
-.image-preview {
-	display: none;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	border-radius: 6px;
-}
-
-.upload-icon {
-	width: 100%;
-	height: 83%;
-	margin-top: 5px;
-}
-
-.remove-image-btn {
-	position: absolute;
-	top: -2px;
-	right: 8px;
-	background: rgba(0, 0, 0, 0.6);
-	border: none;
-	color: white;
-	font-size: 20px;
-	border-radius: 50%;
-	width: 30px;
-	height: 30px;
-	line-height: 0;
-	display: none;
-	z-index: 10;
-}
-
-input[type="file"] {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	opacity: 0;
-	z-index: -1;
-}
-
-.form-container {
-	background-color: #566b5999;
-	padding: 2rem;
-	border-radius: 1rem;
-	margin-top: 2rem;
-}
-/*--------------------------------------------------------------------------------------------
-Index: State Tiles Section with Carousal
+Index Page: State Tiles Section with Carousal
 --------------------------------------------------------------------------------------------*/
 .carousel-wrapper {
 	position: relative;
@@ -197,7 +138,7 @@ Index: State Tiles Section with Carousal
 }
 
 /*--------------------------------------------------------------------------------------------
-Sample Details Section
+Index Page: Sample Details Section
 --------------------------------------------------------------------------------------------*/
 .samples {
 	display: flex;
@@ -299,4 +240,63 @@ Sample Details Section
 	border-radius: 50%;
 	padding: 3px 8px;
 	box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/*--------------------------------------------------------------------------------------------
+Add Page: Form fields
+--------------------------------------------------------------------------------------------*/
+.image-upload-container {
+	position: relative;
+	border: 2px dashed #ccc;
+	border-radius: 8px;
+	padding: 5px;
+	text-align: center;
+	background-color: #ebebeb;
+	cursor: pointer;
+	height: 175px;
+}
+
+.image-preview {
+	display: none;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 6px;
+}
+
+.upload-icon {
+	width: 100%;
+	height: 83%;
+	margin-top: 5px;
+}
+
+.remove-image-btn {
+	position: absolute;
+	top: -2px;
+	right: 8px;
+	background: rgba(0, 0, 0, 0.6);
+	border: none;
+	color: white;
+	font-size: 20px;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	line-height: 0;
+	display: none;
+	z-index: 10;
+}
+
+input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	z-index: -1;
+}
+
+.form-container {
+	background-color: #566b5999;
+	padding: 2rem;
+	border-radius: 1rem;
+	margin-top: 2rem;
 }
