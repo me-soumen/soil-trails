@@ -5,7 +5,7 @@ GitHub APIs: Fetch Content / Upload a File / Update a File
 ----------------------------------------------------------------------------------------------*/
 var config = JSON.parse(localStorage.getItem('appConfig'));
 
-// Backup current states.json file into backup/ folder
+// Backup current db file into backup/ folder
 export async function backupDatabase(dbContent, password) {
 	const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
 	const backupFilename = `${timestamp}.json`;
