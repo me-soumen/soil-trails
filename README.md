@@ -66,14 +66,22 @@ samples.
     "state": "Karnataka",
     "samples": [
         {
-            "place": "Hogenakkal Falls",
-            "date": "2025-02-08",
-            "time": "1:30 PM",
-            "latitude": 12.110978776456369,
-            "longitude": 77.77476196873303,
-            "notes": "Collected from the middle of Kaveri River",
-            "imageName": "20250508T190223037Z.png",
-            "imageSha": "5a41380291c83e0ff700dd40d379fcc8a37c07ff",
+            "place": "Bangalore",
+            "date": "2025-05-05",
+            "time": "05:55 PM",
+            "latitude": 12.979647089493072,
+            "longitude": 77.59081867848421,
+            "notes": "Collected near Vidhan Soudha",
+            "images": [
+                {
+                    "imageName": "20250508T190223037Z0.png",
+                    "imageSha": "5a41380291c83e0ff700dd40d379fcc8a37c07ff",
+                },
+                {
+                    "imageName": "20250508T190223037Z1.png",
+                    "imageSha": "5a41380291c83e0ff70dgt456h79fcc8adg64trh",
+                }
+            ],
             "id": "#1"
         }
     ]
