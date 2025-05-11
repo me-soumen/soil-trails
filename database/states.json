@@ -4,25 +4,6 @@
     "state": "Andhra Pradesh",
     "samples": [
       {
-        "place": "dcssdc",
-        "date": "2025-05-10",
-        "time": "11:39 PM",
-        "latitude": 12,
-        "longitude": 21,
-        "notes": "cefcf",
-        "images": [
-          {
-            "imageName": "20250511T180924438Z0.png",
-            "imageSha": "b059569f1385a51c1f47dbf3ee3b3a73c257153b"
-          },
-          {
-            "imageName": "20250511T180924438Z1.png",
-            "imageSha": "c6045b6850fddb2ad0eee182fa71b6d0eaf59dab"
-          }
-        ],
-        "id": "#1"
-      },
-      {
         "place": "Haluhulu",
         "date": "2025-05-08",
         "time": "11:42 PM",
@@ -39,7 +20,7 @@
             "imageSha": "84512e143275774a6530da9eee227420f711e052"
           }
         ],
-        "id": "#2"
+        "id": "#1"
       }
     ]
   },
