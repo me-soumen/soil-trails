@@ -66,22 +66,30 @@ function showAlertToast(message, type = 'error') {
 }
 
 // Create a new sample after taking backup of existing
-export async function addNewSample(stateCode, sampleData, image, password) {
+export async function addNewSample(stateCode, sampleData, images, password) {
 	const sample = JSON.parse(sampleData);
 
 	// Handle Image upload :: name change, convert to base64, get sha to persist in sample
-	const timestamp = new Date()?.toISOString()?.replace(/[:.-]/g, '');
-	const imageFileName = `${timestamp}.png`;
-	const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${imageFileName}`;
-	const base64Image = await imageToBase64(image);
-	const imageDetails = await uploadNewFile(imageUrl, base64Image, password);
-	sample.imageName = imageFileName;
-	sample.imageSha = imageDetails?.content?.sha;
+	try {
+		sample.images = [];
+		await Promise.all(images.map(async function(image, index) {
+			let timestamp = new Date()?.toISOString()?.replace(/[:.-]/g, '');
+			let imageFileName = `${timestamp}${index}.png`;
+			let imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${imageFileName}`;
+			let base64Image = await imageToBase64(image);
+			let imageDetails = await uploadNewFile(imageUrl, base64Image, password);
+			sample.images.push({
+				imageName: imageFileName,
+				imageSha: imageDetails?.content?.sha
+			});
+		}));
+	} catch (error) {
+		throw new Error(error?.message || error?.toString() || "Image upload failed!");
+	}
 
-	// Handle Backup :: fetch latest content, take backup, convert to JSON
+	// Fetch latest content, convert to JSON
 	const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
 	const db = await fetchFileContent(dbUrl, password);
-	await backupDatabase(db.content, password);
 	let existingJson = JSON.parse(atob(db.content));
 
 	// Find state index in DB
@@ -101,8 +109,15 @@ export async function addNewSample(stateCode, sampleData, image, password) {
 	// Step 8: Convert updated object and image to base64
 	const base64Content = btoa(JSON.stringify(existingJson, null, 2));
 
-	// Step 9: Prepare API call to update file
-	await updateFile(dbUrl, db.sha, base64Content, password);
+	try {
+		// Backup
+		await backupDatabase(db.content, password);
+
+		// Step 9: Prepare API call to update file
+		await updateFile(dbUrl, db.sha, base64Content, password);
+	} catch (error) {
+		throw new Error(error?.message || error?.toString() || "Backup or DB update failed!")
+	}
 
 	console.log("Database updated successfully.")
 }
@@ -120,6 +135,44 @@ function imageToBase64(image) {
 	});
 }
 
+// On select image, it'll show preview
+export function previewImage(event, id) {
+	const input = event.target;
+	const file = input.files[0];
+	const preview = document.getElementById(`photo${id}Preview`);
+	const icon = document.getElementById(`photo${id}Icon`);
+	const label = document.getElementById(`photo${id}Label`);
+	const removeBtn = document.getElementById(`removePhoto${id}`);
+
+	if (file) {
+		const reader = new FileReader();
+		reader.onload = function (e) {
+			preview.src = e.target.result;
+			preview.style.display = 'block';
+			icon.style.display = 'none';
+			label.style.display = 'none';
+			removeBtn.style.display = 'block';
+		};
+		reader.readAsDataURL(file);
+	}
+}
+
+// Image cross button listener
+export function removeImage(id) {
+	const input = document.getElementById(`photo${id}Input`);
+	const preview = document.getElementById(`photo${id}Preview`);
+	const icon = document.getElementById(`photo${id}Icon`);
+	const label = document.getElementById(`photo${id}Label`);
+	const removeBtn = document.getElementById(`removePhoto${id}`);
+
+	input.value = '';
+	preview.src = '';
+	preview.style.display = 'none';
+	icon.style.display = 'block';
+	label.style.display = 'block';
+	removeBtn.style.display = 'none';
+}
+
 // Converts time 24 hour format to 12 hour format
 export async function to12HourFormat(time24) {
 	const [hour, minute] = time24.split(":").map(Number);
@@ -130,4 +183,6 @@ export async function to12HourFormat(time24) {
 
 window.addNewSample = addNewSample;
 window.showAlertToast = showAlertToast;
+window.previewImage = previewImage;
+window.removeImage = removeImage;
 window.to12HourFormat = to12HourFormat;

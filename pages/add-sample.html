@@ -5,7 +5,6 @@
     <title>Soil Trails</title>
     <link rel="icon" href="../images/misc/logo.png" type="image/png"/>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -40,14 +39,49 @@
     <div class="form-container mx-auto mt-2 mb-4" style="max-width: 500px;">
         <form>
             <!-- Image Preview -->
-            <div class="mb-3">
+            <!--<div class="mb-3">
                 <img id="imagePreview" src="../images/common/no_preview.jpg" class="img-thumbnail h-50 w-50"
                      alt="Image Preview">
             </div>
-            <!-- Image Selector -->
+            &lt;!&ndash; Image Selector &ndash;&gt;
             <div class="mb-3">
                 <input class="form-control" type="file" accept="image/*" id="location-image" required>
+            </div>-->
+
+            <div class="row g-3">
+
+                <!-- Photo 1 -->
+                <div class="col-md-6">
+                    <div class="image-upload-container" onclick="document.getElementById('photo1Input').click()">
+                        <button type="button" class="remove-image-btn" id="removePhoto1" onclick="event.stopPropagation(); removeImage('1')">&times;</button>
+                        <div id="photo1Label" style="text-align: left;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#afafaf" class="bi bi-1-square-fill" viewBox="0 0 16 16">
+                                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm7.283 4.002V12H7.971V5.338h-.065L6.072 6.656V5.385l1.899-1.383z"/>
+                            </svg>
+                        </div>
+                        <img src="../images/common/no_preview.jpg" class="upload-icon" id="photo1Icon" />
+                        <input type="file" id="photo1Input" accept="image/*" onchange="previewImage(event, '1')" required>
+                        <img id="photo1Preview" class="image-preview" alt="Preview">
+                    </div>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="col-md-6">
+                    <div class="image-upload-container" onclick="document.getElementById('photo2Input').click()">
+                        <button type="button" class="remove-image-btn" id="removePhoto2" onclick="event.stopPropagation(); removeImage('2')">&times;</button>
+                        <div id="photo2Label" style="text-align: left;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#afafaf" class="bi bi-2-square-fill" viewBox="0 0 16 16">
+                                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm4.646 6.24v.07H5.375v-.064c0-1.213.879-2.402 2.637-2.402 1.582 0 2.613.949 2.613 2.215 0 1.002-.6 1.667-1.287 2.43l-.096.107-1.974 2.22v.077h3.498V12H5.422v-.832l2.97-3.293c.434-.475.903-1.008.903-1.705 0-.744-.557-1.236-1.313-1.236-.843 0-1.336.615-1.336 1.306"/>
+                            </svg>
+                        </div>
+                        <img src="../images/common/no_preview.jpg" class="upload-icon" id="photo2Icon" />
+                        <input type="file" id="photo2Input" accept="image/*" onchange="previewImage(event, '2')" required>
+                        <img id="photo2Preview" class="image-preview" alt="Preview">
+                    </div>
+                </div>
+
             </div>
+
             <!-- Form Fields -->
             <div>
                 <select id="stateDropdown" class="selectpicker" data-live-search="true" data-size="10" data-width="100%"
@@ -127,7 +161,7 @@
 </footer>
 
 <!-- Alert Toast -->
-<div class="toast" id="errorToast" style="position: fixed; top: 40px; right: 20px; z-index: 9999;" data-delay="3000">
+<div class="toast" id="errorToast" style="position: fixed; top: 40px; right: 20px; z-index: 9999;" data-delay="5000">
     <div class="toast-header bg-danger text-white">
         <strong class="mr-auto">Error</strong>
     </div>
@@ -136,20 +170,6 @@
 </div>
 
 <script>
-    // Image Preview
-    const imageInput = document.getElementById('location-image');
-    const imagePreview = document.getElementById('imagePreview');
-    imageInput.addEventListener('change', function () {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                imagePreview.setAttribute('src', e.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
     // Submit button listener
     document.querySelector('form').addEventListener('submit', async function (e) {
         e.preventDefault(); // prevent normal submission
@@ -167,10 +187,12 @@
         const longitude = document.getElementById('longitude').value.trim();
         const notes = document.getElementById('notes').value.trim();
         const password = document.getElementById('password').value.trim();
-        const image = document.getElementById('location-image')?.files[0];
+        const image1 = document.getElementById('photo1Input')?.files[0];
+        const image2 = document.getElementById('photo2Input')?.files[0];
 
         // Validation
-        if(!image) return showAlertToast("Please select a Location Image.", "error");
+        if(!image1) return showAlertToast("Please select a Location Image at 1.", "error");
+        if(!image2) return showAlertToast("Please select a Location Image at 2.", "error");
         if (code == "") return showAlertToast("Please select a State/UT.", "error");
         if (!place) return showAlertToast("Place is required.", "error");
         if (!date) return showAlertToast("Date is required.", "error");
@@ -179,13 +201,16 @@
         if (!longitude || isNaN(longitude)) return showAlertToast("Enter valid Longitude.", "error");
         // Validate file type
         const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-        if (!validTypes.includes(image.type)) {
+        if (!validTypes.includes(image1.type) || !validTypes.includes(image2.type)) {
             showAlertToast("Only JPG, JPEG, and PNG images are allowed!", "error");
             return;
         }
 
-        // Compress image
-        const compressedImage = await compressImage(image);
+        // Compress images
+        const compressedImages = await Promise.all([
+            compressImage(image1),
+            compressImage(image2)
+        ]);
 
         // Create JSON object
         const jsonData = {
@@ -201,15 +226,19 @@
         document.getElementById('save-btn').setAttribute("hidden", "");
         document.getElementById('save-loading-btn').removeAttribute("hidden");
         try {
-            const result = await addNewSample(code, JSON.stringify(jsonData, null, 2), compressedImage, password);
+            const result = await addNewSample(code, JSON.stringify(jsonData, null, 2), compressedImages, password);
             showAlertToast("New Sample created successfully!", "success");
+
             document.querySelector('form').reset();
-            document.getElementById('imagePreview').setAttribute('src', '../images/common/no_preview.jpg');
+            removeImage('1');
+            removeImage('2');
+            document.getElementById('photo2Input').setAttribute('src', '../images/common/no_preview.jpg');
             document.getElementById('stateDropdown').selectedIndex = 0;
             $('#stateDropdown').selectpicker('refresh');
         } catch (error) {
             console.error('Sample creation failed: ', error);
-            showAlertToast("Failed to create new Sample. Please Try again!", "error");
+            const errorMessage = error?.message || error?.toString() || "An unexpected error occurred.";
+            showAlertToast(`Failed to create new Sample :: ${errorMessage}`, "error");
         }
         //Hide spinner
         document.getElementById('save-btn').removeAttribute("hidden");
