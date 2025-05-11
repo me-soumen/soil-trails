@@ -40,6 +40,25 @@
           }
         ],
         "id": "#2"
+      },
+      {
+        "place": "dcssdc",
+        "date": "2025-05-10",
+        "time": "11:39 PM",
+        "latitude": 12,
+        "longitude": 21,
+        "notes": "cefcf",
+        "images": [
+          {
+            "imageName": "20250511T180924438Z0.png",
+            "imageSha": "b059569f1385a51c1f47dbf3ee3b3a73c257153b"
+          },
+          {
+            "imageName": "20250511T180924438Z1.png",
+            "imageSha": "c6045b6850fddb2ad0eee182fa71b6d0eaf59dab"
+          }
+        ],
+        "id": "#3"
       }
     ]
   },
