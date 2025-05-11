@@ -1,0 +1,241 @@
+[
+  {
+    "code": "AP",
+    "state": "Andhra Pradesh",
+    "samples": [
+      {
+        "place": "Hgg",
+        "date": "2025-05-15",
+        "time": "11:27 PM",
+        "latitude": 1.11,
+        "longitude": 2.45,
+        "notes": "Hxhsbbshd",
+        "images": [
+          {
+            "imageName": "20250511T175743679Z0.png",
+            "imageSha": "fe838f00165faaf69614bbb30292dce95d4739a1"
+          },
+          {
+            "imageName": "20250511T175743679Z1.png",
+            "imageSha": "2a88f8f4b164cb713c783b3f1b17ed30a6fa760f"
+          }
+        ],
+        "id": "#1"
+      },
+      {
+        "place": "dcssdc",
+        "date": "2025-05-10",
+        "time": "11:39 PM",
+        "latitude": 12,
+        "longitude": 21,
+        "notes": "cefcf",
+        "images": [
+          {
+            "imageName": "20250511T180924438Z0.png",
+            "imageSha": "b059569f1385a51c1f47dbf3ee3b3a73c257153b"
+          },
+          {
+            "imageName": "20250511T180924438Z1.png",
+            "imageSha": "c6045b6850fddb2ad0eee182fa71b6d0eaf59dab"
+          }
+        ],
+        "id": "#2"
+      }
+    ]
+  },
+  {
+    "code": "AR",
+    "state": "Arunachal Pradesh",
+    "samples": [
+      {
+        "place": "Haluhulu",
+        "date": "2025-05-08",
+        "time": "11:42 PM",
+        "latitude": 1.54,
+        "longitude": 4.56,
+        "notes": "Payel only",
+        "images": [
+          {
+            "imageName": "20250511T181258177Z1.png",
+            "imageSha": "c925c7f454d972c98535cccc43cbb5dfbdfc70ac"
+          },
+          {
+            "imageName": "20250511T181258177Z0.png",
+            "imageSha": "84512e143275774a6530da9eee227420f711e052"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
+  },
+  {
+    "code": "AS",
+    "state": "Assam",
+    "samples": []
+  },
+  {
+    "code": "BR",
+    "state": "Bihar",
+    "samples": []
+  },
+  {
+    "code": "CH",
+    "state": "Chhattisgarh",
+    "samples": []
+  },
+  {
+    "code": "GA",
+    "state": "Goa",
+    "samples": []
+  },
+  {
+    "code": "GJ",
+    "state": "Gujarat",
+    "samples": []
+  },
+  {
+    "code": "HR",
+    "state": "Haryana",
+    "samples": []
+  },
+  {
+    "code": "HP",
+    "state": "Himachal Pradesh",
+    "samples": []
+  },
+  {
+    "code": "JH",
+    "state": "Jharkhand",
+    "samples": []
+  },
+  {
+    "code": "KA",
+    "state": "Karnataka",
+    "samples": []
+  },
+  {
+    "code": "KL",
+    "state": "Kerala",
+    "samples": []
+  },
+  {
+    "code": "MP",
+    "state": "Madhya Pradesh",
+    "samples": []
+  },
+  {
+    "code": "MH",
+    "state": "Maharashtra",
+    "samples": []
+  },
+  {
+    "code": "MN",
+    "state": "Manipur",
+    "samples": []
+  },
+  {
+    "code": "ML",
+    "state": "Meghalaya",
+    "samples": []
+  },
+  {
+    "code": "MZ",
+    "state": "Mizoram",
+    "samples": []
+  },
+  {
+    "code": "NL",
+    "state": "Nagaland",
+    "samples": []
+  },
+  {
+    "code": "OD",
+    "state": "Odisha",
+    "samples": []
+  },
+  {
+    "code": "PB",
+    "state": "Punjab",
+    "samples": []
+  },
+  {
+    "code": "RJ",
+    "state": "Rajasthan",
+    "samples": []
+  },
+  {
+    "code": "SK",
+    "state": "Sikkim",
+    "samples": []
+  },
+  {
+    "code": "TN",
+    "state": "Tamil Nadu",
+    "samples": []
+  },
+  {
+    "code": "TS",
+    "state": "Telangana",
+    "samples": []
+  },
+  {
+    "code": "TR",
+    "state": "Tripura",
+    "samples": []
+  },
+  {
+    "code": "UP",
+    "state": "Uttar Pradesh",
+    "samples": []
+  },
+  {
+    "code": "UK",
+    "state": "Uttarakhand",
+    "samples": []
+  },
+  {
+    "code": "WB",
+    "state": "West Bengal",
+    "samples": []
+  },
+  {
+    "code": "AN",
+    "state": "Andaman and Nicobar Islands",
+    "samples": []
+  },
+  {
+    "code": "CG",
+    "state": "Chandigarh",
+    "samples": []
+  },
+  {
+    "code": "DN",
+    "state": "Dadra & Nagar Haveli and Daman & Diu",
+    "samples": []
+  },
+  {
+    "code": "DL",
+    "state": "Delhi",
+    "samples": []
+  },
+  {
+    "code": "JK",
+    "state": "Jammu & Kashmir",
+    "samples": []
+  },
+  {
+    "code": "LA",
+    "state": "Ladakh",
+    "samples": []
+  },
+  {
+    "code": "LD",
+    "state": "Lakshadweep",
+    "samples": []
+  },
+  {
+    "code": "PY",
+    "state": "Pondicherry",
+    "samples": []
+  }
+]
