@@ -64,35 +64,30 @@ Add Page: Form fields
 	position: relative;
 	border: 2px dashed #ccc;
 	border-radius: 8px;
-	padding: 15px;
+	padding: 5px;
 	text-align: center;
-	background-color: #f8f9fa;
+	background-color: #ebebeb;
 	cursor: pointer;
-	height: 240px;
-}
-
-.image-upload-container:hover {
-	background-color: #e9ecef;
+	height: 175px;
 }
 
 .image-preview {
 	display: none;
 	width: 100%;
-	height: 160px;
-	object-fit: contain;
-	margin-top: 10px;
+	height: 100%;
+	object-fit: cover;
 	border-radius: 6px;
 }
 
 .upload-icon {
-	width: 40px;
-	height: 40px;
-	margin-top: 10px;
+	width: 100%;
+	height: 83%;
+	margin-top: 5px;
 }
 
 .remove-image-btn {
 	position: absolute;
-	top: 8px;
+	top: -2px;
 	right: 8px;
 	background: rgba(0, 0, 0, 0.6);
 	border: none;
@@ -107,7 +102,11 @@ Add Page: Form fields
 }
 
 input[type="file"] {
-	display: none;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	z-index: -1;
 }
 
 .form-container {
