@@ -39,7 +39,23 @@
   {
     "code": "AS",
     "state": "Assam",
-    "samples": []
+    "samples": [
+      {
+        "place": "sfvfdv",
+        "date": "2025-05-17",
+        "time": "8:32 PM",
+        "latitude": 12,
+        "longitude": 12,
+        "notes": "dfv daf",
+        "images": [
+          {
+            "imageName": "20250511T150237635Z1.png",
+            "imageSha": "3217767a4f49558c4fb340ea0e75b1c193ce9154"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "BR",
