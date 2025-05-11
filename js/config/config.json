@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://api.github.com/repos/me-soumen/soil-collection/contents",
+  "baseUrl": "https://api.github.com/repos/me-soumen/soil-trails/contents",
   "databaseFolderPath": "database",
   "databaseBackupFolderPath": "database/backup",
   "stateImagesFolderPath": "images/states",
