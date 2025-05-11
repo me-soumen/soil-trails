@@ -72,6 +72,7 @@ export async function addNewSample(stateCode, sampleData, images, password) {
 	// Step 1: Upload all images together in parallel
 	for (let index = 0; index < images.length; index++) {
 		try {
+			const timestampBase = new Date().toISOString().replace(/[:.-]/g, '');
 			const image = images[index];
 			const imageFileName = `${timestampBase}${index}.png`;
 			const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${imageFileName}`;
