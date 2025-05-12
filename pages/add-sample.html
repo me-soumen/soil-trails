@@ -159,7 +159,7 @@
 
 <script>
     // Disable future dates
-    window.addEventListener('DOMContentLoaded', (event) => {
+    window.addEventListener('DOMContentLoaded', () => {
         const today = new Date();
         const yyyy = today.getFullYear();
         const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -168,7 +168,14 @@
 
         const dateInput = document.getElementById('date');
         dateInput.max = formattedToday;
+
+        dateInput.addEventListener('change', () => {
+            if (dateInput.value > formattedToday) {
+                dateInput.value = formattedToday; // reset to today
+            }
+        });
     });
+
 
     // Submit button listener
     document.querySelector('form').addEventListener('submit', async function (e) {
