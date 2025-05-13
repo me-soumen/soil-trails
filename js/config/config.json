@@ -5,10 +5,11 @@
   "stateImagesFolderPath": "images/states",
   "placeImagesFolderPath": "images/places",
   "mapBaseUrl": "https://www.google.com/maps?q=",
-  "databaseFileName": "states.json",
+  "databaseFileName": "database.json",
+  "stateListFileName": "states.json",
   "commit": {
-    "committerName": "Soumen",
-    "committerEmail": "me.soumen02@gmail.com",
+    "committerName": "Santi Cru",
+    "committerEmail": "amra4murti@gmail.com",
     "message": {
       "add": "Backup of database or location image",
       "modify": "Added or Deleted a sample data",

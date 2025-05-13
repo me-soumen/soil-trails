@@ -34,7 +34,7 @@ export function populateDropdown(states, uts) {
 }
 
 // State/UT dropdown load
-fetch('../js/config/state-map.json')
+fetch(`../js/config/${config.stateListFileName}`)
 	.then(response => response.json())
 	.then(data => {
 	const { states, uts } = data;
