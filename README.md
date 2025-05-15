@@ -67,6 +67,7 @@ samples.
     "samples": [
         {
             "place": "Bangalore",
+            "type": "soil"
             "date": "2025-05-05",
             "time": "05:55 PM",
             "latitude": 12.979647089493072,
