@@ -183,6 +183,7 @@
     document.querySelector('form').addEventListener('submit', async function (e) {
         e.preventDefault(); // prevent default form submission
 
+        const regex = /[^a-zA-Z0-9 ]/;
         const form = e.target;
         const stateDropdown = document.getElementById('stateDropdown');
         const selectedOption = stateDropdown.options[stateDropdown.selectedIndex];
@@ -218,6 +219,7 @@
         if (!time) return showAlertToast("Time is required.", "info");
         if (!latitude || isNaN(latitude)) return showAlertToast("Enter valid Latitude.", "info");
         if (!longitude || isNaN(longitude)) return showAlertToast("Enter valid Longitude.", "info");
+        if(regex.test(notes)) return showAlertToast("Please remove special characters.", "info");
 
         // Compress images
         const compressedImages = await Promise.all([
