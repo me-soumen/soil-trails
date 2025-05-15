@@ -82,18 +82,16 @@ function populateSamples(stateData) {
 				    <button class="carousel-control-prev" type="button" data-bs-target="#sampleCarousel-${sample.id}" data-bs-slide="prev">
 				        <span class="visually-hidden">Previous</span>
 				    </button>
-
 				    <!-- Next button -->
 				    <button class="carousel-control-next" type="button" data-bs-target="#sampleCarousel-${sample.id}" data-bs-slide="next">
 				        <span class="visually-hidden">Next</span>
 				    </button>
-
 				    <!-- Delete Button -->
 				    <button class="delete-btn position-absolute top-0 end-0 m-2" style="z-index: 999;" id="delete-sample-btn" data-code="${stateData.code}" data-id="${sample.id}" data-bs-toggle="modal" data-bs-target="#delete-modal">
 				        <i class="bi bi-trash text-danger fs-4"></i>
 				    </button>
 				</div>
-
+				<div class="sample-type-${sample.type}">${sample.type}</div>
 	            <div class="sample-content">
 	                <div class="sample-header">
 	                    <h3>${sample.place}</h3>
@@ -103,7 +101,7 @@ function populateSamples(stateData) {
 	                <div class="sample-meta">
 	                    <div class="d-flex align-items-center justify-content-between">
 	                        <div>
-	                            <i class="bi bi-calendar"></i>
+	                            <i class="bi bi-calendar2-event"></i>
 	                            ${sample.date}
 	                        </div>
 	                        <div>

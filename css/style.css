@@ -167,7 +167,7 @@ Index Page: Sample Details Section
 }
 
 .sample-content {
-	padding: 15px;
+	padding: 12px;
 }
 
 .sample-header {
@@ -193,25 +193,40 @@ Index Page: Sample Details Section
 	font-size: 0.9em;
 	margin-top: 10px;
 }
-
 .sample-meta div {
 	display: flex;
 	align-items: center;
 	margin: 6px 0px;
 }
-
 .sample-meta i {
 	margin-right: 6px;
 	color: #555;
 }
-
 .sample-meta a {
 	color: #2196F3;
 	text-decoration: none;
 }
-
 .sample-meta a:hover {
 	text-decoration: underline;
+}
+
+.sample-type-soil {
+	width: 100%;
+	background-color: #715151;
+	color: #fff;
+	text-align: center;
+	letter-spacing: 10px;
+	font-size: 10px;
+	text-transform: uppercase;
+}
+.sample-type-water {
+	width: 100%;
+	background-color: #489ee2;
+	color: #fff;
+	text-align: center;
+	letter-spacing: 10px;
+	font-size: 10px;
+	text-transform: uppercase;
 }
 
 .sample-notes {
@@ -232,11 +247,9 @@ Index Page: Sample Details Section
 	font-size: 20px;
 	color: #d9534f;
 }
-
 .delete-btn:hover {
 	background: #f8d7da;
 	background: white;
-
 	border-radius: 50%;
 	padding: 3px 8px;
 	box-shadow: 0 2px 6px rgba(0,0,0,0.2);

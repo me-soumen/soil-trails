@@ -13,10 +13,7 @@
     <meta charset="UTF-8">
     <style>
         input, button { display: block; margin: 10px 0; padding: 8px; width: 300px; }
-        .msg { margin-top: 15px; color: green; }
-        a { display: inline-block; margin-top: 20px; }
     </style>
-    <base href="./">
 </head>
 <body class="body-container">
 <!-- Header -->
@@ -82,6 +79,16 @@
             <div class="mb-3">
                 <input type="text" class="form-control" id="place" placeholder="Place" autocomplete="off" required>
             </div>
+            <div class=" mb-3 d-flex align-items-center form-control" style="padding: 0.282rem 0.75rem">
+                <div class=" form-check form-switch d-flex align-items-center justify-content-start mb-0 w-50">
+                    <input class="form-check-input" style="margin-bottom: 5px !important;"  type="radio" role="switch" name="sampleType" value="soil" id="sampleTypeSoil" required checked>
+                    <label class="form-check-label" style="padding-left: 8px !important;" for="sampleTypeSoil">Soil</label>
+                </div>
+                <div class="col-6 form-check form-switch d-flex align-items-center justify-content-start mb-0 w-50">
+                    <input class="form-check-input" style="margin-bottom: 5px !important;"type="radio" role="switch" name="sampleType" value="water" id="sampleTypeWater" required>
+                    <label class="form-check-label" style="padding-left: 8px !important;" for="sampleTypeWater">Water</label>
+                </div>
+            </div>
             <div class="mb-3">
                 <input type="date" class="form-control" id="date" placeholder="Date" autocomplete="off" required>
             </div>
@@ -125,8 +132,9 @@
                 <p><i class="bi bi-house-fill me-2"></i> Bangalore, Karnataka, India</p>
                 <p><i class="bi bi-envelope-fill me-2"></i> <a href="mailto:amra4murti@gmail.com" class="contact-link">amra4murti@gmail.com</a>
                 </p>
-                <p><i class="bi bi-phone-fill me-2"></i> <a href="tel:+919564072741" class="contact-link"> +91 95640
-                    72741</a></p>
+                <p>
+                    <i class="bi bi-phone-fill me-2"></i> <a href="tel:+919564072741" class="contact-link"> +91 95640 72741</a>
+                </p>
             </div>
             <!-- Social -->
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
@@ -142,7 +150,7 @@
         <!-- Copyright -->
         <div class="row mt-3">
             <div class="col-md-12 text-center">
-                <p class="text-light">© 2025 Santi Cru. All rights reserved.</p>
+                <p class="text-light">Copyright © 2025 Santi Cru. All rights reserved.</p>
             </div>
         </div>
     </div>
@@ -183,6 +191,7 @@
         const state = selectedOption.textContent;
 
         const place = form.place.value.trim();
+        const type = form.sampleType.value;
         const date = form.date.value;
         const time = form.time.value;
         const latitude = form.latitude.value.trim();
@@ -201,13 +210,14 @@
         if (!validTypes.includes(image1.type) || !validTypes.includes(image2.type)) {
             return showAlertToast("Only JPG, JPEG, and PNG images are allowed!", "error");
         }
-        if (!code) return showAlertToast("Please select a State/UT.", "error");
-        if (!place) return showAlertToast("Place is required.", "error");
-        if (!date) return showAlertToast("Date is required.", "error");
-        if ((new Date(date).setHours(0, 0, 0, 0)) > today) return showAlertToast("Future dates are not allowed.", "error");
-        if (!time) return showAlertToast("Time is required.", "error");
-        if (!latitude || isNaN(latitude)) return showAlertToast("Enter valid Latitude.", "error");
-        if (!longitude || isNaN(longitude)) return showAlertToast("Enter valid Longitude.", "error");
+        if (!code) return showAlertToast("Please select a State/UT.", "info");
+        if (!place) return showAlertToast("Place is required.", "info");
+        if (!type) return showAlertToast("Sample Type is required.", "info");
+        if (!date) return showAlertToast("Date is required.", "info");
+        if ((new Date(date).setHours(0, 0, 0, 0)) > today) return showAlertToast("Future dates are not allowed.", "info");
+        if (!time) return showAlertToast("Time is required.", "info");
+        if (!latitude || isNaN(latitude)) return showAlertToast("Enter valid Latitude.", "info");
+        if (!longitude || isNaN(longitude)) return showAlertToast("Enter valid Longitude.", "info");
 
         // Compress images
         const compressedImages = await Promise.all([
@@ -218,6 +228,7 @@
         // Build sample data
         const jsonData = {
             place,
+            type,
             date,
             time: await to12HourFormat(time),
             latitude: parseFloat(latitude),

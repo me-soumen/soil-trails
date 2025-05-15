@@ -5,6 +5,7 @@
     "samples": [
       {
         "place": "Lepakshi Temple",
+        "type": "soil",
         "date": "2025-05-10",
         "time": "7:24 PM",
         "latitude": 13.8177576,
@@ -80,6 +81,7 @@
     "samples": [
       {
         "place": "Drive In Beach",
+        "type": "soil",
         "date": "2025-04-19",
         "time": "4:58 PM",
         "latitude": 11.808,
