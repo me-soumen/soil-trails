@@ -183,7 +183,7 @@
     document.querySelector('form').addEventListener('submit', async function (e) {
         e.preventDefault(); // prevent default form submission
 
-        const regex = /[^a-zA-Z0-9 ]/;
+        const regex = /[^a-zA-Z0-9 .,-]/;
         const form = e.target;
         const stateDropdown = document.getElementById('stateDropdown');
         const selectedOption = stateDropdown.options[stateDropdown.selectedIndex];
