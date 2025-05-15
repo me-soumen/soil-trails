@@ -57,7 +57,7 @@ Common Sections
 	text-decoration: none;
 }
 /*--------------------------------------------------------------------------------------------
-Index Page: State Tiles Section with Carousal
+Index Page: State Tiles Carousal
 --------------------------------------------------------------------------------------------*/
 .carousel-wrapper {
 	position: relative;
@@ -105,6 +105,9 @@ Index Page: State Tiles Section with Carousal
 	display: none;
 }
 
+/*--------------------------------------------------------------------------------------------
+Index Page: Carousal: State Tiles
+--------------------------------------------------------------------------------------------*/
 .state-tile {
 	flex: 0 0 auto;
 	width: 200px;
@@ -132,13 +135,41 @@ Index Page: State Tiles Section with Carousal
 	background: transparent;
 }
 
+/*--------------------------------------------------------------------------------------------
+Index Page: Carousal: State Tiles: Badge
+--------------------------------------------------------------------------------------------*/
 .badge-position {
-	top: 17px;
-	left: 90%
+	top: 15px;
+	left: 92%
+}
+.soil-badge {
+	background-color: #ae2f2f;
+	color: #fff;
+	font-size: 10px;
+}
+.water-badge {
+	background-color: #3692ea;
+	color: #fff;
+	font-size: 10px;
+}
+
+.both-badge .soil-badge {
+	border-radius: 8px 0 0 8px;
+	padding: 4px 7px;
+	outline: none;
+}
+.both-badge .water-badge {
+	border-radius: 0 8px 8px 0;
+	padding: 4px 7px;
+	outline: none;
+}
+.both-badge.badge-position {
+	top: 15px;
+	left: 87%
 }
 
 /*--------------------------------------------------------------------------------------------
-Index Page: Sample Details Section
+Index Page: Samples Section
 --------------------------------------------------------------------------------------------*/
 .samples {
 	display: flex;

@@ -25,20 +25,29 @@ function populateStates() {
 	data.forEach((state, index) => {
 		const tile = document.createElement('div');
 		tile.className = 'state-tile position-relative';
-		if(state.samples.length > 0) {
-			tile.innerHTML = `
-	                <img src="./images/states/${state.code}.png" alt="${state.state}" class="state-map">
-	                <div class="fw-bold">${state.state}</div>
-	                <span class="position-absolute translate-middle badge rounded-pill bg-danger badge-position">
-                       ${state.samples.length}
-                    </span>
-	            `;
-		} else {
-			tile.innerHTML = `
-	                <img src="./images/states/${state.code}.png" alt="${state.state}" class="state-map">
-	                <div class="fw-bold">${state.state}</div>
-	            `;
+
+		let stateTileHTML = `<img src="./images/states/${state.code}.png" alt="${state.state}" class="state-map">`
+							+ `<div class="fw-bold">${state.state}</div>`;
+		// Show sample count badge if present
+		var badge = document.createElement('div');
+		if (state.samples.length > 0) {
+			const sampleTypes = { soil: 0, water: 0 };
+			state.samples.forEach(sample => {
+				(sample?.type === 'water') ? sampleTypes.water++ : sampleTypes.soil++;
+			});
+
+			const type = (sampleTypes.water > 0 && sampleTypes.soil > 0) ? 'both' : (sampleTypes.water > 0) ? 'water' : 'soil';
+			badge.className = `position-absolute translate-middle badge badge-position rounded-pill d-flex ${type}-badge`;
+			if (sampleTypes.soil > 0) {
+				badge.innerHTML += `<div class="soil-badge">${sampleTypes.soil}</div>`;
+			}
+			if (sampleTypes.water > 0) {
+				badge.innerHTML += `<div class="water-badge">${sampleTypes.water}</div>`;
+			}
 		}
+		tile.innerHTML = stateTileHTML;
+		tile.appendChild(badge);
+
 		tile.addEventListener('click', () => {
 			document.querySelectorAll('.state-tile').forEach(el => el.classList.remove('active'));
 			tile.classList.add('active');
