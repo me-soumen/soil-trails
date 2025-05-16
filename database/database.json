@@ -93,6 +93,26 @@
           }
         ],
         "id": "#1"
+      },
+      {
+        "place": "Bengaluru",
+        "type": "soil",
+        "date": "2025-05-16",
+        "time": "10:45 PM",
+        "latitude": 12.978765578153057,
+        "longitude": 77.59197382153631,
+        "notes": "This soil sample was collected from beneath a tree near Vidhana Soudha, Bangalore, beside the Karnataka High Court gate.",
+        "images": [
+          {
+            "imageName": "20250516T191432841Z0.png",
+            "imageSha": "1e3cf7f147e6b0a58d8f5f5345f8f15fbf54a06d"
+          },
+          {
+            "imageName": "20250516T191434970Z1.png",
+            "imageSha": "c4562bc026fc94fbae27407ef20aa95639038e8f"
+          }
+        ],
+        "id": "#2"
       }
     ]
   },
