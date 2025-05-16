@@ -75,26 +75,6 @@
     "state": "Karnataka",
     "samples": [
       {
-        "place": "Hogenakkal Falls",
-        "type": "soil",
-        "date": "2025-02-08",
-        "time": "1:30 PM",
-        "latitude": 12.110992844373875,
-        "longitude": 77.77476937632605,
-        "notes": "From the middle of Kaveri River. It is kind of from the border of Karnataka and Tamilnadu.",
-        "images": [
-          {
-            "imageName": "20250515T134104245Z0.png",
-            "imageSha": "6a961c41aabce2ab1bd1267a71b33b18dcc8768a"
-          },
-          {
-            "imageName": "20250515T134106661Z1.png",
-            "imageSha": "f6c3678c41fde3d7627c6927e8f9ed7edbe577a2"
-          }
-        ],
-        "id": "#1"
-      },
-      {
         "place": "Bengaluru",
         "type": "soil",
         "date": "2025-05-16",
@@ -112,7 +92,7 @@
             "imageSha": "c4562bc026fc94fbae27407ef20aa95639038e8f"
           }
         ],
-        "id": "#2"
+        "id": "#1"
       }
     ]
   },
