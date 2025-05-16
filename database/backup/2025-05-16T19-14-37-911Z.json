@@ -1,0 +1,286 @@
+[
+  {
+    "code": "AP",
+    "state": "Andhra Pradesh",
+    "samples": [
+      {
+        "place": "Lepakshi Temple",
+        "type": "soil",
+        "date": "2025-05-10",
+        "time": "7:24 PM",
+        "latitude": 13.8177576,
+        "longitude": 77.6385405,
+        "notes": "Collected this soil near 4 km milestone to Lepakshi Temple, en route from Bangalore",
+        "images": [
+          {
+            "imageName": "20250511T195220416Z0.png",
+            "imageSha": "e3593e52794f6cf3a9bba009a889f0d3ea50e7ef"
+          },
+          {
+            "imageName": "20250511T195224386Z1.png",
+            "imageSha": "f0afabba74c1077226a617aebeda194c6f4a8ba5"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
+  },
+  {
+    "code": "AR",
+    "state": "Arunachal Pradesh",
+    "samples": []
+  },
+  {
+    "code": "AS",
+    "state": "Assam",
+    "samples": []
+  },
+  {
+    "code": "BR",
+    "state": "Bihar",
+    "samples": []
+  },
+  {
+    "code": "CH",
+    "state": "Chhattisgarh",
+    "samples": []
+  },
+  {
+    "code": "GA",
+    "state": "Goa",
+    "samples": []
+  },
+  {
+    "code": "GJ",
+    "state": "Gujarat",
+    "samples": []
+  },
+  {
+    "code": "HR",
+    "state": "Haryana",
+    "samples": []
+  },
+  {
+    "code": "HP",
+    "state": "Himachal Pradesh",
+    "samples": []
+  },
+  {
+    "code": "JH",
+    "state": "Jharkhand",
+    "samples": []
+  },
+  {
+    "code": "KA",
+    "state": "Karnataka",
+    "samples": [
+      {
+        "place": "Hogenakkal Falls",
+        "type": "soil",
+        "date": "2025-02-08",
+        "time": "1:30 PM",
+        "latitude": 12.110992844373875,
+        "longitude": 77.77476937632605,
+        "notes": "From the middle of Kaveri River. It is kind of from the border of Karnataka and Tamilnadu.",
+        "images": [
+          {
+            "imageName": "20250515T134104245Z0.png",
+            "imageSha": "6a961c41aabce2ab1bd1267a71b33b18dcc8768a"
+          },
+          {
+            "imageName": "20250515T134106661Z1.png",
+            "imageSha": "f6c3678c41fde3d7627c6927e8f9ed7edbe577a2"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
+  },
+  {
+    "code": "KL",
+    "state": "Kerala",
+    "samples": [
+      {
+        "place": "Drive In Beach",
+        "type": "soil",
+        "date": "2025-04-19",
+        "time": "4:58 PM",
+        "latitude": 11.808,
+        "longitude": 75.432444,
+        "notes": "Collected from Muzhappilangaad Drive In Beach at Kannur, Kerala",
+        "images": [
+          {
+            "imageName": "20250511T200348820Z0.png",
+            "imageSha": "3ad912069b64acc5e7cac2cc13bea58c6e9a370c"
+          },
+          {
+            "imageName": "20250511T200350825Z1.png",
+            "imageSha": "c73e4b39ac3ce5e0045a453be70a9609059fa3e5"
+          }
+        ],
+        "id": "#1"
+      },
+      {
+        "place": "Arabian Sea at Kannur",
+        "type": "water",
+        "date": "2025-04-20",
+        "time": "10:35 AM",
+        "latitude": 11.882807971722242,
+        "longitude": 75.34241213797542,
+        "notes": "First time visited Arabian Sea and collected this water at Payyambalam Beach, Kannur",
+        "images": [
+          {
+            "imageName": "20250515T131904501Z0.png",
+            "imageSha": "e93f5fcacbcafaad8b30c718ccb02affa1a7ade1"
+          },
+          {
+            "imageName": "20250515T131906360Z1.png",
+            "imageSha": "cbf15389b46e4c55f4ede3404d631bd98ad6747e"
+          }
+        ],
+        "id": "#2"
+      }
+    ]
+  },
+  {
+    "code": "MP",
+    "state": "Madhya Pradesh",
+    "samples": []
+  },
+  {
+    "code": "MH",
+    "state": "Maharashtra",
+    "samples": []
+  },
+  {
+    "code": "MN",
+    "state": "Manipur",
+    "samples": []
+  },
+  {
+    "code": "ML",
+    "state": "Meghalaya",
+    "samples": []
+  },
+  {
+    "code": "MZ",
+    "state": "Mizoram",
+    "samples": []
+  },
+  {
+    "code": "NL",
+    "state": "Nagaland",
+    "samples": []
+  },
+  {
+    "code": "OD",
+    "state": "Odisha",
+    "samples": []
+  },
+  {
+    "code": "PB",
+    "state": "Punjab",
+    "samples": []
+  },
+  {
+    "code": "RJ",
+    "state": "Rajasthan",
+    "samples": []
+  },
+  {
+    "code": "SK",
+    "state": "Sikkim",
+    "samples": []
+  },
+  {
+    "code": "TN",
+    "state": "Tamil Nadu",
+    "samples": [
+      {
+        "place": "Hogenakkal Falls",
+        "type": "soil",
+        "date": "2025-02-08",
+        "time": "1:30 PM",
+        "latitude": 12.110992844373875,
+        "longitude": 77.77476937632605,
+        "notes": "While enjoying Coracle ride, collected this from Kaveri River. This place is kind of the border of Tamilnadu and Karnataka.",
+        "images": [
+          {
+            "imageName": "20250515T141722760Z0.png",
+            "imageSha": "6a961c41aabce2ab1bd1267a71b33b18dcc8768a"
+          },
+          {
+            "imageName": "20250515T141731485Z1.png",
+            "imageSha": "f6c3678c41fde3d7627c6927e8f9ed7edbe577a2"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
+  },
+  {
+    "code": "TS",
+    "state": "Telangana",
+    "samples": []
+  },
+  {
+    "code": "TR",
+    "state": "Tripura",
+    "samples": []
+  },
+  {
+    "code": "UP",
+    "state": "Uttar Pradesh",
+    "samples": []
+  },
+  {
+    "code": "UK",
+    "state": "Uttarakhand",
+    "samples": []
+  },
+  {
+    "code": "WB",
+    "state": "West Bengal",
+    "samples": []
+  },
+  {
+    "code": "AN",
+    "state": "Andaman and Nicobar Islands",
+    "samples": []
+  },
+  {
+    "code": "CG",
+    "state": "Chandigarh",
+    "samples": []
+  },
+  {
+    "code": "DN",
+    "state": "Dadra & Nagar Haveli and Daman & Diu",
+    "samples": []
+  },
+  {
+    "code": "DL",
+    "state": "Delhi",
+    "samples": []
+  },
+  {
+    "code": "JK",
+    "state": "Jammu & Kashmir",
+    "samples": []
+  },
+  {
+    "code": "LA",
+    "state": "Ladakh",
+    "samples": []
+  },
+  {
+    "code": "LD",
+    "state": "Lakshadweep",
+    "samples": []
+  },
+  {
+    "code": "PY",
+    "state": "Pondicherry",
+    "samples": []
+  }
+]
