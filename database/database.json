@@ -139,6 +139,26 @@
           }
         ],
         "id": "#2"
+      },
+      {
+        "place": "Kochi High Court Water Metro Station",
+        "type": "soil",
+        "date": "2025-06-09",
+        "time": "9:59 AM",
+        "latitude": 9.9840134,
+        "longitude": 76.2730058,
+        "notes": "Collected from Kochi High Court Water Metro Station, near a plant",
+        "images": [
+          {
+            "imageName": "20250610T064231872Z0.png",
+            "imageSha": "9e106742a7a0be9cb79c8425f5fc21b16429d23e"
+          },
+          {
+            "imageName": "20250610T064234984Z1.png",
+            "imageSha": "2b9e76ba80d74ce294a37e8fa73b8cb6ad1a5ef5"
+          }
+        ],
+        "id": "#3"
       }
     ]
   },
