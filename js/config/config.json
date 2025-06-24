@@ -1,7 +1,7 @@
 {
   "baseUrl": "https://api.github.com/repos/me-soumen/soil-trails/contents",
-  "databaseFolderPath": "database",
-  "databaseBackupFolderPath": "database/backup",
+  "databaseFolderPath": "storage",
+  "databaseBackupFolderPath": "storage/backup",
   "stateImagesFolderPath": "images/states",
   "placeImagesFolderPath": "images/places",
   "mapBaseUrl": "https://www.google.com/maps?q=",
