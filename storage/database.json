@@ -22,6 +22,26 @@
           }
         ],
         "id": "#1"
+      },
+      {
+        "place": "Test Place",
+        "type": "water",
+        "date": "2024-09-02",
+        "time": "2:31 PM",
+        "latitude": 1.2,
+        "longitude": 1.2,
+        "notes": "Test Note",
+        "images": [
+          {
+            "imageName": "20250624T090128497Z0.png",
+            "imageSha": "084b7b227eb077f19d0dbdb931ffff82d19ab40b"
+          },
+          {
+            "imageName": "20250624T090129833Z1.png",
+            "imageSha": "3fcb7ae9a5606c1d686d4aa66037aa850261c4b2"
+          }
+        ],
+        "id": "#2"
       }
     ]
   },
