@@ -57,11 +57,11 @@ Common Sections
 	text-decoration: none;
 }
 
-.company-name {
+.copyright {
 	text-decoration: none;
 	color: #ffc008;
 }
-.company-name:hover {
+.copyright:hover {
 	font-size: 1.1em;
 }
 /*--------------------------------------------------------------------------------------------
