@@ -261,7 +261,28 @@
   {
     "code": "WB",
     "state": "West Bengal",
-    "samples": []
+    "samples": [
+      {
+        "place": "Batanagar Ganga Ghat",
+        "type": "soil",
+        "date": "2025-10-24",
+        "time": "4:55 PM",
+        "latitude": 22.513968,
+        "longitude": 88.212112,
+        "notes": "From Batanagar River Ganga Ferry Ghat",
+        "images": [
+          {
+            "imageName": "20251029T183046430Z0.png",
+            "imageSha": "5a9f64153d3b0159074cc78fe79f10b9d3ee9501"
+          },
+          {
+            "imageName": "20251029T183048626Z1.png",
+            "imageSha": "ed7a14ee3d8ab35defeadfd5e7ea67a70ab8c176"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "AN",
