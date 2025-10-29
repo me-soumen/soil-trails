@@ -1,6 +1,27 @@
 import { backupDatabase, fetchFileContent, uploadNewFile, updateFile } from './github_api.js';
+import { sendEmailNotification } from './notifications.js';
+import { logError, logInfo } from './logger.js';
 
 var config = JSON.parse(localStorage.getItem('appConfig'));
+
+// Ensure config is loaded even when opening Add Sample directly
+async function ensureConfigLoaded() {
+    const needsRefresh = !config ||
+        !config.email ||
+        !config.email.emailjs ||
+        !config.email.emailjs.publicKey ||
+        !config.email.emailjs.serviceId;
+
+    if (needsRefresh) {
+        try {
+            const resp = await fetch(`../js/config/config.json?v=${Date.now()}`);
+            config = await resp.json();
+            localStorage.setItem('appConfig', JSON.stringify(config));
+        } catch (e) {
+            console.error('Failed to load config.json', e);
+        }
+    }
+}
 
 // Populate State/UT select dropdown
 export function populateDropdown(states, uts) {
@@ -66,11 +87,12 @@ function showAlertToast(message, type = 'error') {
 
 // Create a new sample after taking backup of existing
 export async function addNewSample(stateCode, sampleData, images, password) {
-	const sample = JSON.parse(sampleData);
-	sample.images = []
+    try {
+        const sample = JSON.parse(sampleData);
+        sample.images = []
 
 	// Step 1: Upload all images together in parallel
-	for (let index = 0; index < images.length; index++) {
+    for (let index = 0; index < images.length; index++) {
 		try {
 			const timestampBase = new Date().toISOString().replace(/[:.-]/g, '');
 			const image = images[index];
@@ -89,7 +111,7 @@ export async function addNewSample(stateCode, sampleData, images, password) {
 	}
 
 	// Step 2: Fetch and parse DB
-	let db, existingJson;
+    let db, existingJson;
 	const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
 	try {
 		db = await fetchFileContent(dbUrl, password);
@@ -111,23 +133,40 @@ export async function addNewSample(stateCode, sampleData, images, password) {
 	targetState.samples.push(sample);
 
 	// Step 5: Prepare updated DB content
-	const updatedBase64Content = btoa(JSON.stringify(existingJson, null, 2));
+    const updatedBase64Content = btoa(JSON.stringify(existingJson, null, 2));
 
 	// Step 6: Backup old DB
-	try {
-		await backupDatabase(db.content, password);
-	} catch (error) {
-		throw new Error(`4/5 Backup failed: ${error?.message || error}`);
-	}
+    try {
+        await backupDatabase(db.content, password);
+    } catch (error) {
+        throw new Error(`4/5 Backup failed: ${error?.message || error}`);
+    }
 
 	// Step 7: Upload updated DB
-	try {
-		const response = await updateFile(dbUrl, db.sha, updatedBase64Content, password);
-		console.log("Database updated successfully.");
-		return response;
-	} catch (error) {
-		throw new Error(`5/5 DB update failed: ${error?.message || error}`);
-	}
+    try {
+        const response = await updateFile(dbUrl, db.sha, updatedBase64Content, password);
+        logInfo('add_sample', 'Database updated successfully', { stateCode, newId: sample.id });
+        // Success email notification
+        try { sendEmailNotification('add_success', { action: 'add', stateCode, sampleId: sample.id, sample }); } catch (_) {}
+        return response;
+    } catch (error) {
+        throw new Error(`5/5 DB update failed: ${error?.message || error}`);
+    }
+    } catch (err) {
+        const logEntry = logError('add_sample', err, { stateCode });
+        // Email with full stack/log as JSON
+        try {
+            const errorPayload = {
+                action: 'add',
+                stateCode,
+                errorMessage: logEntry.message,
+                errorStack: logEntry.stack,
+                errorJson: JSON.stringify(logEntry)
+            };
+            sendEmailNotification('error', errorPayload);
+        } catch (e) { /* ignore */ }
+        throw err;
+    }
 }
 
 // Convert Image to Base64

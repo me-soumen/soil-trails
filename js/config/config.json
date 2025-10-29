@@ -17,5 +17,15 @@
     }
   },
   "compressQuality": 0.6,
-  "encryptedString": "YqjG4fKNwaKej4wFDFfZ/JEtN0MrfKlIO7zLqzqs0zoN16gOMgiDjm47H4AcixK8kFX0teNyuSBkia1bBszg05qOPtc59fv9vSOy9K0JvJMGRY/yeTR4Fo1IYQmlhvlOAdbISkAi1zKD3f2BDuhA2fWVpGqtOkHMNwQkYDfzjCXUsA7CMHfNAbKF+WDD0OsTV5vYvWZU1IshGyazU7dB8cid/HU/obVp"
+  "encryptedString": "YqjG4fKNwaKej4wFDFfZ/JEtN0MrfKlIO7zLqzqs0zoN16gOMgiDjm47H4AcixK8kFX0teNyuSBkia1bBszg05qOPtc59fv9vSOy9K0JvJMGRY/yeTR4Fo1IYQmlhvlOAdbISkAi1zKD3f2BDuhA2fWVpGqtOkHMNwQkYDfzjCXUsA7CMHfNAbKF+WDD0OsTV5vYvWZU1IshGyazU7dB8cid/HU/obVp",
+  "email": {
+    "provider": "emailjs",
+    "emailjs": {
+      "publicKey": "bljMo8tx3ISeoNqnY",
+      "serviceId": "SoilTrails_EmailJS",
+      "templateIdAction": "template_e3aeo9a",
+      "templateIdError": "template_oufis2o",
+      "toEmail": "me.soumen02@gmail.com"
+    }
+  }
 }

@@ -1,4 +1,6 @@
 import { backupDatabase, fetchFileContent, uploadNewFile, updateFile, deleteFile } from './github_api.js';
+import { sendEmailNotification } from './notifications.js';
+import { logError, logInfo } from './logger.js';
 
 const carousel = document.getElementById('state-carousel');
 const sampleSection = document.getElementById('sample-section');
@@ -181,59 +183,77 @@ export function showAlertToast(message, type = 'info') {
 
 // Delete a Sample with associated image
 async function deleteSample(stateCode, sampleId, password) {
-	const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
-	let db, data;
+    try {
+        const dbUrl = `${config.baseUrl}/${config.databaseFolderPath}/${config.databaseFileName}`;
+        let db, data;
 
-	// Step 1: Fetch db
-	try {
-		db = await fetchFileContent(dbUrl, password);
-		data = JSON.parse(atob(db.content));
-	} catch (error) {
-		throw new Error(`1/5 Failed to fetch DB: ${error?.message || error}`);
-	}
+        // Step 1: Fetch db
+        try {
+            db = await fetchFileContent(dbUrl, password);
+            data = JSON.parse(atob(db.content));
+        } catch (error) {
+            throw new Error(`1/5 Failed to fetch DB: ${error?.message || error}`);
+        }
 
-	// Step 2: Locate state and target sample
-	const state = data.find(item => item.code === stateCode);
-	if (!state) {
-		throw new Error(`2/5 State with code "${stateCode}" not found.`);
-	}
-	const sampleToDelete = state.samples.find(s => s.id === sampleId);
-	if (!sampleToDelete) {
-		throw new Error(`2/5 Sample with ID "${sampleId}" not found in state "${stateCode}".`);
-	}
+        // Step 2: Locate state and target sample
+        const state = data.find(item => item.code === stateCode);
+        if (!state) {
+            throw new Error(`2/5 State with code "${stateCode}" not found.`);
+        }
+        const sampleToDelete = state.samples.find(s => s.id === sampleId);
+        if (!sampleToDelete) {
+            throw new Error(`2/5 Sample with ID "${sampleId}" not found in state "${stateCode}".`);
+        }
 
-	// Step 3: Remove sample and reindex IDs
-	state.samples = state.samples.filter(sample => sample.id !== sampleId);
-	state.samples.forEach((sample, index) => {
-		sample.id = `#${index + 1}`;
-	});
+        // Step 3: Remove sample and reindex IDs
+        state.samples = state.samples.filter(sample => sample.id !== sampleId);
+        state.samples.forEach((sample, index) => {
+            sample.id = `#${index + 1}`;
+        });
 
-	// Step 4: Delete associated image(s)
-	try {
-		for (const image of sampleToDelete.images || []) {
-			const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${image.imageName}`;
-			await deleteFile(imageUrl, image.imageSha, password);
-		}
-	} catch (error) {
-		throw new Error(`3/5 Failed to delete image(s): ${error?.message || error}`);
-	}
+        // Step 4: Delete associated image(s)
+        try {
+            for (const image of sampleToDelete.images || []) {
+                const imageUrl = `${config.baseUrl}/${config.placeImagesFolderPath}/${image.imageName}`;
+                await deleteFile(imageUrl, image.imageSha, password);
+            }
+        } catch (error) {
+            throw new Error(`3/5 Failed to delete image(s): ${error?.message || error}`);
+        }
 
-	// Step 4: Backup db
-	try {
-		await backupDatabase(db.content, password);
-	} catch (error) {
-		throw new Error(`4/5 Failed to fetch DB: ${error?.message || error}`);
-	}
+        // Step 4: Backup db
+        try {
+            await backupDatabase(db.content, password);
+        } catch (error) {
+            throw new Error(`4/5 Failed to fetch DB: ${error?.message || error}`);
+        }
 
-	// Step 6: Save updated DB
-	try {
-		const base64Content = btoa(JSON.stringify(data, null, 2));
-		const response = await updateFile(dbUrl, db.sha, base64Content, password);
-		console.log("Database updated successfully.");
-		return response;
-	} catch (error) {
-		throw new Error(`4/5 Failed to update DB: ${error?.message || error}`);
-	}
+        // Step 6: Save updated DB
+        try {
+            const base64Content = btoa(JSON.stringify(data, null, 2));
+            const response = await updateFile(dbUrl, db.sha, base64Content, password);
+            logInfo('delete_sample', 'Database updated successfully', { stateCode, sampleId });
+            // Success email notification with deleted sample details
+            try { sendEmailNotification('delete_success', { action: 'delete', stateCode, sampleId, sample: sampleToDelete }); } catch (_) {}
+            return response;
+        } catch (error) {
+            throw new Error(`4/5 Failed to update DB: ${error?.message || error}`);
+        }
+    } catch (err) {
+        const logEntry = logError('delete_sample', err, { stateCode, sampleId });
+        try {
+            const errorPayload = {
+                action: 'delete',
+                stateCode,
+                sampleId,
+                errorMessage: logEntry.message,
+                errorStack: logEntry.stack,
+                errorJson: JSON.stringify(logEntry)
+            };
+            sendEmailNotification('error', errorPayload);
+        } catch (e) { /* ignore */ }
+        throw err;
+    }
 }
 
 // Define functions globally
