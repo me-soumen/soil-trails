@@ -2,7 +2,28 @@
   {
     "code": "AP",
     "state": "Andhra Pradesh",
-    "samples": []
+    "samples": [
+      {
+        "place": "Lepakshi Temple",
+        "type": "soil",
+        "date": "2025-05-10",
+        "time": "7:24 PM",
+        "latitude": 13.8177576,
+        "longitude": 77.6385405,
+        "notes": "Collected this soil near 4 km milestone to Lepakshi Temple, en route from Bangalore",
+        "images": [
+          {
+            "imageName": "20250511T195220416Z0.png",
+            "imageSha": "e3593e52794f6cf3a9bba009a889f0d3ea50e7ef"
+          },
+          {
+            "imageName": "20250511T195224386Z1.png",
+            "imageSha": "f0afabba74c1077226a617aebeda194c6f4a8ba5"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "AR",
