@@ -40,24 +40,31 @@ export async function sendEmailNotification(eventType, payload) {
         }
 
 		const nowIso = new Date().toISOString();
+
+		const toStringSafe = (v) => {
+			if (v === undefined || v === null) return '';
+			try { return String(v); } catch { return ''; }
+		};
+
 		const params = {
-			to_email: emailCfg.toEmail || '',
-			event_type: eventType,
-			timestamp: nowIso,
-			// Common optional fields safely mapped
-			state_code: payload?.stateCode || payload?.state_code || '',
-			sample_id: payload?.sampleId || payload?.sample_id || '',
-			place: payload?.place || payload?.sample?.place || '',
-			type: payload?.type || payload?.sample?.type || '',
-			date: payload?.date || payload?.sample?.date || '',
-			time: payload?.time || payload?.sample?.time || '',
-			latitude: payload?.latitude ?? payload?.sample?.latitude ?? '',
-			longitude: payload?.longitude ?? payload?.sample?.longitude ?? '',
-			notes: payload?.notes || payload?.sample?.notes || '',
-			action: payload?.action || '',
-			error_message: payload?.errorMessage || payload?.message || '',
-			error_stack: payload?.errorStack || payload?.stack || '',
-			error_json: payload?.errorJson || ''
+			to_email: toStringSafe(emailCfg.toEmail || ''),
+			event_type: toStringSafe(eventType),
+			timestamp: toStringSafe(nowIso),
+			// Common optional fields safely mapped (all coerced to strings)
+			state_code: toStringSafe(payload?.stateCode || payload?.state_code || ''),
+			sample_id: toStringSafe(payload?.sampleId || payload?.sample_id || ''),
+			place: toStringSafe(payload?.place || payload?.sample?.place || ''),
+			type: toStringSafe(payload?.type || payload?.sample?.type || ''),
+			date: toStringSafe(payload?.date || payload?.sample?.date || ''),
+			time: toStringSafe(payload?.time || payload?.sample?.time || ''),
+			latitude: toStringSafe(payload?.latitude ?? payload?.sample?.latitude ?? ''),
+			longitude: toStringSafe(payload?.longitude ?? payload?.sample?.longitude ?? ''),
+
+			notes: toStringSafe(payload?.notes || payload?.sample?.notes || ''),
+			action: toStringSafe(payload?.action || ''),
+			error_message: toStringSafe(payload?.errorMessage || payload?.message || ''),
+			error_stack: toStringSafe(payload?.errorStack || payload?.stack || ''),
+			error_json: toStringSafe(payload?.errorJson || '')
 		};
 
         if (window.emailjs?.send) {
