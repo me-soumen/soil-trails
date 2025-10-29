@@ -28,7 +28,28 @@
   {
     "code": "AR",
     "state": "Arunachal Pradesh",
-    "samples": []
+    "samples": [
+      {
+        "place": "vfdvdf",
+        "type": "soil",
+        "date": "2025-10-24",
+        "time": "1:53 AM",
+        "latitude": 12,
+        "longitude": 12,
+        "notes": "vavafdv",
+        "images": [
+          {
+            "imageName": "20251029T202413527Z0.png",
+            "imageSha": "ed7a14ee3d8ab35defeadfd5e7ea67a70ab8c176"
+          },
+          {
+            "imageName": "20251029T202415244Z1.png",
+            "imageSha": "5a9f64153d3b0159074cc78fe79f10b9d3ee9501"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "AS",
