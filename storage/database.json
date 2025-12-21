@@ -170,7 +170,28 @@
   {
     "code": "MH",
     "state": "Maharashtra",
-    "samples": []
+    "samples": [
+      {
+        "place": "Chhatrapati Sambhajinagar",
+        "type": "soil",
+        "date": "2025-12-21",
+        "time": "9:12 AM",
+        "latitude": 20.0031339,
+        "longitude": 75.1324081,
+        "notes": "Collected near Udupi Restaurant after breakfast, en route to Patan during our Rajasthan trip.",
+        "images": [
+          {
+            "imageName": "20251221T062617866Z0.png",
+            "imageSha": "8990ee35b9c3a4894e26100bdb91cd7a4bd8d09b"
+          },
+          {
+            "imageName": "20251221T062622318Z1.png",
+            "imageSha": "a97aae4b486cc59eab5e36e1a63376bec01a3aed"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "MN",
