@@ -246,6 +246,26 @@
           }
         ],
         "id": "#1"
+      },
+      {
+        "place": "Jaipur - Hawa Mahal",
+        "type": "soil",
+        "date": "2025-12-29",
+        "time": "12:20 AM",
+        "latitude": 26.924109,
+        "longitude": 75.8271985,
+        "notes": "During our Rajasthan trip, this soil sample was collected in Jaipur from beneath a plant in front of the iconic Hawa Mahal while enjoying a night drive.",
+        "images": [
+          {
+            "imageName": "20251228T200744903Z0.png",
+            "imageSha": "6cb5e895f29253f119bd538a91b7de58731389db"
+          },
+          {
+            "imageName": "20251228T200747843Z1.png",
+            "imageSha": "4db5a1cc189b9572f295db842ada23e46b9c9d4d"
+          }
+        ],
+        "id": "#2"
       }
     ]
   },
