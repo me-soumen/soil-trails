@@ -226,7 +226,28 @@
   {
     "code": "RJ",
     "state": "Rajasthan",
-    "samples": []
+    "samples": [
+      {
+        "place": "Jaisalmer",
+        "type": "soil",
+        "date": "2025-12-24",
+        "time": "6:41 PM",
+        "latitude": 26.8868059,
+        "longitude": 70.5377506,
+        "notes": "This soil sample was collected from the Jaisalmer Desert during our Rajasthan trip, after completing a jeep and camel safari.",
+        "images": [
+          {
+            "imageName": "20251228T200042438Z0.png",
+            "imageSha": "bfc03db2277b56b1ea8d16c915caf636fab0cdb0"
+          },
+          {
+            "imageName": "20251228T200045139Z1.png",
+            "imageSha": "d375023546acd1161f392b2871e3ce96ba711940"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "SK",
