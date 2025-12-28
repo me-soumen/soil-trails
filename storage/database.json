@@ -53,7 +53,28 @@
   {
     "code": "GJ",
     "state": "Gujarat",
-    "samples": []
+    "samples": [
+      {
+        "place": "Gandhinagar",
+        "type": "soil",
+        "date": "2025-12-21",
+        "time": "8:38 PM",
+        "latitude": 23.1541462,
+        "longitude": 72.6013969,
+        "notes": "This soil sample was collected beneath a tree near SH-41, Gandhinagar, while traveling from Aurangabad to Patan during our Rajasthan trip",
+        "images": [
+          {
+            "imageName": "20251228T203027850Z0.png",
+            "imageSha": "1b06464b0678abbaee66585b83ba2f65b004f7bc"
+          },
+          {
+            "imageName": "20251228T203029962Z1.png",
+            "imageSha": "c77161bb946c9ae4503d9746a3ececfad44122eb"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "HR",
