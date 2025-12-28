@@ -1,0 +1,389 @@
+[
+  {
+    "code": "AP",
+    "state": "Andhra Pradesh",
+    "samples": [
+      {
+        "place": "Lepakshi Temple",
+        "type": "soil",
+        "date": "2025-05-10",
+        "time": "7:24 PM",
+        "latitude": 13.8177576,
+        "longitude": 77.6385405,
+        "notes": "Collected this soil near 4 km milestone to Lepakshi Temple, en route from Bangalore",
+        "images": [
+          {
+            "imageName": "20250511T195220416Z0.png",
+            "imageSha": "e3593e52794f6cf3a9bba009a889f0d3ea50e7ef"
+          },
+          {
+            "imageName": "20250511T195224386Z1.png",
+            "imageSha": "f0afabba74c1077226a617aebeda194c6f4a8ba5"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
+  },
+  {
+    "code": "AR",
+    "state": "Arunachal Pradesh",
+    "samples": []
+  },
+  {
+    "code": "AS",
+    "state": "Assam",
+    "samples": []
+  },
+  {
+    "code": "BR",
+    "state": "Bihar",
+    "samples": []
+  },
+  {
+    "code": "CH",
+    "state": "Chhattisgarh",
+    "samples": []
+  },
+  {
+    "code": "GA",
+    "state": "Goa",
+    "samples": []
+  },
+  {
+    "code": "GJ",
+    "state": "Gujarat",
+    "samples": []
+  },
+  {
+    "code": "HR",
+    "state": "Haryana",
+    "samples": []
+  },
+  {
+    "code": "HP",
+    "state": "Himachal Pradesh",
+    "samples": []
+  },
+  {
+    "code": "JH",
+    "state": "Jharkhand",
+    "samples": []
+  },
+  {
+    "code": "KA",
+    "state": "Karnataka",
+    "samples": [
+      {
+        "place": "Bengaluru",
+        "type": "soil",
+        "date": "2025-05-16",
+        "time": "10:45 PM",
+        "latitude": 12.978765578153057,
+        "longitude": 77.59197382153631,
+        "notes": "This soil sample was collected from beneath a tree near Vidhana Soudha, Bangalore, beside the Karnataka High Court gate.",
+        "images": [
+          {
+            "imageName": "20250516T191432841Z0.png",
+            "imageSha": "1e3cf7f147e6b0a58d8f5f5345f8f15fbf54a06d"
+          },
+          {
+            "imageName": "20250516T191434970Z1.png",
+            "imageSha": "c4562bc026fc94fbae27407ef20aa95639038e8f"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
+  },
+  {
+    "code": "KL",
+    "state": "Kerala",
+    "samples": [
+      {
+        "place": "Kochi (Cochin)",
+        "type": "soil",
+        "date": "2025-06-09",
+        "time": "9:59 AM",
+        "latitude": 9.9840134,
+        "longitude": 76.2730058,
+        "notes": "Collected from Kochi High Court Water Metro Station, near a plant",
+        "images": [
+          {
+            "imageName": "20250610T064231872Z0.png",
+            "imageSha": "9e106742a7a0be9cb79c8425f5fc21b16429d23e"
+          },
+          {
+            "imageName": "20250610T064234984Z1.png",
+            "imageSha": "2b9e76ba80d74ce294a37e8fa73b8cb6ad1a5ef5"
+          }
+        ],
+        "id": "#1"
+      },
+      {
+        "place": "Arabian Sea",
+        "type": "water",
+        "date": "2025-04-20",
+        "time": "10:35 AM",
+        "latitude": 11.882807971722242,
+        "longitude": 75.34241213797542,
+        "notes": "Visited the Arabian Sea for the first time and collected this water at Payyambalam Beach, Kannur.",
+        "images": [
+          {
+            "imageName": "20250515T131904501Z0.png",
+            "imageSha": "e93f5fcacbcafaad8b30c718ccb02affa1a7ade1"
+          },
+          {
+            "imageName": "20250515T131906360Z1.png",
+            "imageSha": "cbf15389b46e4c55f4ede3404d631bd98ad6747e"
+          }
+        ],
+        "id": "#2"
+      },
+      {
+        "place": "Drive In Beach",
+        "type": "soil",
+        "date": "2025-04-19",
+        "time": "4:58 PM",
+        "latitude": 11.808,
+        "longitude": 75.432444,
+        "notes": "Collected from Muzhappilangaad Drive In Beach at Kannur, Kerala",
+        "images": [
+          {
+            "imageName": "20250511T200348820Z0.png",
+            "imageSha": "3ad912069b64acc5e7cac2cc13bea58c6e9a370c"
+          },
+          {
+            "imageName": "20250511T200350825Z1.png",
+            "imageSha": "c73e4b39ac3ce5e0045a453be70a9609059fa3e5"
+          }
+        ],
+        "id": "#3"
+      }
+    ]
+  },
+  {
+    "code": "MP",
+    "state": "Madhya Pradesh",
+    "samples": []
+  },
+  {
+    "code": "MH",
+    "state": "Maharashtra",
+    "samples": [
+      {
+        "place": "Chhatrapati Sambhajinagar",
+        "type": "soil",
+        "date": "2025-12-21",
+        "time": "9:12 AM",
+        "latitude": 20.0031339,
+        "longitude": 75.1324081,
+        "notes": "Collected near Udupi Restaurant after breakfast, en route to Patan during our Rajasthan trip.",
+        "images": [
+          {
+            "imageName": "20251221T062617866Z0.png",
+            "imageSha": "8990ee35b9c3a4894e26100bdb91cd7a4bd8d09b"
+          },
+          {
+            "imageName": "20251221T062622318Z1.png",
+            "imageSha": "a97aae4b486cc59eab5e36e1a63376bec01a3aed"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
+  },
+  {
+    "code": "MN",
+    "state": "Manipur",
+    "samples": []
+  },
+  {
+    "code": "ML",
+    "state": "Meghalaya",
+    "samples": []
+  },
+  {
+    "code": "MZ",
+    "state": "Mizoram",
+    "samples": []
+  },
+  {
+    "code": "NL",
+    "state": "Nagaland",
+    "samples": []
+  },
+  {
+    "code": "OD",
+    "state": "Odisha",
+    "samples": []
+  },
+  {
+    "code": "PB",
+    "state": "Punjab",
+    "samples": []
+  },
+  {
+    "code": "RJ",
+    "state": "Rajasthan",
+    "samples": [
+      {
+        "place": "Jaisalmer",
+        "type": "soil",
+        "date": "2025-12-24",
+        "time": "6:41 PM",
+        "latitude": 26.8868059,
+        "longitude": 70.5377506,
+        "notes": "This soil sample was collected from the Jaisalmer Desert during our Rajasthan trip, after completing a jeep and camel safari.",
+        "images": [
+          {
+            "imageName": "20251228T200042438Z0.png",
+            "imageSha": "bfc03db2277b56b1ea8d16c915caf636fab0cdb0"
+          },
+          {
+            "imageName": "20251228T200045139Z1.png",
+            "imageSha": "d375023546acd1161f392b2871e3ce96ba711940"
+          }
+        ],
+        "id": "#1"
+      },
+      {
+        "place": "Jaipur - Hawa Mahal",
+        "type": "soil",
+        "date": "2025-12-29",
+        "time": "12:20 AM",
+        "latitude": 26.924109,
+        "longitude": 75.8271985,
+        "notes": "During our Rajasthan trip, this soil sample was collected in Jaipur from beneath a plant in front of the iconic Hawa Mahal while enjoying a night drive.",
+        "images": [
+          {
+            "imageName": "20251228T200744903Z0.png",
+            "imageSha": "6cb5e895f29253f119bd538a91b7de58731389db"
+          },
+          {
+            "imageName": "20251228T200747843Z1.png",
+            "imageSha": "4db5a1cc189b9572f295db842ada23e46b9c9d4d"
+          }
+        ],
+        "id": "#2"
+      }
+    ]
+  },
+  {
+    "code": "SK",
+    "state": "Sikkim",
+    "samples": []
+  },
+  {
+    "code": "TN",
+    "state": "Tamil Nadu",
+    "samples": [
+      {
+        "place": "Hogenakkal Falls",
+        "type": "soil",
+        "date": "2025-02-08",
+        "time": "1:30 PM",
+        "latitude": 12.110992844373875,
+        "longitude": 77.77476937632605,
+        "notes": "Collected this from the Kaveri River while enjoying a coracle ride. This spot lies near the border of Tamilnadu and Karnataka.",
+        "images": [
+          {
+            "imageName": "20250515T141722760Z0.png",
+            "imageSha": "6a961c41aabce2ab1bd1267a71b33b18dcc8768a"
+          },
+          {
+            "imageName": "20250515T141731485Z1.png",
+            "imageSha": "f6c3678c41fde3d7627c6927e8f9ed7edbe577a2"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
+  },
+  {
+    "code": "TS",
+    "state": "Telangana",
+    "samples": []
+  },
+  {
+    "code": "TR",
+    "state": "Tripura",
+    "samples": []
+  },
+  {
+    "code": "UP",
+    "state": "Uttar Pradesh",
+    "samples": []
+  },
+  {
+    "code": "UK",
+    "state": "Uttarakhand",
+    "samples": []
+  },
+  {
+    "code": "WB",
+    "state": "West Bengal",
+    "samples": [
+      {
+        "place": "Batanagar Ganga Ghat",
+        "type": "soil",
+        "date": "2025-10-24",
+        "time": "4:55 PM",
+        "latitude": 22.513968,
+        "longitude": 88.212112,
+        "notes": "From Batanagar River Ganga Ferry Ghat",
+        "images": [
+          {
+            "imageName": "20251029T183046430Z0.png",
+            "imageSha": "5a9f64153d3b0159074cc78fe79f10b9d3ee9501"
+          },
+          {
+            "imageName": "20251029T183048626Z1.png",
+            "imageSha": "ed7a14ee3d8ab35defeadfd5e7ea67a70ab8c176"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
+  },
+  {
+    "code": "AN",
+    "state": "Andaman and Nicobar Islands",
+    "samples": []
+  },
+  {
+    "code": "CG",
+    "state": "Chandigarh",
+    "samples": []
+  },
+  {
+    "code": "DN",
+    "state": "Dadra & Nagar Haveli and Daman & Diu",
+    "samples": []
+  },
+  {
+    "code": "DL",
+    "state": "Delhi",
+    "samples": []
+  },
+  {
+    "code": "JK",
+    "state": "Jammu & Kashmir",
+    "samples": []
+  },
+  {
+    "code": "LA",
+    "state": "Ladakh",
+    "samples": []
+  },
+  {
+    "code": "LD",
+    "state": "Lakshadweep",
+    "samples": []
+  },
+  {
+    "code": "PY",
+    "state": "Pondicherry",
+    "samples": []
+  }
+]
