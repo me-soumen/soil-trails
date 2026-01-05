@@ -186,7 +186,28 @@
   {
     "code": "MP",
     "state": "Madhya Pradesh",
-    "samples": []
+    "samples": [
+      {
+        "place": "Maheswar",
+        "type": "soil",
+        "date": "2026-01-02",
+        "time": "8:45 PM",
+        "latitude": 22.1726805,
+        "longitude": 75.4565806,
+        "notes": "This soil sample was collected at a toll plaza near Maheshwar, while returning from Rajasthan trip.",
+        "images": [
+          {
+            "imageName": "20260105T072407298Z0.png",
+            "imageSha": "0d85c34f715627f45b77dca67c9cbb72a30ebf43"
+          },
+          {
+            "imageName": "20260105T072410498Z1.png",
+            "imageSha": "ebe899f3576cfe0f4564f82471790f0a93dbb68f"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "MH",
