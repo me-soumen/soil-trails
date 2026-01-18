@@ -107,8 +107,16 @@ function populateSamples(stateData) {
 	sampleSection.innerHTML = '';
 	if(stateData.samples.length == 0) {
 		const tile = document.createElement('div');
-		tile.className = 'no-record d-flex align-items-center justify-content-center fw-bold';
-		tile.innerHTML = `Hope to visit soon...`;
+		tile.className = 'no-record-empty';
+		tile.innerHTML = `
+			<div class="no-record-content">
+				<div class="no-record-icon">
+					<i class="bi bi-map"></i>
+				</div>
+				<h3 class="no-record-title">No samples yet</h3>
+				<p class="no-record-message">We're looking forward to exploring this beautiful state soon!</p>
+			</div>
+		`;
 		sampleSection.appendChild(tile);
 	} else {
 		stateData.samples.forEach(sample => {

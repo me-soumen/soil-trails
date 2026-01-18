@@ -407,6 +407,53 @@ Common Sections
 	color: var(--text-secondary);
 }
 
+/* Empty State Design */
+.no-record-empty {
+	width: 100%;
+	min-height: 400px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 3rem 2rem;
+}
+
+.no-record-content {
+	text-align: center;
+	max-width: 400px;
+}
+
+.no-record-icon {
+	width: 100px;
+	height: 100px;
+	margin: 0 auto 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, rgba(45, 134, 89, 0.1) 0%, rgba(76, 175, 80, 0.1) 100%);
+	border-radius: 50%;
+	border: 2px solid rgba(45, 134, 89, 0.2);
+}
+
+.no-record-icon i {
+	font-size: 48px;
+	color: var(--primary-green);
+	opacity: 0.7;
+}
+
+.no-record-title {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--text-primary);
+	margin-bottom: 0.75rem;
+}
+
+.no-record-message {
+	font-size: 1rem;
+	color: var(--text-secondary);
+	line-height: 1.6;
+	margin: 0;
+}
+
 /*--------------------------------------------------------------------------------------------
 Footer - Professional Design
 --------------------------------------------------------------------------------------------*/
