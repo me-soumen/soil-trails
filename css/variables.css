@@ -1,0 +1,44 @@
+/*--------------------------------------------------------------------------------------------
+Theme Variables
+--------------------------------------------------------------------------------------------*/
+:root {
+	--bg-primary: rgb(255 251 247);
+	--bg-secondary: rgb(238 240 230);
+	--bg-tertiary: rgba(238, 240, 230, 0.5);
+	--text-primary: #333;
+	--text-secondary: #555;
+	--card-bg: #fff;
+	--border-color: #ddd;
+	--primary-green: #2d8659;
+	--primary-green-light: #4CAF50;
+	--primary-green-dark: #1b5e3e;
+	--primary-green-hover: #228B22;
+	--state-tile-bg: rgba(15, 16, 18, 0.16);
+	--state-tile-active-bg: #d4e3d2;
+	--state-tile-active-border: #4CAF50;
+	--shadow: rgba(0,0,0,0.1);
+	--shadow-hover: rgba(0,0,0,0.2);
+	--navbar-bg: #212529;
+	--footer-bg: #212529;
+}
+
+[data-theme="dark"] {
+	--bg-primary: #1a1a1a;
+	--bg-secondary: #2d2d2d;
+	--bg-tertiary: rgba(45, 45, 45, 0.5);
+	--text-primary: #e2e8f0;
+	--text-secondary: #cbd5e1;
+	--card-bg: #2a2a2a;
+	--border-color: #404040;
+	--primary-green: #4CAF50;
+	--primary-green-light: #66bb6a;
+	--primary-green-dark: #2d8659;
+	--primary-green-hover: #66bb6a;
+	--state-tile-bg: rgba(255, 255, 255, 0.1);
+	--state-tile-active-bg: rgba(17, 36, 17, 0.3);
+	--state-tile-active-border: #66bb6a;
+	--shadow: rgba(0,0,0,0.3);
+	--shadow-hover: rgba(0,0,0,0.5);
+	--navbar-bg: #121212;
+	--footer-bg: #121212;
+}

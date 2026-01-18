@@ -1,89 +1,123 @@
 # 🪨 Soil Trails - India Edition
 
-Welcome to the **Soil Trails** — a personal project built to track my hobby of collecting soil samples from various
-places across India!  
-This site helps me record, update, and view the details of all the soils I have collected so far from different states,
-cities, and regions.
+A personal project to document soil and water samples collected from various states and union territories across India. Built with precise geolocation tracking, timestamps, and visual documentation.
 
-🌱 Whether it's the red soil of Tamil Nadu, black cotton soil from Maharashtra, or alluvial soil from the Gangetic
-plains — every sample has a place here!
-
-🎯 My Goal is to collect soil samples from each states and union territories of India! Hope to visit all parts of India someday.
+🌱 **Goal**: Collect samples from all states and union territories of India!
 
 ---
 
-### Website Link
+## 🌐 Website
 
-https://me-soumen.github.io/soil-trails/
-
----
-
-## 🌍 About This Project
-
-This website is built to:
-
-- ✅ **Add** new soil collection entries with place, date, coordinates and notes.
-- ✅ **Delete** existing soil sample details if anything goes wrong.
-- ✅ **View** all collection data in a neat table with location of collection point.
-
-The collection details are saved in a `database/states.json` file, which serves as the master record for my soil
-samples.
+- https://soil.trails.click/
+- https://me-soumen.github.io/soil-trails/
 
 ---
 
-## 🔖 Features
+## ✨ Features
 
-- 📍 **Track places**: Code, State, Place, Date, Time, Latitude, Longitude, Notes
-- 🗺️ **Geolocation support** for accurate coordinates
-- 🔒 Uses **Secure Password** to decrypt the GitHub token for secure updates
-- 📝 All data is version-controlled right here in this repo
-
----
-
-## 🚀 How to Use
-
-1. **Clone or fork** this repo
-2. Open the site from `index.html`
-3. Go to `Add State` page to add new soil entries
-4. View updated details in the main state table
+- 📍 **Add samples** with precise GPS coordinates, timestamps, and notes
+- 🗺️ **Explore by state** with interactive state cards and sample galleries
+- 🖼️ **Visual documentation** with multiple images per sample
+- 🔒 **Secure updates** using encrypted GitHub token authentication
+- 🌓 **Dark/Light theme** toggle
+- 📱 **Fully responsive** design
 
 ---
 
-## 🤝 Collaborators
+## 📁 Project Structure
 
-| Name                 | Role                                  |
-|----------------------|---------------------------------------|
-| **Soumen Mukherjee** | Creator & Collector (Main Maintainer) |
-| **Payel Banerjee**   | Frontend Developer                    |
+```
+soil-trails/
+├── app/                    # Application pages
+│   ├── add/               # Add sample page
+│   └── explore/           # Explore samples page
+├── css/                   # Stylesheets
+│   ├── variables.css      # CSS variables (theme colors)
+│   ├── styles.css         # Base styles (navbar, footer)
+│   ├── components.css     # Reusable components
+│   └── pages.css          # Page-specific styles
+├── js/
+│   ├── pages/             # Page-specific JavaScript
+│   │   ├── index-page.js  # Landing page
+│   │   ├── explore-page.js # Explore page
+│   │   └── add-page.js    # Add sample page
+│   ├── services/          # Core services
+│   │   ├── api.js         # GitHub API integration
+│   │   ├── decrypt.js     # Token decryption
+│   │   └── compressor.js  # Image compression
+│   ├── utils/             # Utilities
+│   │   ├── theme.js       # Theme management
+│   │   ├── logger.js      # Error logging
+│   │   └── notifications.js # Email notifications
+│   └── config/            # Configuration files
+├── database/
+│   ├── data.json          # Main database
+│   ├── backup/            # Database backups
+│   └── places/            # Sample images
+├── images/
+│   ├── favicon.png
+│   ├── logo.png
+│   └── states/            # State map images
+└── index.html             # Landing page
+```
 
 ---
 
-## 📦 Data Structure (Sample Entry)
+## 🚀 Usage
+
+1. **Landing Page**: Overview with statistics and features
+2. **Explore**: Browse samples by state/UT with interactive cards
+3. **Add Sample**: Submit new samples with images, coordinates, and notes
+
+---
+
+## 📦 Data Structure
+
+Samples are stored in `database/data.json` with the following structure:
 
 ```json
 {
-    "code": "KA",
-    "state": "Karnataka",
-    "samples": [
+  "code": "KA",
+  "state": "Karnataka",
+  "samples": [
+    {
+      "id": "#1",
+      "place": "Bangalore",
+      "type": "soil",
+      "date": "2025-05-05",
+      "time": "05:55 PM",
+      "latitude": 12.979647089493072,
+      "longitude": 77.59081867848421,
+      "notes": "Collected near Vidhan Soudha",
+      "images": [
         {
-            "place": "Bangalore",
-            "type": "soil"
-            "date": "2025-05-05",
-            "time": "05:55 PM",
-            "latitude": 12.979647089493072,
-            "longitude": 77.59081867848421,
-            "notes": "Collected near Vidhan Soudha",
-            "images": [
-                {
-                    "imageName": "20250508T190223037Z0.png",
-                    "imageSha": "5a41380291c83e0ff700dd40d379fcc8a37c07ff",
-                },
-                {
-                    "imageName": "20250508T190223037Z1.png",
-                    "imageSha": "5a41380291c83e0ff70dgt456h79fcc8adg64trh",
-                }
-            ],
-            "id": "#1"
+          "imageName": "20250508T190223037Z0.png",
+          "imageSha": "5a41380291c83e0ff700dd40d379fcc8a37c07ff"
         }
-    ]
+      ]
+    }
+  ]
 }
+```
+
+---
+
+## 🤝 Contributors
+
+| Name                 | Role                    |
+|----------------------|-------------------------|
+| **Soumen Mukherjee** | Creator & Maintainer    |
+| **Payel Banerjee**   | Frontend Developer      |
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: HTML5, CSS3 (CSS Variables for theming), JavaScript (ES6+)
+- **Styling**: Bootstrap 5.3.6, Bootstrap Icons
+- **Storage**: GitHub API (Repository-based JSON storage)
+- **Security**: AES-256-GCM encryption with PBKDF2
+
+---
+
+**Note**: This is a personal hobby project. All data is stored securely in the repository using encrypted authentication.
