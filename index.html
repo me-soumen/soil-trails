@@ -14,47 +14,42 @@
 <body class="body-container">
 <!-- Header -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2 fixed-top">
-    <div class="container">
+    <div class="container navbar-container-custom">
         <!-- Logo -->
         <a class="navbar-brand d-flex align-items-center" href="./index.html" id="site-home-a">
-            <img src="./images/common/site-logo.png" alt="Soil Trails" width="60" height="60" class="me-2">
-            <div class="fw-bold title-text pt-2" style="font-family: 'Poppins', sans-serif;color: rgb(208 204 194)">
+            <img src="./images/common/site-logo.png" alt="Soil Trails" class="navbar-logo">
+            <div class="fw-bold title-text" style="font-family: 'Poppins', sans-serif;color: rgb(208 204 194); margin-top: 9px;">
                 <span class="fs-1">Soil Trails</span>
             </div>
         </a>
 
-        <!-- Toggler for Mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Nav Items -->
-        <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item me-3">
-                    <button class="theme-toggle theme-toggle-light" onclick="window.themeManager.toggle()" aria-label="Toggle theme" data-theme="light">
-                        <div class="theme-toggle-track">
-                            <div class="theme-toggle-knob">
-                                <svg class="theme-toggle-icon theme-toggle-icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
-                                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                                <svg class="theme-toggle-icon theme-toggle-icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
-                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                </svg>
-                            </div>
+        <!-- Theme Toggle and Add Button -->
+        <div class="navbar-actions d-flex align-items-center gap-3">
+            <div class="navbar-theme-toggle">
+                <button class="theme-toggle theme-toggle-light" onclick="window.themeManager.toggle()" aria-label="Toggle theme" data-theme="light">
+                    <div class="theme-toggle-track">
+                        <div class="theme-toggle-knob">
+                            <svg class="theme-toggle-icon theme-toggle-icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <svg class="theme-toggle-icon theme-toggle-icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
                         </div>
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-success btn-lg d-flex align-items-center justify-content-center">
-                        <a href="add-sample" class="add-page-link">
-                            <div class="pe-2 fs-4 fw-bold">+</div>
-                            <div class="pe-1 fs-4 fw-bold">Add Sample</div>
-                        </a>
-                    </button>
-                </li>
-            </ul>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Add Sample Button - Always Visible -->
+            <a href="add-sample" class="btn-add-sample">
+                <svg class="btn-add-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 2v6m0 0h6M9 8h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 12h14M5 12v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8M5 12h14M19 8V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="btn-add-sample-text">Add New Sample</span>
+                <span class="btn-add-sample-text-mobile">Add</span>
+            </a>
         </div>
     </div>
 </nav>

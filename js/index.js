@@ -55,32 +55,37 @@ function populateStates() {
 		tile.className = 'state-tile position-relative';
 
 		const stateNumber = getStateNumber(state.code);
-		const stateKeyDisplay = stateNumber 
-			? `<div class="state-key-badge"><span class="state-key-code">${state.code}</span><span class="state-key-number">#${stateNumber}</span></div>` 
-			: `<div class="state-key-badge"><span class="state-key-code">${state.code}</span></div>`;
+		
+		// Calculate sample counts
+		const sampleTypes = { soil: 0, water: 0 };
+		state.samples.forEach(sample => {
+			(sample?.type === 'water') ? sampleTypes.water++ : sampleTypes.soil++;
+		});
+		const totalSamples = state.samples.length;
 
-		let stateTileHTML = `<img src="./images/states/${state.code}.png" alt="${state.state}" class="state-map">`
-							+ `<div class="fw-bold state-name">${state.state}</div>`
-							+ stateKeyDisplay;
-		// Show sample count badge if present
-		var badge = document.createElement('div');
-		if (state.samples.length > 0) {
-			const sampleTypes = { soil: 0, water: 0 };
-			state.samples.forEach(sample => {
-				(sample?.type === 'water') ? sampleTypes.water++ : sampleTypes.soil++;
-			});
+		// Build state card HTML
+		let stateTileHTML = `
+			<div class="state-card-header">
+				<div class="state-sample-badges">
+					${totalSamples > 0 ? `
+						${sampleTypes.soil > 0 ? `<span class="state-sample-badge state-sample-badge-soil"><i class="bi bi-circle-fill"></i> ${sampleTypes.soil}</span>` : ''}
+						${sampleTypes.water > 0 ? `<span class="state-sample-badge state-sample-badge-water"><i class="bi bi-droplet-fill"></i> ${sampleTypes.water}</span>` : ''}
+					` : '<span class="state-sample-badge state-sample-badge-empty">No samples</span>'}
+				</div>
+			</div>
+			<div class="state-map-container">
+				<img src="./images/states/${state.code}.png" alt="${state.state}" class="state-map">
+			</div>
+			<div class="state-card-body">
+				<div class="state-name">${state.state}</div>
+				<div class="state-code-badge">
+					<span class="state-code">${state.code}</span>
+					${stateNumber ? `<span class="state-key-number">#${stateNumber}</span>` : ''}
+				</div>
+			</div>
+		`;
 
-			const type = (sampleTypes.water > 0 && sampleTypes.soil > 0) ? 'both' : (sampleTypes.water > 0) ? 'water' : 'soil';
-			badge.className = `position-absolute translate-middle badge badge-position rounded-pill d-flex ${type}-badge`;
-			if (sampleTypes.soil > 0) {
-				badge.innerHTML += `<div class="soil-badge">${sampleTypes.soil}</div>`;
-			}
-			if (sampleTypes.water > 0) {
-				badge.innerHTML += `<div class="water-badge">${sampleTypes.water}</div>`;
-			}
-		}
 		tile.innerHTML = stateTileHTML;
-		tile.appendChild(badge);
 
 		tile.addEventListener('click', () => {
 			document.querySelectorAll('.state-tile').forEach(el => el.classList.remove('active'));
