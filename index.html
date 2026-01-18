@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soil Trails - Documenting India's Environmental Resources</title>
-    <link rel="icon" href="../images/misc/logo.png" type="image/png"/>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" href="./images/favicon.png" type="image/png"/>
+    <link rel="stylesheet" href="./css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"/>
@@ -17,7 +17,7 @@
     <div class="container navbar-container-custom">
         <!-- Logo -->
         <a class="navbar-brand d-flex align-items-center" href="./" id="site-home-a">
-            <img src="../images/common/site-logo.png" alt="Soil Trails" class="navbar-logo">
+            <img src="./images/logo.png" alt="Soil Trails" class="navbar-logo">
             <div class="fw-bold title-text" style="font-family: 'Poppins', sans-serif;color: rgb(208 204 194); margin-top: 9px;">
                 <span class="fs-1">Soil Trails</span>
             </div>
@@ -42,7 +42,7 @@
             </div>
 
             <!-- Add Sample Button - Always Visible -->
-            <a href="add/" class="btn-add-sample">
+            <a href="app/add/" class="btn-add-sample">
                 <svg class="btn-add-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 2v6m0 0h6M9 8h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M5 12h14M5 12v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8M5 12h14M19 8V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -63,7 +63,7 @@
                 <h1 class="hero-title">Documenting India's Environmental Resources</h1>
                 <p class="hero-description">A comprehensive platform documenting soil and water samples across India with precise geolocation, timestamps, and detailed observations—enabling research, education, and environmental awareness through systematic data collection.</p>
                 <div class="hero-cta-buttons">
-                    <a href="explore/" class="btn-hero-cta">
+                    <a href="app/explore/" class="btn-hero-cta">
                         <span>Explore Samples</span>
                         <i class="bi bi-arrow-right"></i>
                     </a>
@@ -200,7 +200,7 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="../js/theme.js"></script>
-<script src="../js/landing.js" type="module"></script>
+<script src="./js/utils/theme.js"></script>
+<script src="./js/pages/index-page.js" type="module"></script>
 </body>
 </html>

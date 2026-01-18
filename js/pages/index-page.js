@@ -1,11 +1,11 @@
 // Landing Page - Statistics Update
 async function loadStatsConfig() {
-	const response = await fetch("../js/config/config.json");
+	const response = await fetch("./js/config/config.json");
 	return await response.json();
 }
 
 async function loadSamplesFromDb(config) {
-	const dbPath = `../${config.databaseFolderPath}/${config.databaseFileName}`;
+	const dbPath = `./${config.databaseFolderPath}/${config.databaseFileName}`;
 	const response = await fetch(dbPath);
 	return await response.json();
 }

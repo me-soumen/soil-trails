@@ -1,6 +1,6 @@
-import { backupDatabase, fetchFileContent, uploadNewFile, updateFile } from './github_api.js';
-import { sendEmailNotification } from './notifications.js';
-import { logError, logInfo } from './logger.js';
+import { backupDatabase, fetchFileContent, uploadNewFile, updateFile } from '../services/api.js';
+import { sendEmailNotification } from '../utils/notifications.js';
+import { logError, logInfo } from '../utils/logger.js';
 
 var config = JSON.parse(localStorage.getItem('appConfig'));
 

@@ -1,4 +1,4 @@
-import { decryptToken } from './credentials/credentials.js';
+import { decryptToken } from './decrypt.js';
 
 /*------------------------------------------------------------------------------------------------
 GitHub APIs: Fetch Content / Upload a File / Update a File

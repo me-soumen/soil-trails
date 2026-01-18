@@ -3,7 +3,7 @@
   "databaseFolderPath": "database",
   "databaseBackupFolderPath": "database/backup",
   "stateImagesFolderPath": "images/states",
-  "placeImagesFolderPath": "images/places",
+  "placeImagesFolderPath": "database/places",
   "mapBaseUrl": "https://www.google.com/maps?q=",
   "databaseFileName": "data.json",
   "stateListFileName": "states.json",

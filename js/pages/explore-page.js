@@ -1,6 +1,6 @@
-import { backupDatabase, fetchFileContent, uploadNewFile, updateFile, deleteFile } from './github_api.js';
-import { sendEmailNotification } from './notifications.js';
-import { logError, logInfo } from './logger.js';
+import { backupDatabase, fetchFileContent, uploadNewFile, updateFile, deleteFile } from '../services/api.js';
+import { sendEmailNotification } from '../utils/notifications.js';
+import { logError, logInfo } from '../utils/logger.js';
 
 const carousel = document.getElementById('state-carousel');
 const sampleSection = document.getElementById('sample-section');
