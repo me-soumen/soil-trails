@@ -42,26 +42,6 @@
           }
         ],
         "id": "#2"
-      },
-      {
-        "place": "Test",
-        "type": "soil",
-        "date": "2026-01-19",
-        "time": "12:44 AM",
-        "latitude": 1.2,
-        "longitude": 1.2,
-        "notes": "test new logic",
-        "images": [
-          {
-            "imageName": "20260118T191439083Z0.png",
-            "imageSha": "dfbe671d219e90b8c8fc5607ff47c4fc2bd3ad2a"
-          },
-          {
-            "imageName": "20260118T191440515Z1.png",
-            "imageSha": "dfbe671d219e90b8c8fc5607ff47c4fc2bd3ad2a"
-          }
-        ],
-        "id": "#3"
       }
     ]
   },
