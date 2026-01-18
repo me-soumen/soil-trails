@@ -8,7 +8,7 @@ var config = {};
 
 // Load config file
 async function loadConfig() {
-	const response = await fetch("./js/config/config.json");
+	const response = await fetch("../../js/config/config.json");
 	config = await response.json();
 	localStorage.setItem('appConfig', JSON.stringify(config));
 }
@@ -18,13 +18,13 @@ var statesConfig = {};
 
 // Load states config for numbering
 async function loadStatesConfig() {
-	const response = await fetch("./js/config/states.json");
+	const response = await fetch("../../js/config/states.json");
 	statesConfig = await response.json();
 }
 
 // Load samples from database
 async function loadSamplesFromDb() {
-	const dbPath = `./${config.databaseFolderPath}/${config.databaseFileName}`;
+	const dbPath = `../../${config.databaseFolderPath}/${config.databaseFileName}`;
 	const response = await fetch(dbPath);
 	data = await response.json();
 }
@@ -74,7 +74,7 @@ function populateStates() {
 				</div>
 			</div>
 			<div class="state-map-container">
-				<img src="./images/states/${state.code}.png" alt="${state.state}" class="state-map">
+				<img src="../../images/states/${state.code}.png" alt="${state.state}" class="state-map">
 			</div>
 			<div class="state-card-body">
 				<div class="state-name">${state.state}</div>
@@ -91,10 +91,12 @@ function populateStates() {
 			document.querySelectorAll('.state-tile').forEach(el => el.classList.remove('active'));
 			tile.classList.add('active');
 			populateSamples(state);
+			updateSamplesSectionTitle(state.state);
 		});
 		if (index === 0) {
 			tile.classList.add('active');
 			populateSamples(state);
+			updateSamplesSectionTitle(state.state);
 		}
 		carousel.appendChild(tile);
 	});
@@ -120,10 +122,10 @@ function populateSamples(stateData) {
 				    </div>
 				    <div class="carousel-inner rounded-top">
 				        <div class="carousel-item active">
-				            <img src="./${config.placeImagesFolderPath}/${sample.images[0].imageName}" class="d-block w-100" alt="${sample.place}">
+				            <img src="../../${config.placeImagesFolderPath}/${sample.images[0].imageName}" class="d-block w-100" alt="${sample.place}">
 				        </div>
 				        <div class="carousel-item">
-				            <img src="./${config.placeImagesFolderPath}/${sample.images[1].imageName}" class="d-block w-100" alt="${sample.place} second view">
+				            <img src="../../${config.placeImagesFolderPath}/${sample.images[1].imageName}" class="d-block w-100" alt="${sample.place} second view">
 				        </div>
 				    </div>
 				    <!-- Previous button -->
@@ -299,11 +301,55 @@ window.moveCarousel = moveCarousel;
 window.deleteSample = deleteSample;
 window.showAlertToast = showAlertToast;
 
+// Calculate and update statistics
+function updateStatistics() {
+	const totalStates = data.length || 0;
+	let totalSamples = 0;
+	let soilSamples = 0;
+	let waterSamples = 0;
+	
+	data.forEach(state => {
+		const stateSampleCount = state.samples ? state.samples.length : 0;
+		totalSamples += stateSampleCount;
+		
+		if (state.samples) {
+			state.samples.forEach(sample => {
+				if (sample.type === 'soil') {
+					soilSamples++;
+				} else if (sample.type === 'water') {
+					waterSamples++;
+				}
+			});
+		}
+	});
+	
+	const totalStatesEl = document.getElementById('total-states');
+	const totalSamplesEl = document.getElementById('total-samples');
+	const soilSamplesEl = document.getElementById('soil-samples');
+	const waterSamplesEl = document.getElementById('water-samples');
+	
+	if (totalStatesEl) totalStatesEl.textContent = totalStates;
+	if (totalSamplesEl) totalSamplesEl.textContent = totalSamples;
+	if (soilSamplesEl) soilSamplesEl.textContent = soilSamples;
+	if (waterSamplesEl) waterSamplesEl.textContent = waterSamples;
+}
+
+// Update samples section title when state is selected
+function updateSamplesSectionTitle(stateName) {
+	const titleEl = document.getElementById('samples-section-title');
+	if (titleEl && stateName) {
+		titleEl.textContent = `${stateName} Samples`;
+	} else if (titleEl) {
+		titleEl.textContent = 'All Samples';
+	}
+}
+
 // Load functions on window load
 window.onload = async function() {
 	await loadConfig();
 	config = JSON.parse(localStorage.getItem('appConfig'));
 	await loadStatesConfig();
 	await loadSamplesFromDb();
+	updateStatistics();
 	populateStates();
 }

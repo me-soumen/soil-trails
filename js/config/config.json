@@ -1,11 +1,11 @@
 {
   "baseUrl": "https://api.github.com/repos/me-soumen/soil-trails/contents",
-  "databaseFolderPath": "storage",
-  "databaseBackupFolderPath": "storage/backup",
+  "databaseFolderPath": "database",
+  "databaseBackupFolderPath": "database/backup",
   "stateImagesFolderPath": "images/states",
   "placeImagesFolderPath": "images/places",
   "mapBaseUrl": "https://www.google.com/maps?q=",
-  "databaseFileName": "database.json",
+  "databaseFileName": "data.json",
   "stateListFileName": "states.json",
   "commit": {
     "committerName": "Santi Cru",

@@ -14,7 +14,7 @@ async function ensureConfigLoaded() {
 
     if (needsRefresh) {
         try {
-            const resp = await fetch(`../js/config/config.json?v=${Date.now()}`);
+            const resp = await fetch(`../../js/config/config.json?v=${Date.now()}`);
             config = await resp.json();
             localStorage.setItem('appConfig', JSON.stringify(config));
         } catch (e) {
@@ -55,7 +55,7 @@ export function populateDropdown(states, uts) {
 }
 
 // State/UT dropdown load
-fetch(`../js/config/${config.stateListFileName}`)
+fetch(`../../js/config/${config.stateListFileName}`)
 	.then(response => response.json())
 	.then(data => {
 	const { states, uts } = data;

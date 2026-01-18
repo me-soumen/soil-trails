@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Soil Trails</title>
-    <link rel="icon" href="./images/misc/logo.png" type="image/png"/>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="../../images/misc/logo.png" type="image/png"/>
+    <link rel="stylesheet" href="../../css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"/>
@@ -16,8 +16,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2 fixed-top">
     <div class="container navbar-container-custom">
         <!-- Logo -->
-        <a class="navbar-brand d-flex align-items-center" href="./index.html" id="site-home-a">
-            <img src="./images/common/site-logo.png" alt="Soil Trails" class="navbar-logo">
+        <a class="navbar-brand d-flex align-items-center" href="../" id="site-home-a">
+            <img src="../../images/common/site-logo.png" alt="Soil Trails" class="navbar-logo">
             <div class="fw-bold title-text" style="font-family: 'Poppins', sans-serif;color: rgb(208 204 194); margin-top: 9px;">
                 <span class="fs-1">Soil Trails</span>
             </div>
@@ -42,7 +42,7 @@
             </div>
 
             <!-- Add Sample Button - Always Visible -->
-            <a href="add-sample" class="btn-add-sample">
+            <a href="../add/" class="btn-add-sample">
                 <svg class="btn-add-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 2v6m0 0h6M9 8h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M5 12h14M5 12v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8M5 12h14M19 8V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -55,20 +55,38 @@
 </nav>
 
 <!-- Main Body -->
-<div class="container pt-6">
-    <div class="carousel-wrapper">
-        <button class="arrow left" onclick="moveCarousel(-1)">
-            <i class="bi bi-caret-left-fill"></i>
-        </button>
-        <section class="carousel" id="state-carousel">
-            <!-- Dynamic State Tiles -->
-        </section>
-        <button class="arrow right" onclick="moveCarousel(1)">
-            <i class="bi bi-caret-right-fill"></i>
-        </button>
-    </div>
-    <section class="samples" id="sample-section">
-        <!-- Dynamic Sample Tiles -->
+<div class="main-content-wrapper">
+    <!-- State Carousel Section -->
+    <section class="states-section">
+        <div class="container states-container">
+            <div class="section-header">
+                <h2 class="section-title">Explore by State</h2>
+                <p class="section-subtitle">Select a state or union territory to view samples</p>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="arrow left" onclick="moveCarousel(-1)">
+                    <i class="bi bi-caret-left-fill"></i>
+                </button>
+                <section class="carousel" id="state-carousel">
+                    <!-- Dynamic State Tiles -->
+                </section>
+                <button class="arrow right" onclick="moveCarousel(1)">
+                    <i class="bi bi-caret-right-fill"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Samples Section -->
+    <section class="samples-section">
+        <div class="container samples-container">
+            <div class="section-header">
+                <h2 class="section-title" id="samples-section-title">All Samples</h2>
+            </div>
+            <div class="samples" id="sample-section">
+                <!-- Dynamic Sample Tiles -->
+            </div>
+        </div>
     </section>
 
     <!-- Password Modal -->
@@ -80,9 +98,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <div class="mb-3" id="sample-info" style="display: none;">
+                        <p class="text-muted mb-0" style="color: var(--text-secondary) !important;">
+                            <i class="bi bi-info-circle"></i> Sample ID: <strong id="sample-id-display"></strong>
+                        </p>
+                    </div>
                     <form>
                         <div class="mb-3 position-relative">
-                            <input type="password" class="form-control" id="password" placeholder="Enter Password"
+                            <label for="password" class="form-label-custom">
+                                <i class="bi bi-lock-fill"></i> Password Required
+                            </label>
+                            <input type="password" class="form-control-custom" id="password" placeholder="Enter your password to confirm deletion"
                                    autocomplete="off">
                             <button type="button" class="btn-eye-toggle" onclick="togglePasswordVisibility('password', 'password-eye-icon')" id="password-eye-icon">
                                 <i class="bi bi-eye"></i>
@@ -91,10 +117,11 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary w-50" id="confirm-delete-btn"
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirm-delete-btn"
                             onclick="handleConfirmDelete()">Confirm
                     </button>
-                    <button class="btn btn-primary w-50" type="button" id="confirm-delete-pending-btn" disabled hidden>
+                    <button class="btn btn-primary" type="button" id="confirm-delete-pending-btn" disabled hidden>
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         Deleting...
                     </button>
@@ -112,7 +139,7 @@
             <!-- About -->
             <div class="col-md-4 col-lg-4 col-xl-4 footer-section">
                 <h5 class="footer-heading">Soil Trails</h5>
-                <p class="footer-text">A comprehensive platform documenting soil and water samples from across India. Each entry includes precise location coordinates, date, time, and detailed observations—connecting geography with environmental data for research, education, and environmental awareness.</p>
+                <p class="footer-text">Documenting soil and water samples from across India with precise geolocation and detailed observations for research and environmental awareness.</p>
             </div>
             <!-- Contact -->
             <div class="col-md-4 col-lg-4 col-xl-4 footer-section footer-contact-section">
@@ -165,8 +192,8 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="./js/theme.js"></script>
-<script src="./js/index.js" type="module"></script>
+<script src="../../js/theme.js"></script>
+<script src="../../js/index.js" type="module"></script>
 <script>
     const deleteModal = document.getElementById('delete-modal');
     const passwordInput = document.getElementById('password');
@@ -177,16 +204,29 @@
     if (deleteModal) {
         deleteModal.addEventListener('show.bs.modal', event => {
             const button = event.relatedTarget;
-            const sampleId = button.getAttribute('data-id');
-            const stateCode = button.getAttribute('data-code');
-            currentSample = { sampleId, stateCode };
+            currentSample = {
+                stateCode: button.getAttribute('data-code'),
+                sampleId: button.getAttribute('data-id')
+            };
 
             const modalTitle = deleteModal.querySelector('.modal-title');
-            modalTitle.textContent = `Want to delete the Sample: ${stateCode}${sampleId}?`;
+            modalTitle.textContent = `Want to delete this Sample?`;
+
+            // Display sample ID info
+            const sampleInfoDiv = document.getElementById('sample-info');
+            const sampleIdDisplay = document.getElementById('sample-id-display');
+            if (sampleInfoDiv && sampleIdDisplay && currentSample.stateCode && currentSample.sampleId) {
+                sampleIdDisplay.textContent = `${currentSample.stateCode}${currentSample.sampleId}`;
+                sampleInfoDiv.style.display = 'block';
+            }
 
             passwordInput.value = '';
             passwordInput.classList.remove('is-invalid');
-            setTimeout(() => passwordInput.focus(), 200);
+        });
+
+        // Focus password input after modal is fully shown
+        deleteModal.addEventListener('shown.bs.modal', event => {
+            passwordInput.focus();
         });
     }
 

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Trails - Documenting India's Environmental Resources</title>
+    <link rel="icon" href="../images/misc/logo.png" type="image/png"/>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"/>
+    <base href="./">
+</head>
+<body class="body-container">
+<!-- Header -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2 fixed-top">
+    <div class="container navbar-container-custom">
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="./" id="site-home-a">
+            <img src="../images/common/site-logo.png" alt="Soil Trails" class="navbar-logo">
+            <div class="fw-bold title-text" style="font-family: 'Poppins', sans-serif;color: rgb(208 204 194); margin-top: 9px;">
+                <span class="fs-1">Soil Trails</span>
+            </div>
+        </a>
+
+        <!-- Theme Toggle and Add Button -->
+        <div class="navbar-actions d-flex align-items-center gap-3">
+            <div class="navbar-theme-toggle">
+                <button class="theme-toggle theme-toggle-light" onclick="window.themeManager.toggle()" aria-label="Toggle theme" data-theme="light">
+                    <div class="theme-toggle-track">
+                        <div class="theme-toggle-knob">
+                            <svg class="theme-toggle-icon theme-toggle-icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <svg class="theme-toggle-icon theme-toggle-icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Add Sample Button - Always Visible -->
+            <a href="add/" class="btn-add-sample">
+                <svg class="btn-add-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 2v6m0 0h6M9 8h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 12h14M5 12v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8M5 12h14M19 8V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="btn-add-sample-text">Add New Sample</span>
+                <span class="btn-add-sample-text-mobile">Add</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Body -->
+<div class="main-content-wrapper">
+    <!-- Hero Section -->
+    <section class="hero-section hero-section-landing">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Documenting India's Environmental Resources</h1>
+                <p class="hero-description">A comprehensive platform documenting soil and water samples across India with precise geolocation, timestamps, and detailed observations—enabling research, education, and environmental awareness through systematic data collection.</p>
+                <div class="hero-cta-buttons">
+                    <a href="explore/" class="btn-hero-cta">
+                        <span>Explore Samples</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container stats-container">
+            <div class="stats-grid" id="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="bi bi-geo-alt"></i>
+                    </div>
+                    <div class="stat-value" id="total-locations">0</div>
+                    <div class="stat-label">State & UT Visited</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="bi bi-collection"></i>
+                    </div>
+                    <div class="stat-value" id="total-samples">0</div>
+                    <div class="stat-label">Total Samples</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="bi bi-map"></i>
+                    </div>
+                    <div class="stat-value" id="soil-samples">0</div>
+                    <div class="stat-label">Soil Samples</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="bi bi-droplet"></i>
+                    </div>
+                    <div class="stat-value" id="water-samples">0</div>
+                    <div class="stat-label">Water Samples</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container features-container">
+            <div class="section-header">
+                <h2 class="section-title">Platform Capabilities</h2>
+                <p class="section-subtitle">Built for precision, designed for research and environmental documentation</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <h3 class="feature-title">Precise Geolocation</h3>
+                    <p class="feature-description">Exact GPS coordinates for accurate mapping, spatial analysis, and location-based research.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
+                    <h3 class="feature-title">Timestamp Tracking</h3>
+                    <p class="feature-description">Date and time metadata enabling temporal analysis and change detection over time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-camera-fill"></i>
+                    </div>
+                    <h3 class="feature-title">Visual Documentation</h3>
+                    <p class="feature-description">Multiple high-quality images per sample for comprehensive visual reference and analysis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-journal-text"></i>
+                    </div>
+                    <h3 class="feature-title">Detailed Notes</h3>
+                    <p class="feature-description">Comprehensive observations and contextual notes for enhanced data interpretation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer class="footer-custom">
+    <div class="container footer-container">
+        <div class="row footer-content">
+            <!-- About -->
+            <div class="col-md-4 col-lg-4 col-xl-4 footer-section">
+                <h5 class="footer-heading">Soil Trails</h5>
+                <p class="footer-text">Documenting soil and water samples from across India with precise geolocation and detailed observations for research and environmental awareness.</p>
+            </div>
+            <!-- Contact -->
+            <div class="col-md-4 col-lg-4 col-xl-4 footer-section footer-contact-section">
+                <h5 class="footer-heading">Contact</h5>
+                <div class="footer-contact-item">
+                    <i class="bi bi-geo-alt-fill footer-icon"></i>
+                    <span>Bangalore, Karnataka, India</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="bi bi-envelope-fill footer-icon"></i>
+                    <a href="mailto:hi@trails.click" class="contact-link">hi@trails.click</a>
+                </div>
+            </div>
+            <!-- Social -->
+            <div class="col-md-4 col-lg-4 col-xl-4 footer-section footer-social-section">
+                <h5 class="footer-heading">Follow us</h5>
+                <div class="footer-social-links">
+                    <a href="https://www.youtube.com/@SantiCruClips" target="_blank" class="footer-social-link" aria-label="YouTube">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                    <a href="https://www.instagram.com/_santi_cru_/" target="_blank" class="footer-social-link" aria-label="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=100091524044969&mibextid=ZbWKwL" target="_blank" class="footer-social-link" aria-label="Facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright -->
+        <div class="footer-divider"></div>
+        <div class="footer-copyright">
+            <p class="footer-copyright-text">Copyright © 2025 <a href="https://trails.click" target="_blank" class="copyright">Trails Labs</a>. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/landing.js" type="module"></script>
+</body>
+</html>
