@@ -452,17 +452,204 @@ Common Sections
 	color: var(--text-secondary);
 }
 
+/*--------------------------------------------------------------------------------------------
+Footer - Professional Design
+--------------------------------------------------------------------------------------------*/
+.footer-custom {
+	background: var(--footer-bg);
+	color: #e2e8f0;
+	padding: 3.5rem 0 1.5rem;
+	border-top: 1px solid var(--border-color);
+	margin-top: 4rem;
+	transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.footer-container {
+	max-width: 1200px;
+}
+
+.footer-content {
+	margin-bottom: 2rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.footer-section {
+	margin-bottom: 2rem;
+	padding: 0 1rem;
+	flex: 1;
+	max-width: 100%;
+}
+
+.footer-section:first-child {
+	flex: 0 0 auto;
+	max-width: calc(33.333% - 2rem);
+}
+
+.footer-contact-section {
+	padding-left: 4.5rem !important;
+}
+
+.footer-social-section {
+	padding-left: 2rem;
+}
+
+@media (max-width: 991px) {
+	.footer-section:first-child {
+		max-width: 100%;
+	}
+	
+	.footer-contact-section,
+	.footer-social-section {
+		padding-left: 1rem;
+	}
+}
+
+.footer-heading {
+	color: var(--primary-green-light);
+	font-size: 1.1rem;
+	font-weight: 700;
+	margin-bottom: 1.25rem;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+}
+
+.footer-text {
+	color: #e2e8f0;
+	font-size: 0.95rem;
+	line-height: 1.6;
+	margin: 0;
+}
+
+.footer-contact-item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.75rem;
+	color: #e2e8f0;
+	font-size: 0.95rem;
+	gap: 0.75rem;
+}
+
+.footer-contact-item span {
+	color: #e2e8f0;
+}
+
+.footer-icon {
+	color: var(--primary-green);
+	font-size: 1rem;
+	flex-shrink: 0;
+}
+
 .contact-link {
-	color: white;
+	color: #e2e8f0;
 	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+	color: var(--primary-green-light);
+	text-decoration: none;
+}
+
+.footer-social-links {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+
+.footer-social-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	background: rgba(76, 175, 80, 0.1);
+	color: #e2e8f0;
+	font-size: 1.3rem;
+	text-decoration: none;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	border: 2px solid transparent;
+}
+
+.footer-social-link:hover {
+	background: var(--primary-green);
+	color: white;
+	transform: translateY(-3px);
+	box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+	border-color: rgba(76, 175, 80, 0.3);
+	text-decoration: none;
+}
+
+.footer-social-link:active {
+	transform: translateY(-1px);
+}
+
+.footer-divider {
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+	margin: 2rem 0 1.5rem;
+}
+
+.footer-copyright {
+	text-align: center;
+	padding-top: 1rem;
+}
+
+.footer-copyright-text {
+	color: #e2e8f0;
+	font-size: 0.9rem;
+	margin: 0;
+	line-height: 1.6;
 }
 
 .copyright {
 	text-decoration: none;
-	color: #ffc008;
+	color: var(--primary-green-light);
+	font-weight: 600;
+	transition: all 0.3s ease;
 }
+
 .copyright:hover {
-	font-size: 1.1em;
+	color: var(--primary-green);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+	.footer-custom {
+		padding: 2.5rem 0 1.25rem;
+		margin-top: 3rem;
+	}
+	
+	.footer-content {
+		flex-direction: column;
+	}
+	
+	.footer-section {
+		text-align: center;
+		margin-bottom: 2rem;
+		padding-left: 10px !important;
+		flex: none;
+		max-width: 100%;
+	}
+	
+	.footer-contact-item {
+		justify-content: center;
+	}
+	
+	.footer-social-links {
+		justify-content: center;
+	}
+	
+	.footer-heading {
+		font-size: 1rem;
+	}
+	
+	.footer-text,
+	.footer-contact-item {
+		font-size: 0.9rem;
+	}
 }
 /*--------------------------------------------------------------------------------------------
 Index Page: State Tiles Carousal
@@ -765,7 +952,7 @@ Index Page: Samples Section
 }
 
 .sample-state-name {
-	color: var(--text-secondary);
+	color: #868b91;
 	font-size: 0.85em;
 }
 
