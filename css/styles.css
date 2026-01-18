@@ -1431,20 +1431,53 @@ Home Page: Samples Section
 
 .delete-btn {
 	position: absolute;
-	top: 10px;
-	right: 10px;
+	top: 12px;
+	right: 12px;
 	border: none;
 	cursor: pointer;
-	background: transparent;
-	font-size: 20px;
-	color: #d9534f;
-}
-.delete-btn:hover {
-	background: #f8d7da;
-	background: white;
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	width: 36px;
+	height: 36px;
 	border-radius: 50%;
-	padding: 3px 8px;
-	box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+	z-index: 10;
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+}
+
+.delete-btn i {
+	font-size: 18px;
+	color: #fff;
+	transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+	background: rgba(220, 53, 69, 0.9);
+	transform: scale(1.1);
+	box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+.delete-btn:hover i {
+	color: #fff;
+	transform: scale(1.1);
+}
+
+.delete-btn:active {
+	transform: scale(0.95);
+	box-shadow: 0 2px 6px rgba(220, 53, 69, 0.3);
+}
+
+/* Theme adjustments for delete button */
+[data-theme="dark"] .delete-btn {
+	background: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .delete-btn:hover {
+	background: rgba(220, 53, 69, 0.85);
 }
 
 /*--------------------------------------------------------------------------------------------
@@ -1623,6 +1656,74 @@ input[type="time"].form-control-custom::-moz-calendar-picker-indicator {
 	opacity: 0.9;
 	width: 20px;
 	height: 20px;
+}
+
+/* Bootstrap Select - Theme Compatible */
+.bootstrap-select .btn.dropdown-toggle {
+	background-color: var(--bg-primary) !important;
+	color: var(--text-primary) !important;
+	border-color: var(--border-color) !important;
+}
+
+.bootstrap-select .btn.dropdown-toggle:focus,
+.bootstrap-select .btn.dropdown-toggle:active {
+	background-color: var(--bg-primary) !important;
+	color: var(--text-primary) !important;
+	border-color: var(--primary-green) !important;
+	box-shadow: 0 0 0 3px rgba(45, 134, 89, 0.1) !important;
+}
+
+.bootstrap-select .dropdown-menu {
+	background-color: var(--card-bg) !important;
+	border-color: var(--border-color) !important;
+	color: var(--text-primary) !important;
+}
+
+.bootstrap-select .dropdown-item {
+	color: var(--text-primary) !important;
+	background-color: transparent !important;
+}
+
+.bootstrap-select .dropdown-item:hover,
+.bootstrap-select .dropdown-item:focus {
+	background-color: var(--bg-secondary) !important;
+	color: var(--text-primary) !important;
+}
+
+.bootstrap-select .dropdown-item.active,
+.bootstrap-select .dropdown-item.selected {
+	background-color: var(--primary-green) !important;
+	color: white !important;
+}
+
+.bootstrap-select .dropdown-item.active:hover,
+.bootstrap-select .dropdown-item.selected:hover {
+	background-color: var(--primary-green-hover) !important;
+	color: white !important;
+}
+
+.bootstrap-select .dropdown-header {
+	color: var(--text-secondary) !important;
+	font-weight: 600;
+}
+
+.bootstrap-select .filter-option {
+	color: var(--text-primary) !important;
+}
+
+.bootstrap-select .bs-searchbox input {
+	background-color: var(--bg-primary) !important;
+	color: var(--text-primary) !important;
+	border-color: var(--border-color) !important;
+}
+
+.bootstrap-select .bs-searchbox input::placeholder {
+	color: var(--text-secondary) !important;
+	opacity: 0.6;
+}
+
+.bootstrap-select .no-results {
+	color: var(--text-secondary) !important;
 }
 
 .form-group-custom {
@@ -2115,4 +2216,28 @@ Delete Modal - Enhanced Design
 .form-control-custom.is-invalid:focus {
 	border-color: #dc3545;
 	box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25);
+}
+
+/* Invalid states for image upload containers */
+.image-upload-container.is-invalid {
+	border-color: #dc3545 !important;
+	box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+/* Invalid state for Bootstrap Select dropdown */
+.bootstrap-select.is-invalid .btn.dropdown-toggle {
+	border-color: #dc3545 !important;
+	box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
+}
+
+.bootstrap-select.is-invalid .btn.dropdown-toggle:focus {
+	box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25) !important;
+}
+
+/* Invalid state for radio button group */
+.sample-type-radio-group.is-invalid {
+	border: 2px solid #dc3545;
+	border-radius: 8px;
+	padding: 8px;
+	box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
 }

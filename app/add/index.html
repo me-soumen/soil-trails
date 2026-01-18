@@ -227,6 +227,37 @@
         dateInput.max = formattedToday;
     });
 
+    // Clear invalid state on input/change
+    document.querySelectorAll('.form-control-custom').forEach(input => {
+        input.addEventListener('input', function() {
+            this.classList.remove('is-invalid');
+        });
+        input.addEventListener('change', function() {
+            this.classList.remove('is-invalid');
+        });
+    });
+
+    // Clear invalid state for image uploads
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', function() {
+            this.closest('.image-upload-container')?.classList.remove('is-invalid');
+        });
+    });
+
+    // Clear invalid state for Bootstrap Select
+    document.querySelectorAll('.bootstrap-select').forEach(select => {
+        select.addEventListener('change', function() {
+            this.classList.remove('is-invalid');
+        });
+    });
+
+    // Clear invalid state for radio buttons
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.querySelector('.sample-type-radio-group')?.classList.remove('is-invalid');
+        });
+    });
+
     // Submit button listener
     document.querySelector('form').addEventListener('submit', async function (e) {
         e.preventDefault(); // prevent default form submission
@@ -253,25 +284,102 @@
 
         const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
 
+        // Clear all previous invalid states
+        document.querySelectorAll('.form-control-custom').forEach(el => el.classList.remove('is-invalid'));
+        document.querySelectorAll('.bootstrap-select').forEach(el => el.classList.remove('is-invalid'));
+        document.querySelectorAll('.image-upload-container').forEach(el => el.classList.remove('is-invalid'));
+
+        let hasErrors = false;
+
         // Input Validation
-        if (!image1) return showAlertToast("Please select a Location Image at 1.", "error");
-        if (!image2) return showAlertToast("Please select a Location Image at 2.", "error");
-        if (!validTypes.includes(image1.type) || !validTypes.includes(image2.type)) {
-            return showAlertToast("Only JPG, JPEG, and PNG images are allowed!", "error");
+        if (!image1) {
+            document.querySelector('#photo1Input').closest('.image-upload-container').classList.add('is-invalid');
+            hasErrors = true;
         }
-        if (!code) return showAlertToast("Please select a State/UT.", "info");
-        if (!place) return showAlertToast("Place is required.", "info");
-        if (!type) return showAlertToast("Sample Type is required.", "info");
-        if (!date) return showAlertToast("Date is required.", "info");
-        if ((new Date(date).setHours(0, 0, 0, 0)) > today) return showAlertToast("Future dates are not allowed.", "info");
-        if (!time) return showAlertToast("Time is required.", "info");
-        if (!latitude || latitude === '') return showAlertToast("Latitude is required.", "info");
-        if (!longitude || longitude === '') return showAlertToast("Longitude is required.", "info");
+        if (!image2) {
+            document.querySelector('#photo2Input').closest('.image-upload-container').classList.add('is-invalid');
+            hasErrors = true;
+        }
+        if (image1 && !validTypes.includes(image1.type)) {
+            document.querySelector('#photo1Input').closest('.image-upload-container').classList.add('is-invalid');
+            hasErrors = true;
+        }
+        if (image2 && !validTypes.includes(image2.type)) {
+            document.querySelector('#photo2Input').closest('.image-upload-container').classList.add('is-invalid');
+            hasErrors = true;
+        }
+        if (!code) {
+            document.querySelector('.bootstrap-select').classList.add('is-invalid');
+            hasErrors = true;
+        }
+        if (!place) {
+            document.getElementById('place').classList.add('is-invalid');
+            hasErrors = true;
+        }
+        if (!type) {
+            // Radio buttons - highlight container
+            document.querySelector('.sample-type-radio-group').classList.add('is-invalid');
+            hasErrors = true;
+        }
+        if (!date) {
+            document.getElementById('date').classList.add('is-invalid');
+            hasErrors = true;
+        }
+        if (date && (new Date(date).setHours(0, 0, 0, 0)) > today) {
+            document.getElementById('date').classList.add('is-invalid');
+            hasErrors = true;
+        }
+        if (!time) {
+            document.getElementById('time').classList.add('is-invalid');
+            hasErrors = true;
+        }
+        if (!latitude || latitude === '') {
+            document.getElementById('latitude').classList.add('is-invalid');
+            hasErrors = true;
+        }
+        if (!longitude || longitude === '') {
+            document.getElementById('longitude').classList.add('is-invalid');
+            hasErrors = true;
+        }
         const latNum = parseFloat(latitude);
         const lonNum = parseFloat(longitude);
-        if (isNaN(latNum) || latNum < -90 || latNum > 90) return showAlertToast("Enter valid Latitude (-90 to 90).", "info");
-        if (isNaN(lonNum) || lonNum < -180 || lonNum > 180) return showAlertToast("Enter valid Longitude (-180 to 180).", "info");
-        if(regex.test(notes)) return showAlertToast("Please remove special characters.", "info");
+        if (latitude && (isNaN(latNum) || latNum < -90 || latNum > 90)) {
+            document.getElementById('latitude').classList.add('is-invalid');
+            hasErrors = true;
+        }
+        if (longitude && (isNaN(lonNum) || lonNum < -180 || lonNum > 180)) {
+            document.getElementById('longitude').classList.add('is-invalid');
+            hasErrors = true;
+        }
+        if (notes && regex.test(notes)) {
+            document.getElementById('notes').classList.add('is-invalid');
+            hasErrors = true;
+        }
+        if (!password) {
+            document.getElementById('password').classList.add('is-invalid');
+            hasErrors = true;
+        }
+
+        // Show first error message and return if there are errors
+        if (hasErrors) {
+            if (!image1) return showAlertToast("Please select a Location Image at 1.", "error");
+            if (!image2) return showAlertToast("Please select a Location Image at 2.", "error");
+            if (image1 && !validTypes.includes(image1.type) || (image2 && !validTypes.includes(image2.type))) {
+                return showAlertToast("Only JPG, JPEG, and PNG images are allowed!", "error");
+            }
+            if (!code) return showAlertToast("Please select a State/UT.", "info");
+            if (!place) return showAlertToast("Place is required.", "info");
+            if (!type) return showAlertToast("Sample Type is required.", "info");
+            if (!date) return showAlertToast("Date is required.", "info");
+            if (date && (new Date(date).setHours(0, 0, 0, 0)) > today) return showAlertToast("Future dates are not allowed.", "info");
+            if (!time) return showAlertToast("Time is required.", "info");
+            if (!latitude || latitude === '') return showAlertToast("Latitude is required.", "info");
+            if (!longitude || longitude === '') return showAlertToast("Longitude is required.", "info");
+            if (latitude && (isNaN(latNum) || latNum < -90 || latNum > 90)) return showAlertToast("Enter valid Latitude (-90 to 90).", "info");
+            if (longitude && (isNaN(lonNum) || lonNum < -180 || lonNum > 180)) return showAlertToast("Enter valid Longitude (-180 to 180).", "info");
+            if (notes && regex.test(notes)) return showAlertToast("Please remove special characters.", "info");
+            if (!password) return showAlertToast("Password is required.", "info");
+        }
 
         // Compress images
         const compressedImages = await Promise.all([
@@ -299,6 +407,12 @@
 
             await addNewSample(code, JSON.stringify(jsonData, null, 2), compressedImages, password);
             showAlertToast("New Sample created successfully!", "success");
+
+            // Clear all invalid states
+            document.querySelectorAll('.form-control-custom').forEach(el => el.classList.remove('is-invalid'));
+            document.querySelectorAll('.bootstrap-select').forEach(el => el.classList.remove('is-invalid'));
+            document.querySelectorAll('.image-upload-container').forEach(el => el.classList.remove('is-invalid'));
+            document.querySelectorAll('.sample-type-radio-group').forEach(el => el.classList.remove('is-invalid'));
 
             form.reset();
             removeImage('1');

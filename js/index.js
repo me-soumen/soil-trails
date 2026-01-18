@@ -137,8 +137,8 @@ function populateSamples(stateData) {
 				        <span class="visually-hidden">Next</span>
 				    </button>
 				    <!-- Delete Button -->
-				    <button class="delete-btn position-absolute top-0 end-0 m-2" style="z-index: 999;" id="delete-sample-btn" data-code="${stateData.code}" data-id="${sample.id}" data-bs-toggle="modal" data-bs-target="#delete-modal">
-				        <i class="bi bi-trash text-danger fs-4"></i>
+				    <button class="delete-btn" id="delete-sample-btn" data-code="${stateData.code}" data-id="${sample.id}" data-bs-toggle="modal" data-bs-target="#delete-modal" aria-label="Delete sample">
+				        <i class="bi bi-trash"></i>
 				    </button>
 				</div>
 				<div class="sample-type-${sample.type}">${sample.type}</div>
