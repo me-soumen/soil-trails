@@ -187,18 +187,18 @@ export function previewImage(event, id) {
 	const input = event.target;
 	const file = input.files[0];
 	const preview = document.getElementById(`photo${id}Preview`);
-	const icon = document.getElementById(`photo${id}Icon`);
-	const label = document.getElementById(`photo${id}Label`);
+	const placeholder = document.getElementById(`photo${id}Placeholder`);
 	const removeBtn = document.getElementById(`removePhoto${id}`);
 
 	if (file) {
 		const reader = new FileReader();
 		reader.onload = function (e) {
-			preview.src = e.target.result;
-			preview.style.display = 'block';
-			icon.style.display = 'none';
-			label.style.display = 'none';
-			removeBtn.style.display = 'block';
+			if (preview) {
+				preview.src = e.target.result;
+				preview.style.display = 'block';
+			}
+			if (placeholder) placeholder.style.display = 'none';
+			if (removeBtn) removeBtn.style.display = 'block';
 		};
 		reader.readAsDataURL(file);
 	}
@@ -208,15 +208,13 @@ export function previewImage(event, id) {
 export function removeImage(id) {
 	const input = document.getElementById(`photo${id}Input`);
 	const preview = document.getElementById(`photo${id}Preview`);
-	const icon = document.getElementById(`photo${id}Icon`);
-	const label = document.getElementById(`photo${id}Label`);
+	const placeholder = document.getElementById(`photo${id}Placeholder`);
 	const removeBtn = document.getElementById(`removePhoto${id}`);
 
 	input.value = '';
 	preview.src = '';
 	preview.style.display = 'none';
-	icon.style.display = 'block';
-	label.style.display = 'block';
+	if (placeholder) placeholder.style.display = 'flex';
 	removeBtn.style.display = 'none';
 }
 

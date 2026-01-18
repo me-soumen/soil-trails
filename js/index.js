@@ -14,11 +14,37 @@ async function loadConfig() {
 }
 
 var data = []
+var statesConfig = {};
+
+// Load states config for numbering
+async function loadStatesConfig() {
+	const response = await fetch("./js/config/states.json");
+	statesConfig = await response.json();
+}
+
 // Load samples from database
 async function loadSamplesFromDb() {
 	const dbPath = `./${config.databaseFolderPath}/${config.databaseFileName}`;
 	const response = await fetch(dbPath);
 	data = await response.json();
+}
+
+// Get state number from states.json config
+function getStateNumber(stateCode) {
+	// Check in states
+	for (const [stateName, code] of Object.entries(statesConfig.states || {})) {
+		if (code === stateCode) {
+			return Object.keys(statesConfig.states).indexOf(stateName) + 1;
+		}
+	}
+	// Check in UTs
+	for (const [utName, code] of Object.entries(statesConfig.uts || {})) {
+		if (code === stateCode) {
+			const statesCount = Object.keys(statesConfig.states || {}).length;
+			return statesCount + Object.keys(statesConfig.uts).indexOf(utName) + 1;
+		}
+	}
+	return null;
 }
 
 // Populate States/UTs tiles
@@ -28,8 +54,14 @@ function populateStates() {
 		const tile = document.createElement('div');
 		tile.className = 'state-tile position-relative';
 
+		const stateNumber = getStateNumber(state.code);
+		const stateKeyDisplay = stateNumber 
+			? `<div class="state-key-badge"><span class="state-key-code">${state.code}</span><span class="state-key-number">#${stateNumber}</span></div>` 
+			: `<div class="state-key-badge"><span class="state-key-code">${state.code}</span></div>`;
+
 		let stateTileHTML = `<img src="./images/states/${state.code}.png" alt="${state.state}" class="state-map">`
-							+ `<div class="fw-bold">${state.state}</div>`;
+							+ `<div class="fw-bold state-name">${state.state}</div>`
+							+ stateKeyDisplay;
 		// Show sample count badge if present
 		var badge = document.createElement('div');
 		if (state.samples.length > 0) {
@@ -108,7 +140,7 @@ function populateSamples(stateData) {
 	                    <h3>${sample.place}</h3>
 	                    <div class="sample-id">${sample.id}</div>
 	                </div>
-	                <div class="text-black-50 small">${stateData.state}</div>
+	                <div class="sample-state-name small">${stateData.state}</div>
 	                <div class="sample-meta">
 	                    <div class="d-flex align-items-center justify-content-between">
 	                        <div>
@@ -266,6 +298,7 @@ window.showAlertToast = showAlertToast;
 window.onload = async function() {
 	await loadConfig();
 	config = JSON.parse(localStorage.getItem('appConfig'));
+	await loadStatesConfig();
 	await loadSamplesFromDb();
 	populateStates();
 }

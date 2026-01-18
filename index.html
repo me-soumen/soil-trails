@@ -31,6 +31,21 @@
         <!-- Nav Items -->
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item me-3">
+                    <button class="theme-toggle theme-toggle-light" onclick="window.themeManager.toggle()" aria-label="Toggle theme" data-theme="light">
+                        <div class="theme-toggle-track">
+                            <div class="theme-toggle-knob">
+                                <svg class="theme-toggle-icon theme-toggle-icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <svg class="theme-toggle-icon theme-toggle-icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </button>
+                </li>
                 <li class="nav-item">
                     <button class="btn btn-success btn-lg d-flex align-items-center justify-content-center">
                         <a href="add-sample" class="add-page-link">
@@ -71,9 +86,12 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="mb-3">
+                        <div class="mb-3 position-relative">
                             <input type="password" class="form-control" id="password" placeholder="Enter Password"
                                    autocomplete="off">
+                            <button type="button" class="btn-eye-toggle" onclick="togglePasswordVisibility('password', 'password-eye-icon')" id="password-eye-icon">
+                                <i class="bi bi-eye"></i>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -147,6 +165,7 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="./js/theme.js"></script>
 <script src="./js/index.js" type="module"></script>
 <script>
     const deleteModal = document.getElementById('delete-modal');
@@ -209,6 +228,22 @@
             handleConfirmDelete();
         }
     });
+
+    // Password visibility toggle
+    function togglePasswordVisibility(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.querySelector('i').classList.remove('bi-eye');
+            icon.querySelector('i').classList.add('bi-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.querySelector('i').classList.remove('bi-eye-slash');
+            icon.querySelector('i').classList.add('bi-eye');
+        }
+    }
+    window.togglePasswordVisibility = togglePasswordVisibility;
 </script>
 </body>
 </html>

@@ -11,9 +11,6 @@
           integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"/>
     <meta charset="UTF-8">
-    <style>
-        input, button { display: block; margin: 10px 0; padding: 8px; width: 300px; }
-    </style>
 </head>
 <body class="body-container">
 <!-- Header -->
@@ -27,27 +24,44 @@
                 <span class="fs-1">Soil Trails</span>
             </div>
         </a>
+        <!-- Theme Toggle -->
+        <button class="theme-toggle theme-toggle-light ms-auto" onclick="window.themeManager.toggle()" aria-label="Toggle theme" data-theme="light" style="border: none; background: transparent; margin-right: 10px;">
+            <div class="theme-toggle-track">
+                <div class="theme-toggle-knob">
+                    <svg class="theme-toggle-icon theme-toggle-icon-sun" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="theme-toggle-icon theme-toggle-icon-moon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+            </div>
+        </button>
     </div>
 </nav>
 
 <!-- Main Body -->
-<div class="container text-center" style="padding-top: 100px;">
-    <h2 style="font-family: sans-serif; font-weight: 700;">Add New Sample</h2>
-    <div class="form-container mx-auto mt-2 mb-4" style="max-width: 500px;">
-        <form>
+<div class="container form-page-container" style="padding-top: 100px;">
+    <div class="form-page-header text-center">
+        <h1>Add New Sample</h1>
+        <p>Document your soil or water sample with location details</p>
+    </div>
+    <div class="form-container mx-auto mt-4 mb-4">
+        <form class="add-sample-form">
             <div class="row g-3">
                 <!-- Image 1 -->
                 <div class="col-md-6 col-sm-6 col-6">
                     <div class="image-upload-container" onclick="document.getElementById('photo1Input').click()">
                         <button type="button" class="remove-image-btn" id="removePhoto1" onclick="event.stopPropagation(); removeImage('1')">&times;</button>
-                        <div id="photo1Label" style="text-align: left;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#afafaf" class="bi bi-1-square-fill" viewBox="0 0 16 16">
-                                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm7.283 4.002V12H7.971V5.338h-.065L6.072 6.656V5.385l1.899-1.383z"/>
-                            </svg>
+                        <div class="upload-placeholder" id="photo1Placeholder">
+                            <div class="upload-number">1</div>
+                            <i class="bi bi-camera-fill upload-icon-large"></i>
+                            <div class="upload-text">Click to upload image</div>
+                            <div class="upload-hint">JPG, PNG or JPEG</div>
                         </div>
-                        <img src="../images/common/no-preview.jpg" class="upload-icon" id="photo1Icon" />
                         <input type="file" id="photo1Input" accept="image/*" onchange="previewImage(event, '1')" required>
-                        <img id="photo1Preview" class="image-preview" alt="Preview">
+                        <img id="photo1Preview" class="image-preview" alt="Preview" style="display: none;">
                     </div>
                 </div>
 
@@ -55,61 +69,90 @@
                 <div class="col-md-6 col-sm-6 col-6">
                     <div class="image-upload-container" onclick="document.getElementById('photo2Input').click()">
                         <button type="button" class="remove-image-btn" id="removePhoto2" onclick="event.stopPropagation(); removeImage('2')">&times;</button>
-                        <div id="photo2Label" style="text-align: left;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#afafaf" class="bi bi-2-square-fill" viewBox="0 0 16 16">
-                                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm4.646 6.24v.07H5.375v-.064c0-1.213.879-2.402 2.637-2.402 1.582 0 2.613.949 2.613 2.215 0 1.002-.6 1.667-1.287 2.43l-.096.107-1.974 2.22v.077h3.498V12H5.422v-.832l2.97-3.293c.434-.475.903-1.008.903-1.705 0-.744-.557-1.236-1.313-1.236-.843 0-1.336.615-1.336 1.306"/>
-                            </svg>
+                        <div class="upload-placeholder" id="photo2Placeholder">
+                            <div class="upload-number">2</div>
+                            <i class="bi bi-camera-fill upload-icon-large"></i>
+                            <div class="upload-text">Click to upload image</div>
+                            <div class="upload-hint">JPG, PNG or JPEG</div>
                         </div>
-                        <img src="../images/common/no-preview.jpg" class="upload-icon" id="photo2Icon" />
                         <input type="file" id="photo2Input" accept="image/*" onchange="previewImage(event, '2')" required>
-                        <img id="photo2Preview" class="image-preview" alt="Preview">
+                        <img id="photo2Preview" class="image-preview" alt="Preview" style="display: none;">
                     </div>
                 </div>
             </div>
 
             <!-- Form Fields -->
-            <div>
-                <select id="stateDropdown" class="selectpicker" data-live-search="true" data-size="10" data-width="100%"
-                        aria-label=".form-select-lg example" required>
+            <div class="form-group-custom mb-4">
+                <label class="form-label-custom"><i class="bi bi-geo-alt-fill me-2"></i>State/UT</label>
+                <select id="stateDropdown" class="selectpicker form-control-custom" data-live-search="true" data-size="10" data-width="100%"
+                        aria-label="Select State/UT" required>
                     <option value="">Select State/UT</option>
                     <optgroup label="States"></optgroup>
                     <optgroup label="Union Territories"></optgroup>
                 </select>
             </div>
-            <div class="mb-3">
-                <input type="text" class="form-control" id="place" placeholder="Place" autocomplete="off" required>
+
+            <div class="form-group-custom mb-4">
+                <label class="form-label-custom"><i class="bi bi-geo-fill me-2"></i>Place</label>
+                <input type="text" class="form-control-custom" id="place" placeholder="Enter place name" autocomplete="off" required>
             </div>
-            <div class=" mb-3 d-flex align-items-center form-control" style="padding: 0.282rem 0.75rem">
-                <div class=" form-check form-switch d-flex align-items-center justify-content-start mb-0 w-50">
-                    <input class="form-check-input" style="margin-bottom: 5px !important;"  type="radio" role="switch" name="sampleType" value="soil" id="sampleTypeSoil" required checked>
-                    <label class="form-check-label" style="padding-left: 8px !important;" for="sampleTypeSoil">Soil</label>
+
+            <div class="form-group-custom mb-4">
+                <label class="form-label-custom"><i class="bi bi-droplet-half me-2"></i>Sample Type</label>
+                <div class="sample-type-radio-group">
+                    <label class="radio-option-label">
+                        <input type="radio" name="sampleType" value="soil" id="sampleTypeSoil" required checked>
+                        <span class="radio-option"><i class="bi bi-moisture me-2"></i>Soil</span>
+                    </label>
+                    <label class="radio-option-label">
+                        <input type="radio" name="sampleType" value="water" id="sampleTypeWater" required>
+                        <span class="radio-option"><i class="bi bi-water me-2"></i>Water</span>
+                    </label>
                 </div>
-                <div class="col-6 form-check form-switch d-flex align-items-center justify-content-start mb-0 w-50">
-                    <input class="form-check-input" style="margin-bottom: 5px !important;"type="radio" role="switch" name="sampleType" value="water" id="sampleTypeWater" required>
-                    <label class="form-check-label" style="padding-left: 8px !important;" for="sampleTypeWater">Water</label>
+            </div>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-6 form-group-custom">
+                    <label class="form-label-custom"><i class="bi bi-calendar-event me-2"></i>Date</label>
+                    <input type="date" class="form-control-custom" id="date" placeholder="Date" autocomplete="off" required>
+                </div>
+                <div class="col-md-6 form-group-custom">
+                    <label class="form-label-custom"><i class="bi bi-clock me-2"></i>Time</label>
+                    <input type="time" class="form-control-custom" id="time" placeholder="Time" autocomplete="off" required>
                 </div>
             </div>
-            <div class="mb-3">
-                <input type="date" class="form-control" id="date" placeholder="Date" autocomplete="off" required>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-6 form-group-custom">
+                    <label class="form-label-custom"><i class="bi bi-globe me-2"></i>Latitude</label>
+                    <input type="number" step="any" class="form-control-custom" placeholder="Enter latitude" id="latitude" autocomplete="off" required>
+                </div>
+                <div class="col-md-6 form-group-custom">
+                    <label class="form-label-custom"><i class="bi bi-globe-americas me-2"></i>Longitude</label>
+                    <input type="number" step="any" class="form-control-custom" placeholder="Enter longitude" id="longitude" autocomplete="off" required>
+                </div>
             </div>
-            <div class="mb-3">
-                <input type="time" class="form-control" id="time" placeholder="Time" autocomplete="off" required>
+
+            <div class="form-group-custom mb-4">
+                <label class="form-label-custom"><i class="bi bi-card-text me-2"></i>Notes</label>
+                <textarea class="form-control-custom" placeholder="Add any additional notes..." id="notes" rows="3" required></textarea>
             </div>
-            <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Latitude" id="latitude" autocomplete="off" required>
+
+            <div class="form-group-custom mb-4">
+                <label class="form-label-custom"><i class="bi bi-lock-fill me-2"></i>Password</label>
+                <div class="position-relative">
+                    <input type="password" class="form-control-custom" placeholder="Enter your password" id="password" autocomplete="off" required>
+                    <button type="button" class="btn-eye-toggle" onclick="togglePasswordVisibility('password', 'password-eye-icon')" id="password-eye-icon">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </div>
             </div>
-            <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Longitude" id="longitude" autocomplete="off" required>
-            </div>
-            <div class="mb-3">
-                <textarea class="form-control" placeholder="Notes" id="notes" rows="3" required></textarea>
-            </div>
-            <div class="mb-3">
-                <input type="password" class="form-control" placeholder="Password" id="password" autocomplete="off" required>
-            </div>
-            <button class="btn btn-primary w-100 fs-4 fw-bold" id="save-btn">Save</button>
-            <button class="btn btn-primary w-100 fs-4 fw-bold" type="button" id="save-loading-btn" disabled hidden>
-                <span class="spinner-border spinner-border-sm me-2" role="status" style="width: 1.5rem; height: 1.5rem;" aria-hidden="true"></span>
+
+            <button class="btn-submit" id="save-btn">
+                <i class="bi bi-check-circle me-2"></i>Save Sample
+            </button>
+            <button class="btn-submit btn-submit-loading" type="button" id="save-loading-btn" disabled hidden>
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                 Saving...
             </button>
         </form>
@@ -217,8 +260,12 @@
         if (!date) return showAlertToast("Date is required.", "info");
         if ((new Date(date).setHours(0, 0, 0, 0)) > today) return showAlertToast("Future dates are not allowed.", "info");
         if (!time) return showAlertToast("Time is required.", "info");
-        if (!latitude || isNaN(latitude)) return showAlertToast("Enter valid Latitude.", "info");
-        if (!longitude || isNaN(longitude)) return showAlertToast("Enter valid Longitude.", "info");
+        if (!latitude || latitude === '') return showAlertToast("Latitude is required.", "info");
+        if (!longitude || longitude === '') return showAlertToast("Longitude is required.", "info");
+        const latNum = parseFloat(latitude);
+        const lonNum = parseFloat(longitude);
+        if (isNaN(latNum) || latNum < -90 || latNum > 90) return showAlertToast("Enter valid Latitude (-90 to 90).", "info");
+        if (isNaN(lonNum) || lonNum < -180 || lonNum > 180) return showAlertToast("Enter valid Longitude (-180 to 180).", "info");
         if(regex.test(notes)) return showAlertToast("Please remove special characters.", "info");
 
         // Compress images
@@ -233,8 +280,8 @@
             type,
             date,
             time: await to12HourFormat(time),
-            latitude: parseFloat(latitude),
-            longitude: parseFloat(longitude),
+            latitude: latNum,
+            longitude: lonNum,
             notes
         };
 
@@ -251,7 +298,6 @@
             form.reset();
             removeImage('1');
             removeImage('2');
-            document.getElementById('photo2Input').setAttribute('src', '../images/common/no-preview.jpg');
             stateDropdown.selectedIndex = 0;
             $('#stateDropdown').selectpicker('refresh');
         } catch (error) {
@@ -266,6 +312,7 @@
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="../js/theme.js"></script>
 <script src="../js/add-sample.js" type="module"></script>
 <script src="../js/compressor.js" type="module"></script>
 <script src="../js/notifications.js" type="module"></script>
@@ -273,5 +320,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+<script>
+    // Password visibility toggle
+    function togglePasswordVisibility(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.querySelector('i').classList.remove('bi-eye');
+            icon.querySelector('i').classList.add('bi-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.querySelector('i').classList.remove('bi-eye-slash');
+            icon.querySelector('i').classList.add('bi-eye');
+        }
+    }
+    window.togglePasswordVisibility = togglePasswordVisibility;
+</script>
 </body>
 </html>
