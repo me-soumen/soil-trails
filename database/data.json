@@ -28,7 +28,28 @@
   {
     "code": "AR",
     "state": "Arunachal Pradesh",
-    "samples": []
+    "samples": [
+      {
+        "place": "Test Add",
+        "type": "water",
+        "date": "2026-01-15",
+        "time": "3:42 AM",
+        "latitude": 1.2,
+        "longitude": 1.2,
+        "notes": "Test design",
+        "images": [
+          {
+            "imageName": "20260118T221242222Z0.png",
+            "imageSha": "dfbe671d219e90b8c8fc5607ff47c4fc2bd3ad2a"
+          },
+          {
+            "imageName": "20260118T221243772Z1.png",
+            "imageSha": "dfbe671d219e90b8c8fc5607ff47c4fc2bd3ad2a"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "AS",
