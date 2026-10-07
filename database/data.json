@@ -48,7 +48,28 @@
   {
     "code": "GA",
     "state": "Goa",
-    "samples": []
+    "samples": [
+      {
+        "place": "Bally",
+        "type": "soil",
+        "date": "2026-10-03",
+        "time": "5:10 PM",
+        "latitude": 15.1544838,
+        "longitude": 74.0112988,
+        "notes": "This sample is collected while returning from Betul Lighthouse to our hotel at Polem Beach.",
+        "images": [
+          {
+            "imageName": "20261007T180600047Z0.png",
+            "imageSha": "eec75da46ba5c1c23ebaa8cdadd9232f6624886c"
+          },
+          {
+            "imageName": "20261007T180602261Z1.png",
+            "imageSha": "12532110338903c859fca304b983de0a8c20137c"
+          }
+        ],
+        "id": "#1"
+      }
+    ]
   },
   {
     "code": "GJ",
